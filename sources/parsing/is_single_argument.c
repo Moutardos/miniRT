@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   is_single_argument.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:24:46 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/02/24 00:34:51 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/01 22:03:26 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
+#include <unistd.h>
 
 #include "minirt.h"
 
