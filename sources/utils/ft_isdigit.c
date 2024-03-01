@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 02:57:07 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/01 21:59:51 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/02/28 15:15:33 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/03/01 22:21:19 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "utils.h"
 
-# include <stdbool.h>
-
-# include "objects.h"
-
-# define DECIMAL_PRECISION 5
-
-int		extract_point(t_point *point, char **ptr_line);
-int		extract_vector(t_vector *vector, char **ptr_line);
-int		extract_color(t_color *color, char **ptr_line);
-bool	is_single_argument(int argc);
-
-#endif
+int	ft_isdigit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
