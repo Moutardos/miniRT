@@ -3,17 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   settings.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:49:12 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/02/27 02:08:21 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/01 20:38:08 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SETTINGS_H
 # define SETTINGS_H
 
+# include <stdbool.h>
+
 # include "objects.h"
+
+# define ENV_LIGHT_COLOR 0xFFFFFFFF
+# define ENV_LIGHT_RATIO 0.5
+
+# define LIGHT_COLOR 0x0
+# define LIGHT_RATIO 0.0
+# define LIGHT_POINT_X 0
+# define LIGHT_POINT_Y 0
+# define LIGHT_POINT_Z 0
+
+# define CAMERA_FOV 90
+# define CAMERA_VECTOR_X 0
+# define CAMERA_VECTOR_Y 0
+# define CAMERA_VECTOR_Z 0
+# define CAMERA_POINT_X 0
+# define CAMERA_POINT_Y 0
+# define CAMERA_POINT_Z 0
 
 typedef struct s_env_light
 {
@@ -41,5 +60,7 @@ typedef struct s_settings
 	t_camera	camera;
 	t_light		light;
 }	t_settings;
+
+int	init_settings(t_settings *settings);
 
 #endif
