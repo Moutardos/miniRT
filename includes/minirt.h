@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:14:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/01 21:55:37 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/07 00:12:36 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "parsing.h"
 # include "mlx_info.h"
+# include "parsing.h"
 # include "colors.h"
 # include "settings.h"
 # include "objects.h"
@@ -29,5 +30,6 @@ typedef struct s_data
 
 int		init_data(t_data *data, char *file);
 void	destroy_data(t_data *data);
+int		fill_data(t_data *data, char *file);
 
 #endif

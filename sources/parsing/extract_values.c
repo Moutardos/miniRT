@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 15:17:43 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/01 22:38:57 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/06 20:20:00 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "minirt.h"
 
-static int	extract_int(int *value, char **ptr_line)
+int	extract_int(int *value, char **ptr_line)
 {
 	int			sign;
 	long int	raw_value;
