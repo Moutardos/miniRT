@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 14:43:07 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/06 21:59:42 by lcozdenm         ###   ########.fr       */
+/*   Created: 2022/09/17 01:31:03 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/03/06 21:59:13 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "minirt.h"
 
-int				ft_isdigit(char c);
-unsigned int	ft_strlen(const char *s);
-int				ft_putstr_fd(char *s, int fd);
+unsigned int	ft_strlen(const char *s)
+{
+	unsigned int	size;
 
-#endif
+	size = 0;
+	while (s[size])
+		size++;
+	return (size);
+}
