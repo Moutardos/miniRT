@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_info.h                                         :+:      :+:    :+:   */
+/*   init_mlx_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 02:59:13 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/06 23:07:15 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/02/24 19:29:28 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/03/06 23:04:14 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_INFO_H
-# define MLX_INFO_H
+#include "mlx.h"
 
-# define WIN_W 1920
-# define WIN_H 1080
+#include "minirt.h"
 
-typedef struct s_img
+int	init_mlx_info(t_mlx_info *mlx_info)
 {
-	void	*img_ptr;
-	char	*addr;
-	int		bpp;
-	int		size_line;
-	int		endian;
-}	t_img;
-
-typedef struct s_mlx_info
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-}	t_mlx_info;
-
-int	init_mlx_info(t_mlx_info *mlx_info);
-
-#endif
+	mlx_info->mlx_ptr = mlx_init();
+	if (!mlx_info->mlx_ptr)
+		return (1);
+	mlx_info->win_ptr = mlx_new_window(mlx_info->mlx_ptr, WIN_W, WIN_H, "miniRT");
+	if (!mlx_info->win_ptr)
+	{
+		mlx_destroy_display(mlx_info->mlx_ptr);
+		return (1);
+	}
+	mlx_info->img.img_ptr = NULL;	
+	return (0);
+}
