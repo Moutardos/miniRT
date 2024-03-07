@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/07 00:15:25 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:55:18 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ static int	update_camera(t_camera *camera, char *line)
 	return (0);	
 }
 
-// TODO : more precise error, probably having a int *error in extract_values func
 static int	reading_line(t_data *data, char *line, int *count)
 {
 	int		error;
@@ -134,5 +133,6 @@ int	fill_data(t_data *data, char *file)
 		}
 		free(line);
 	}
-	return (0);
+	ft_putstr_fd("Error while trying to read file\n", 2);
+	return (2);
 }
