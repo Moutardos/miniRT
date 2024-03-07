@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/07 17:55:18 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:53:05 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ static int	update_env_light(t_env_light *env_light, char *line)
 	ignore_space(&line);
 	if (extract_color(&env_light->color, &line))
 		return (2);
+	ignore_space(&line);
+	if (*line != '\n' && *line != '\0')
+		return (2);
 	return (0);
 }
 
@@ -50,7 +53,13 @@ static int	update_light(t_light *light, char *line)
 	if (light->ratio < 0 || light->ratio > 1)
 		return (2);
 	ignore_space(&line);
-	extract_color(&light->color, &line);
+	if (*line == '\n' || *line == '\0')
+		return (0);
+	if (extract_color(&light->color, &line))
+		return (2);
+	ignore_space(&line);
+	if (*line != '\n' && *line != '\0')
+		return (2);
 	return (0);
 }
 
@@ -77,7 +86,10 @@ static int	update_camera(t_camera *camera, char *line)
 	if (raw_value > 180 || raw_value < 0)
 		return (2);
 	camera->fov = raw_value;
-	return (0);	
+	ignore_space(&line);
+	if (*line != '\n' && *line != '\0')
+		return (2);
+	return (0);
 }
 
 static int	reading_line(t_data *data, char *line, int *count)
@@ -85,7 +97,7 @@ static int	reading_line(t_data *data, char *line, int *count)
 	int		error;
 
 	error = 0;
-	if (is_same_word(line, "C"))	
+	if (is_same_word(line, "C"))
 		error = update_camera(&data->settings.camera, line);
 	else if (is_same_word(line, "A"))
 		error = update_env_light(&data->settings.env_light, line);
@@ -97,15 +109,15 @@ static int	reading_line(t_data *data, char *line, int *count)
 		count++;
 	else
 	{
-		ft_putstr_fd("Error\nUnknown identifier\n",2);
+		ft_putstr_fd("Error\nUnknown identifier\n", 2);
 		return (1);
 	}
 	if (!error)
 		return (0);
 	else if (error == 1)
-		ft_putstr_fd("Error\nToo many of the same element\n",2);
+		ft_putstr_fd("Error\nToo many of the same element\n", 2);
 	else if (error == 2)
-		ft_putstr_fd("Error\nWrong values\n",2);
+		ft_putstr_fd("Error\nWrong values\n", 2);
 	return (1);
 }
 
@@ -113,7 +125,7 @@ int	fill_data(t_data *data, char *file)
 {
 	int		fd;
 	char	*line;
-	int 	count_objects;
+	int		count_objects;
 
 	count_objects = 0;
 	if (!file)
