@@ -29,7 +29,7 @@ static int	reading_line_settings(t_settings *settings, char *line, int *count)
 	else if (is_same_word(line, "\n"))
 		return (0);
 	else if (!str_to_obj(line, NULL))
-		count++;
+		(*count)++;
 	else
 	{
 		ft_putstr_fd("Error\nUnknown identifier\n", 2);
