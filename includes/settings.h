@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:49:12 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/08 10:33:51 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/08 12:22:25 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define CAMERA_FOV 90
 # define CAMERA_VECTOR_X 0
 # define CAMERA_VECTOR_Y 0
-# define CAMERA_VECTOR_Z 0
+# define CAMERA_VECTOR_Z 1
 # define CAMERA_POINT_X 0
 # define CAMERA_POINT_Y 0
 # define CAMERA_POINT_Z 0
