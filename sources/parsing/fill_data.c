@@ -6,103 +6,26 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/07 18:53:05 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:48:48 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
+#include <unistd.h>
 
 #include "minirt.h"
 
-static int	update_env_light(t_env_light *env_light, char *line)
-{
-	static int	count = 0;
-
-	count++;
-	if (count > 1)
-		return (1);
-	line++;
-	ignore_space(&line);
-	if (extract_double(&env_light->ratio, &line))
-		return (2);
-	if (env_light->ratio < 0 || env_light->ratio > 1)
-		return (2);
-	ignore_space(&line);
-	if (extract_color(&env_light->color, &line))
-		return (2);
-	ignore_space(&line);
-	if (*line != '\n' && *line != '\0')
-		return (2);
-	return (0);
-}
-
-static int	update_light(t_light *light, char *line)
-{
-	static int	count = 0;
-
-	count++;
-	if (count > 1)
-		return (1);
-	line++;
-	ignore_space(&line);
-	if (extract_point(&light->point, &line))
-		return (2);
-	ignore_space(&line);
-	if (extract_double(&light->ratio, &line))
-		return (2);
-	if (light->ratio < 0 || light->ratio > 1)
-		return (2);
-	ignore_space(&line);
-	if (*line == '\n' || *line == '\0')
-		return (0);
-	if (extract_color(&light->color, &line))
-		return (2);
-	ignore_space(&line);
-	if (*line != '\n' && *line != '\0')
-		return (2);
-	return (0);
-}
-
-static int	update_camera(t_camera *camera, char *line)
-{
-	static int	count = 0;
-	int			raw_value;
-
-	count++;
-	if (count > 1)
-		return (1);
-	line++;
-	ignore_space(&line);
-	if (extract_point(&camera->point, &line))
-		return (2);
-	ignore_space(&line);
-	if (extract_vector(&camera->vector, &line))
-		return (2);
-	if (!is_vector_normalized(camera->vector))
-		return (2);
-	ignore_space(&line);
-	if (extract_int(&raw_value, &line))
-		return (2);
-	if (raw_value > 180 || raw_value < 0)
-		return (2);
-	camera->fov = raw_value;
-	ignore_space(&line);
-	if (*line != '\n' && *line != '\0')
-		return (2);
-	return (0);
-}
-
-static int	reading_line(t_data *data, char *line, int *count)
+static int	reading_line_settings(t_settings *settings, char *line, int *count)
 {
 	int		error;
 
 	error = 0;
 	if (is_same_word(line, "C"))
-		error = update_camera(&data->settings.camera, line);
+		error = update_camera(&settings->camera, line);
 	else if (is_same_word(line, "A"))
-		error = update_env_light(&data->settings.env_light, line);
+		error = update_env_light(&settings->env_light, line);
 	else if (is_same_word(line, "L"))
-		error = update_light(&data->settings.light, line);
+		error = update_light(&settings->light, line);
 	else if (is_same_word(line, "\n"))
 		return (0);
 	else if (!str_to_obj(line, NULL))
@@ -121,30 +44,34 @@ static int	reading_line(t_data *data, char *line, int *count)
 	return (1);
 }
 
-int	fill_data(t_data *data, char *file)
+static int	fill_settings(t_settings *settings, char *file, int *count_objects)
 {
 	int		fd;
 	char	*line;
-	int		count_objects;
 
-	count_objects = 0;
-	if (!file)
-		return (1);
 	fd = open(file, O_RDONLY);
 	while (!get_next_line(&line, fd))
 	{
 		if (!line)
 		{
-			data->object_array.len = count_objects;
+			close(fd);
 			return (0);
 		}
-		if (reading_line(data, line, &count_objects))
+		if (reading_line_settings(settings, line, count_objects))
 		{
 			free(line);
+			close(fd);
 			return (1);
 		}
 		free(line);
 	}
 	ft_putstr_fd("Error while trying to read file\n", 2);
 	return (2);
+}
+
+int	fill_data(t_data *data, char *file)
+{
+	if (fill_settings(&data->settings, file, &data->object_array.len))
+		return (1);
+	return (0);
 }

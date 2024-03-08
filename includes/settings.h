@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:49:12 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/01 20:38:08 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:33:51 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,8 @@ typedef struct s_settings
 }	t_settings;
 
 int	init_settings(t_settings *settings);
+int	update_env_light(t_env_light *env_light, char *line);
+int	update_light(t_light *light, char *line);
+int	update_camera(t_camera *camera, char *line);
 
 #endif
