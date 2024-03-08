@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   destroy_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 19:54:31 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/08 11:47:29 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/03/08 11:43:23 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/03/08 11:49:43 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	init_data(t_data *data, char *file)
+void	destroy_data(t_data *data)
 {
-	if (init_mlx_info(&data->mlx_info))
-		return (1);
-	init_settings(&data->settings);
-	data->object_array.len = 0;
-	if (fill_data(data, file))
-	{
-		destroy_mlx_info(&data->mlx_info);
-		return (1);
-	}
-	return (0);
+	destroy_mlx_info(&data->mlx_info);
+	if (data->object_array.len > 0)
+		free(data->object_array.array);
 }

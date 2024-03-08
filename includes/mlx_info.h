@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:59:13 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/06 23:07:15 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/08 11:43:54 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_mlx_info
 	t_img	img;
 }	t_mlx_info;
 
-int	init_mlx_info(t_mlx_info *mlx_info);
+int		init_mlx_info(t_mlx_info *mlx_info);
+void	destroy_mlx_info(t_mlx_info *mlx_info);
 
 #endif

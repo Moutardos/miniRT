@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   destroy_mlx_info.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 19:54:31 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/08 11:47:29 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/02/24 19:47:29 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/03/08 11:49:57 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "mlx.h"
+
 #include "minirt.h"
 
-int	init_data(t_data *data, char *file)
+void	destroy_mlx_info(t_mlx_info *mlx_info)
 {
-	if (init_mlx_info(&data->mlx_info))
-		return (1);
-	init_settings(&data->settings);
-	data->object_array.len = 0;
-	if (fill_data(data, file))
-	{
-		destroy_mlx_info(&data->mlx_info);
-		return (1);
-	}
-	return (0);
+	if (mlx_info->img.img_ptr)
+		mlx_destroy_image(mlx_info->mlx_ptr, mlx_info->img.img_ptr);
+	mlx_destroy_window(mlx_info->mlx_ptr, mlx_info->win_ptr);
+	mlx_destroy_display(mlx_info->mlx_ptr);
+	free(mlx_info->mlx_ptr);
 }
