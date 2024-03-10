@@ -6,14 +6,12 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:49:12 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/08 12:22:25 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/10 19:38:07 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SETTINGS_H
 # define SETTINGS_H
-
-# include <stdbool.h>
 
 # include "objects.h"
 
