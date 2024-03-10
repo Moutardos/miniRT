@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:49:12 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/08 12:09:17 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/10 19:46:34 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ typedef struct s_settings
 	t_light		light;
 }	t_settings;
 
-int	init_settings(t_settings *settings);
+void	init_settings(t_settings *settings);
 
 #endif
