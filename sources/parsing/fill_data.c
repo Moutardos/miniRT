@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/08 11:38:36 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:29:28 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ static int	reading_line_objects(t_object_array *objects, char *line)
 	i++;
 	if (!error)
 		return (0);
-	else if (error == 1)
-		ft_putstr_fd("Error\nToo many of the same element\n", 2);
-	else if (error == 2)
+	if (error == 1)
 		ft_putstr_fd("Error\nWrong values\n", 2);
 	return (1);
 }
@@ -92,6 +90,7 @@ static int	fill_settings(t_settings *settings, char *file, int *count_objects)
 		}
 		free(line);
 	}
+	close(fd);
 	ft_putstr_fd("Error while trying to read file\n", 2);
 	return (2);
 }
@@ -125,7 +124,10 @@ int	fill_data(t_data *data, char *file)
 {
 	if (fill_settings(&data->settings, file, &data->object_array.len))
 		return (1);
-	if (fill_objects(&data->object_array, file))
-		return (1);
+	if (data->object_array.len > 0)
+	{
+		if (fill_objects(&data->object_array, file))
+			return (1);
+	}
 	return (0);
 }
