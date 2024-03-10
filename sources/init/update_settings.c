@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:26:42 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/08 10:49:12 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/10 20:10:41 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	update_light(t_light *light, char *line)
 int	update_camera(t_camera *camera, char *line)
 {
 	static int	count = 0;
-	int			raw_value;
 
 	count++;
 	if (count > 1)
@@ -74,16 +73,11 @@ int	update_camera(t_camera *camera, char *line)
 	if (extract_point(&camera->point, &line))
 		return (2);
 	ignore_space(&line);
-	if (extract_vector(&camera->vector, &line))
-		return (2);
-	if (!is_vector_normalized(camera->vector))
+	if (extract_normal_vector(&camera->vector, &line))
 		return (2);
 	ignore_space(&line);
-	if (extract_int(&raw_value, &line))
+	if (extract_fov(&camera->fov, &line))
 		return (2);
-	if (raw_value > 180 || raw_value < 0)
-		return (2);
-	camera->fov = raw_value;
 	ignore_space(&line);
 	if (*line != '\n' && *line != '\0')
 		return (2);

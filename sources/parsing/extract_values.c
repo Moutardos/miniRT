@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 15:17:43 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/10 18:46:09 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/10 19:54:41 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,70 +65,5 @@ int	extract_double(double *value, char **ptr_line)
 	}
 	while (decimal_point--)
 		*value /= 10;
-	return (0);
-}
-
-/* @return: 1 if it couldn't extract a correct double
-			2 if coma was expected and got something else
-*/
-int	extract_point(t_point *point, char **ptr_line)
-{
-	if (extract_double(&point->x, ptr_line))
-		return (1);
-	if (**ptr_line != ',')
-		return (2);
-	(*ptr_line)++;
-	if (extract_double(&point->y, ptr_line))
-		return (1);
-	if (**ptr_line != ',')
-		return (2);
-	(*ptr_line)++;
-	if (extract_double(&point->z, ptr_line))
-		return (1);
-	return (0);
-}
-
-int	extract_vector(t_vector *vector, char **ptr_line)
-{
-	if (extract_double(&vector->x, ptr_line))
-		return (1);
-	if (**ptr_line != ',')
-		return (2);
-	(*ptr_line)++;
-	if (extract_double(&vector->y, ptr_line))
-		return (1);
-	if (**ptr_line != ',')
-		return (2);
-	(*ptr_line)++;
-	if (extract_double(&vector->z, ptr_line))
-		return (1);
-	return (0);
-}
-
-int	extract_color(t_color *color, char **ptr_line)
-{
-	int	raw_value;
-
-	if (extract_int(&raw_value, ptr_line))
-		return (1);
-	if (raw_value < 0 || raw_value > 255)
-		return (1);
-	color->r = raw_value;
-	if (**ptr_line != ',')
-		return (2);
-	(*ptr_line)++;
-	if (extract_int(&raw_value, ptr_line))
-		return (1);
-	if (raw_value < 0 || raw_value > 255)
-		return (1);
-	color->g = raw_value;
-	if (**ptr_line != ',')
-		return (2);
-	(*ptr_line)++;
-	if (extract_int(&raw_value, ptr_line))
-		return (1);
-	if (raw_value < 0 || raw_value > 255)
-		return (1);
-	color->b = raw_value;
 	return (0);
 }

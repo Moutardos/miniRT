@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:06:22 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/10 17:40:16 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/10 20:06:44 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ int	init_plane(t_object *object, char *line)
 	if (extract_point(&object->plane.point, &line))
 		return (1);
 	ignore_space(&line);
-	if (extract_vector(&object->plane.vector, &line))
-		return (1);
-	if (!is_vector_normalized(object->plane.vector))
+	if (extract_normal_vector(&object->plane.vector, &line))
 		return (1);
 	ignore_space(&line);
 	if (extract_color(&object->color, &line))
@@ -60,9 +58,7 @@ int	init_cylinder(t_object *object, char *line)
 	if (extract_point(&object->cylinder.center, &line))
 		return (1);
 	ignore_space(&line);
-	if (extract_vector(&object->cylinder.vector, &line))
-		return (1);
-	if (!is_vector_normalized(object->cylinder.vector))
+	if (extract_normal_vector(&object->cylinder.vector, &line))
 		return (1);
 	ignore_space(&line);
 	if (extract_double(&object->cylinder.diameter, &line))
