@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:57:07 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/07 00:12:59 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:08:17 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		extract_color(t_color *color, char **ptr_line);
 void	ignore_space(char **ptr_line);
 bool	str_to_obj(char *str, enum e_object_type *obj);
 
+int		file_check(int *fd, char *file);
 bool	is_single_argument(int argc);
 
 #endif

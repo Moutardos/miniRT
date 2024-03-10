@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:43:07 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/06 23:24:32 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:07:03 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int				ft_isdigit(char c);
 unsigned int	ft_strlen(const char *s);
 int				ft_putstr_fd(char *s, int fd);
 bool			is_same_word(const char *s1, const char *s2);
+int				ft_strcmp(const char *str1, const char *str2);
 
 /* get_next_line */
 

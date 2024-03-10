@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/10 16:29:28 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:13:02 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ static int	fill_settings(t_settings *settings, char *file, int *count_objects)
 	int		fd;
 	char	*line;
 
-	fd = open(file, O_RDONLY);
+	if (file_check(&fd, file))
+		return (1);
 	while (!get_next_line(&line, fd))
 	{
 		if (!line)
@@ -106,7 +107,8 @@ int	fill_objects(t_object_array *objects, char *file)
 		ft_putstr_fd("Error while allocating memory\n", 2);
 		return (1);
 	}
-	fd = open(file, O_RDONLY);
+	if (file_check(&fd, file))
+		return (1);
 	while (!get_next_line(&line, fd))
 	{
 		if (!line)
