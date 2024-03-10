@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/10 17:13:02 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/10 19:06:27 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ static int	reading_line_settings(t_settings *settings, char *line, int *count)
 	else if (!str_to_obj(line, NULL))
 		(*count)++;
 	else
-	{
-		ft_putstr_fd("Error\nUnknown identifier\n", 2);
-		return (1);
-	}
+		return (ft_putstr_fd("Error\nUnknown identifier\n", 2), 1);
 	if (!error)
 		return (0);
 	else if (error == 1)
 		ft_putstr_fd("Error\nToo many of the same element\n", 2);
 	else if (error == 2)
+	{
 		ft_putstr_fd("Error\nWrong values\n", 2);
+		return (ft_putstr_fd(line, 2), ft_putstr_fd("\n", 2), 1);
+	}
 	return (1);
 }
 
@@ -65,7 +65,11 @@ static int	reading_line_objects(t_object_array *objects, char *line)
 	if (!error)
 		return (0);
 	if (error == 1)
+	{
 		ft_putstr_fd("Error\nWrong values\n", 2);
+		ft_putstr_fd(line, 2);
+		ft_putstr_fd("\n", 2);
+	}
 	return (1);
 }
 
