@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 15:17:43 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/06 20:20:00 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:46:09 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,13 @@ int	extract_double(double *value, char **ptr_line)
 	*value = raw_value;
 	if (**ptr_line != '.')
 		return (0);
-	(*ptr_line)++;
-	while (ft_isdigit(**ptr_line))
+	while ((*ptr_line)++ && ft_isdigit(**ptr_line))
 	{
 		if (decimal_point < DECIMAL_PRECISION)
 		{
 			*value = ((**ptr_line - '0') * sign) + *value * 10;
 			decimal_point++;
 		}
-		(*ptr_line)++;
 	}
 	while (decimal_point--)
 		*value /= 10;
@@ -75,9 +73,6 @@ int	extract_double(double *value, char **ptr_line)
 */
 int	extract_point(t_point *point, char **ptr_line)
 {
-	int	i;
-
-	i = 0;
 	if (extract_double(&point->x, ptr_line))
 		return (1);
 	if (**ptr_line != ',')
@@ -95,9 +90,6 @@ int	extract_point(t_point *point, char **ptr_line)
 
 int	extract_vector(t_vector *vector, char **ptr_line)
 {
-	int	i;
-
-	i = 0;
 	if (extract_double(&vector->x, ptr_line))
 		return (1);
 	if (**ptr_line != ',')
