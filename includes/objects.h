@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/08 11:23:48 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/10 19:20:40 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,12 @@ typedef struct s_object_array
 	int			len;
 }	t_object_array;
 
-int	init_sphere(t_object *object, char *line);
-int	init_plane(t_object *object, char *line);
-int	init_cylinder(t_object *object, char *line);
+int		init_sphere(t_object *object, char *line);
+int		init_plane(t_object *object, char *line);
+int		init_cylinder(t_object *object, char *line);
 
 double	get_magnitude(t_vector v);
 bool	is_vector_normalized(t_vector v);
+bool	is_vector_normalized_d(double x, double y, double z);
 
 #endif
