@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_same_word.c                                     :+:      :+:    :+:   */
+/*   is_same_first_word.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 21:40:59 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/06 21:41:07 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/10 19:33:30 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-bool	is_same_word(const char *s1, const char *s2)
+bool	is_same_first_word(const char *s1, const char *s2)
 {
 	while (*s1 == *s2)
 	{

@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/10 19:06:27 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/10 19:34:06 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 
 #include "minirt.h"
 
-static int	reading_line_settings(t_settings *settings, char *line, int *count)
+static int	read_line_settings(t_settings *settings, char *line, int *count)
 {
 	int		error;
 
 	error = 0;
-	if (is_same_word(line, "C"))
+	if (is_same_first_word(line, "C"))
 		error = update_camera(&settings->camera, line);
-	else if (is_same_word(line, "A"))
+	else if (is_same_first_word(line, "A"))
 		error = update_env_light(&settings->env_light, line);
-	else if (is_same_word(line, "L"))
+	else if (is_same_first_word(line, "L"))
 		error = update_light(&settings->light, line);
-	else if (is_same_word(line, "\n"))
+	else if (is_same_first_word(line, "\n"))
 		return (0);
 	else if (!str_to_obj(line, NULL))
 		(*count)++;
@@ -44,7 +44,7 @@ static int	reading_line_settings(t_settings *settings, char *line, int *count)
 	return (1);
 }
 
-static int	reading_line_objects(t_object_array *objects, char *line)
+static int	read_line_objects(t_object_array *objects, char *line)
 {
 	int					error;
 	static int			i = 0;
@@ -87,7 +87,7 @@ static int	fill_settings(t_settings *settings, char *file, int *count_objects)
 			close(fd);
 			return (0);
 		}
-		if (reading_line_settings(settings, line, count_objects))
+		if (read_line_settings(settings, line, count_objects))
 		{
 			free(line);
 			close(fd);
@@ -117,7 +117,7 @@ int	fill_objects(t_object_array *objects, char *file)
 	{
 		if (!line)
 			return (close(fd), 0);
-		if (reading_line_objects(objects, line))
+		if (read_line_objects(objects, line))
 			return (free(objects->array), free(line), close(fd), 1);
 		free(line);
 	}
