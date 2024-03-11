@@ -78,7 +78,4 @@ int		init_sphere(t_object *object, char *line);
 int		init_plane(t_object *object, char *line);
 int		init_cylinder(t_object *object, char *line);
 
-bool	is_vector_normalized(t_vector v);
-bool	is_vector_normalized_d(double x, double y, double z);
-
 #endif

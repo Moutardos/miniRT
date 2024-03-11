@@ -17,5 +17,6 @@ typedef struct s_data	t_data;
 
 void	run_rt(t_data *data);
 double		get_vector_magnitude(t_vector v);
+bool		is_vector_normalized(t_vector v);
 
 #endif
