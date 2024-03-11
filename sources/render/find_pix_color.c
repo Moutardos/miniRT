@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_vector_magnitude.c                             :+:      :+:    :+:   */
+/*   find_pix_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 00:01:18 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/11 23:11:57 by ekhaled          ###   ########.fr       */
+/*   Created: 2024/03/11 00:35:49 by ekhaled           #+#    #+#             */
+/*   Updated: 2024/03/11 23:10:30 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-
 #include "minirt.h"
 
-double	get_vector_magnitude(t_vector v)
+void	find_pix_color(unsigned int i, unsigned int j, t_data *data)
 {
-	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
+	t_vector	ray;
+
+	ray = compute_ray(i, j, &data->settings.camera);
 }

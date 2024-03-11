@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_vector_magnitude.c                             :+:      :+:    :+:   */
+/*   normalize_vector.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 00:01:18 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/11 23:11:57 by ekhaled          ###   ########.fr       */
+/*   Created: 2024/03/11 13:24:36 by ekhaled           #+#    #+#             */
+/*   Updated: 2024/03/11 15:53:02 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-
 #include "minirt.h"
 
-double	get_vector_magnitude(t_vector v)
+t_vector	normalize_vector(t_vector vector)
 {
-	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
+	double		vector_magnitude;
+	t_vector	normalized_vector;
+
+	vector_magnitude = get_vector_magnitude(vector);
+	if (vector_magnitude == 0)
+		return (vector);
+	normalized_vector = (t_vector){
+		(1 / vector_magnitude) * vector.x,
+		(1 / vector_magnitude) * vector.y,
+		(1 / vector_magnitude) * vector.z
+	};
+	return (normalized_vector);
 }

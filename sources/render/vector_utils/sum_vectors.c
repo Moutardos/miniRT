@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_vector_magnitude.c                             :+:      :+:    :+:   */
+/*   sum_vectors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 00:01:18 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/11 23:11:57 by ekhaled          ###   ########.fr       */
+/*   Created: 2024/03/11 13:19:49 by ekhaled           #+#    #+#             */
+/*   Updated: 2024/03/11 13:20:10 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-
 #include "minirt.h"
 
-double	get_vector_magnitude(t_vector v)
+t_vector	sum_vectors(t_vector vector1, t_vector vector2)
 {
-	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
+	t_vector	summed_vector;
+
+	summed_vector = (t_vector){
+		vector1.x + vector2.x,
+		vector1.y + vector2.y,
+		vector1.z + vector2.z,
+	};
+	return (summed_vector);
 }
