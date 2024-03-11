@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:43:07 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/10 19:34:42 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:43:59 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdbool.h>
 # include <stdlib.h>
 
+bool			are_doubles_equals(double x, double y);
+double			ft_dabs(double a);
 int				ft_isdigit(char c);
 unsigned int	ft_strlen(const char *s);
 int				ft_putstr_fd(char *s, int fd);
