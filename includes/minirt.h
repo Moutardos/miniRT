@@ -13,14 +13,13 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "parsing.h"
-# include "mlx_info.h"
-# include "parsing.h"
-# include "events.h"
 # include "colors.h"
+# include "events.h"
+# include "mlx_info.h"
+# include "objects.h"
+# include "parsing.h"
 # include "render.h"
 # include "settings.h"
-# include "objects.h"
 # include "utils.h"
 
 typedef struct s_data
