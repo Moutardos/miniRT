@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:53:49 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/11 17:29:51 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/11 17:44:51 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	extract_normal_vector(t_vector *vector, char **ptr_line)
 {
 	if (extract_vector(vector, ptr_line))
 		return (1);
-	if (!is_vector_normalized(*vector))
+	if (!is_unit_vector(*vector))
 		return (2);
 	if (vector->x != -1 && vector->x != 0 && vector->x != 1)
 		return (3);
