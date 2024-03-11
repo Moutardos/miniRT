@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:49:12 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/10 19:38:07 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:39:56 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ typedef struct s_settings
 	t_light		light;
 }	t_settings;
 
-int	init_settings(t_settings *settings);
-int	update_env_light(t_env_light *env_light, char *line);
-int	update_light(t_light *light, char *line);
-int	update_camera(t_camera *camera, char *line);
+void	init_settings(t_settings *settings);
+int		update_env_light(t_env_light *env_light, char *line);
+int		update_light(t_light *light, char *line);
+int		update_camera(t_camera *camera, char *line);
 
 #endif

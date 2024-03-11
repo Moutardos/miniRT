@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_settings.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:26:49 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/01 20:38:37 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:39:05 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,9 @@ static void	init_default_light(t_light *light)
 	};
 }
 
-int	init_settings(t_settings *settings)
+void	init_settings(t_settings *settings)
 {
 	init_default_env_light(&settings->env_light);
 	init_default_camera(&settings->camera);
 	init_default_light(&settings->light);
-	return (0);
 }
