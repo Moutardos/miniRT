@@ -6,12 +6,14 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/11 17:19:32 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/11 18:21:51 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECTS_H
 # define OBJECTS_H
+
+# define EPSILON 0.0001
 
 # include "colors.h"
 

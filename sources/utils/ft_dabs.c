@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_unit_vector.c                             :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 23:50:18 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/11 17:19:01 by ekhaled          ###   ########.fr       */
+/*   Created: 2024/03/11 18:23:15 by ekhaled           #+#    #+#             */
+/*   Updated: 2024/03/11 18:26:18 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-
-#include "minirt.h"
-
-bool	is_unit_vector(t_vector v)
+double	ft_dabs(double a)
 {
-	return (are_doubles_equals(get_vector_magnitude(v), 1));
+	if (a < 0)
+		return (-a);
+	return (a);
 }
