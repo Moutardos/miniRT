@@ -14,9 +14,19 @@
 # define RENDER_H
 
 typedef struct s_data	t_data;
+typedef struct s_camera	t_camera;
 
-void	run_rt(t_data *data);
+void		run_rt(t_data *data);
+
+void		find_pix_color(unsigned int i, unsigned int j, t_data *data);
+
+t_vector	compute_ray(unsigned int i, unsigned int j, t_camera *camera);
+
+
+t_vector	create_vector(t_point start_point, t_point end_point);
 double		get_vector_magnitude(t_vector v);
+t_vector	normalize_vector(t_vector vector);
+t_vector	sum_vectors(t_vector vector1, t_vector vector2);
 bool		is_unit_vector(t_vector v);
 
 #endif
