@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:53:49 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/11 17:44:51 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/11 17:57:47 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	extract_vector(t_vector *vector, char **ptr_line)
 	return (0);
 }
 
-int	extract_normal_vector(t_vector *vector, char **ptr_line)
+int	extract_unit_vector(t_vector *vector, char **ptr_line)
 {
 	if (extract_vector(vector, ptr_line))
 		return (1);
