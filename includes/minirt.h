@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:14:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/10 20:51:06 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/11 01:12:20 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "parsing.h"
 # include "events.h"
 # include "colors.h"
+# include "render.h"
 # include "settings.h"
 # include "objects.h"
 # include "utils.h"

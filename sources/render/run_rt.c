@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors.h                                           :+:      :+:    :+:   */
+/*   run_rt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 02:56:05 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/11 00:41:21 by ekhaled          ###   ########.fr       */
+/*   Created: 2024/03/11 01:01:58 by ekhaled           #+#    #+#             */
+/*   Updated: 2024/03/11 01:08:20 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLORS_H
-# define COLORS_H
+#include "minirt.h"
+#include "mlx.h"
 
-# include <stdint.h>
-
-typedef struct s_data	t_data;
-typedef struct s_img	t_img;
-
-typedef union u_color
+void	run_rt(t_data *data)
 {
-	uint32_t	hex;
-	struct
+	unsigned int	i;
+	unsigned int	j;
+
+	i = 0;
+	while (i < WIN_H)
 	{
-		uint8_t	b;
-		uint8_t	g;
-		uint8_t	r;
-		uint8_t	a;
-	};
-}	t_color;
-
-void	find_pix_color(unsigned int i, unsigned int j, t_data *data);
-
-void	color_img_pix(t_img *img, int x, int y, int color);
-
-#endif
+		j = 0;
+		while (j < WIN_W)
+		{
+			find_pix_color(i, j, data);
+			j++;
+		}
+		i++;
+	}
+	mlx_put_image_to_window(data->mlx_info.mlx_ptr, data->mlx_info.win_ptr,
+		data->mlx_info.img.img_ptr, 0, 0);
+}
