@@ -6,11 +6,10 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:12:57 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/11 01:14:14 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/11 01:20:33 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 
 #include "minirt.h"
 #include "mlx.h"
