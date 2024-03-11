@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_settings.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:26:42 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/10 20:10:41 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:57:47 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	update_camera(t_camera *camera, char *line)
 	if (extract_point(&camera->point, &line))
 		return (2);
 	ignore_space(&line);
-	if (extract_normal_vector(&camera->vector, &line))
+	if (extract_unit_vector(&camera->vector, &line))
 		return (2);
 	ignore_space(&line);
 	if (extract_fov(&camera->fov, &line))

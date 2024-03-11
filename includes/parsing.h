@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:57:07 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/10 20:07:34 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:57:47 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		extract_double(double *value, char **ptr_line);
 
 int		extract_point(t_point *point, char **ptr_line);
 int		extract_vector(t_vector *vector, char **ptr_line);
-int		extract_normal_vector(t_vector *vector, char **ptr_line);
+int		extract_unit_vector(t_vector *vector, char **ptr_line);
 int		extract_color(t_color *color, char **ptr_line);
 int		extract_fov(uint8_t *fov, char **ptr_line);
 
