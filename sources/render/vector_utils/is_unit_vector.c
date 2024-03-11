@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_vector_normalized.c                             :+:      :+:    :+:   */
+/*   is_unit_vector.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,7 +14,7 @@
 
 #include "minirt.h"
 
-bool	is_vector_normalized(t_vector v)
+bool	is_unit_vector(t_vector v)
 {
 	return (fabs(1.0 - get_vector_magnitude(v)) <= 0.0001);
 }
