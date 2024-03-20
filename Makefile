@@ -51,6 +51,7 @@ SRCS_VECTOR_UTILS	:=	\
 						get_vector_magnitude.c \
 						is_unit_vector.c \
 						normalize_vector.c \
+						perform_dot_product.c \
 						sum_vectors.c
 
 SRCS_RENDER			:=	\

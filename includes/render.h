@@ -21,13 +21,15 @@ void		run_rt(t_data *data);
 void		find_pix_color(unsigned int i, unsigned int j, t_data *data);
 
 t_vector	compute_ray(unsigned int i, unsigned int j, t_camera *camera);
-bool		is_ray_intersecting_obj(t_object *object);
+bool		is_ray_intersecting_obj(t_object *object,
+				t_camera *camera,
+				t_vector ray);
 
 t_vector	create_vector(t_point start_point, t_point end_point);
 double		get_vector_magnitude(t_vector v);
 bool		is_unit_vector(t_vector v);
 t_vector	normalize_vector(t_vector vector);
-double		perform_scalar_product(t_vector vector1, t_vector vector2);
+double		perform_dot_product(t_vector vector1, t_vector vector2);
 t_vector	sum_vectors(t_vector vector1, t_vector vector2);
 
 #endif
