@@ -47,6 +47,9 @@ SRCS_PARSING		:=	\
 						is_single_argument.c \
 						str_to_obj.c
 
+SRCS_EQUATION_UTILS	:=	\
+						solve_quadratic_equation.c
+
 SRCS_VECTOR_UTILS	:=	\
 						create_vector.c \
 						get_vector_magnitude.c \
@@ -58,9 +61,11 @@ SRCS_VECTOR_UTILS	:=	\
 						translate_point.c 
 
 SRCS_RENDER			:=	\
+						${addprefix equation_utils/, ${SRCS_EQUATION_UTILS}} \
 						${addprefix vector_utils/, ${SRCS_VECTOR_UTILS}} \
 						compute_ray.c \
 						find_pix_color.c \
+						is_ray_intersecting_obj.c \
 						run_rt.c
 
 SRCS_GNL			:=	\
