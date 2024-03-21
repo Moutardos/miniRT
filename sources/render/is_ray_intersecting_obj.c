@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:22:25 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/21 03:36:48 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/21 05:40:45 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,25 @@ bool	is_ray_intersecting_sp(t_sphere *sphere, t_camera *camera, t_vector ray)
 		return (false);
 }
 
+bool	is_ray_intersecting_pl(t_plane *plane, t_camera *camera, t_vector ray)
+{
+	double	intermediate_dot_product;
+	double	t;
+
+	intermediate_dot_product = perform_dot_product(ray, plane->vector);
+	if (are_doubles_equals(intermediate_dot_product, 0))
+		return (true);
+	t = perform_dot_product(create_vector(camera->point, plane->point),
+			plane->vector)
+		/ intermediate_dot_product;
+	return (t > 0);
+}
+
 bool	is_ray_intersecting_obj(t_object *object,
 			t_camera *camera, t_vector ray)
 {
+	if (object->type == PL)
+		return (is_ray_intersecting_pl(&object->plane, camera, ray));
 	if (object->type == SP)
 		return (is_ray_intersecting_sp(&object->sphere, camera, ray));
 	return (false);
