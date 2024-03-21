@@ -32,6 +32,7 @@ SRCS_EVENTS			:=	\
 
 SRCS_INIT			:=	\
 						init_data.c \
+						init_frame.c \
 						init_mlx_info.c \
 						init_object.c \
 						init_settings.c \
