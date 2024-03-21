@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/03/11 18:42:58 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/03/21 02:23:32 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,9 +50,11 @@ SRCS_VECTOR_UTILS	:=	\
 						create_vector.c \
 						get_vector_magnitude.c \
 						is_unit_vector.c \
+						multiply_vector.c \
 						normalize_vector.c \
 						perform_dot_product.c \
-						sum_vectors.c
+						sum_vectors.c \
+						translate_point.c 
 
 SRCS_RENDER			:=	\
 						${addprefix vector_utils/, ${SRCS_VECTOR_UTILS}} \
