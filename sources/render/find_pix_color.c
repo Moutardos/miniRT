@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 00:35:49 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/11 23:10:30 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/21 03:16:44 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void	find_pix_color(unsigned int i, unsigned int j, t_data *data)
 {
 	t_vector	ray;
 
-	ray = compute_ray(i, j, &data->settings.camera);
+	ray = compute_ray(i, j, &data->settings.camera, &data->frame);
 }
