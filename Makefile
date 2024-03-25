@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/03/21 02:23:32 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/03/25 23:55:44 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS_EVENTS			:=	\
 						init_hooks.c
 
 SRCS_INIT			:=	\
+						fill_utils.c \
 						init_data.c \
 						init_frame.c \
 						init_mlx_info.c \

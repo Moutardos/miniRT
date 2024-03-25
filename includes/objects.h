@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/11 18:21:51 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/25 23:46:01 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # define EPSILON 0.0001
 
 # include "colors.h"
+
+typedef struct s_camera	t_camera;
 
 typedef struct s_point
 {
@@ -31,16 +33,32 @@ typedef struct s_vector
 	double	z;
 }	t_vector;
 
+typedef struct s_utils_pl
+{
+	t_vector		camera_point;
+	double			dot_prod_const;
+}	t_utils_pl;
+
 typedef struct s_plane
 {
-	t_point		point;
-	t_vector	vector;
+	t_point			point;
+	t_vector		vector;
+	t_utils_pl		utils;
 }	t_plane;
+
+typedef struct s_utils_sp
+{
+	t_vector	center_camera;
+	t_vector	center_origin;
+	double		center_origin_magnitude;
+	double		c_const;
+}	t_utils_sp;
 
 typedef struct s_sphere
 {
 	t_point		center;
 	double		diameter;
+	t_utils_sp	utils;
 }	t_sphere;
 
 typedef struct s_cylinder
@@ -79,5 +97,7 @@ typedef struct s_object_array
 int		init_sphere(t_object *object, char *line);
 int		init_plane(t_object *object, char *line);
 int		init_cylinder(t_object *object, char *line);
+
+void	fill_utils(t_camera *camera, t_object_array *object_array);
 
 #endif

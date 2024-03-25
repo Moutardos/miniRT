@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:42:38 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/21 03:22:01 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/25 23:44:45 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ t_point	get_p_coords(unsigned int i, unsigned int j, t_frame *frame)
 t_vector	compute_ray(unsigned int i, unsigned int j,
 				t_camera *camera, t_frame *frame)
 {
-	t_vector	co;
 	t_vector	op;
 	t_vector	cp;
 	t_vector	u;
 
-	co = create_vector(camera->point, (t_point){0, 0, 0});
 	op = create_vector((t_point){0, 0, 0}, get_p_coords(i, j, frame));
-	cp = sum_vectors(co, op);
+	cp = sum_vectors(camera->utils.co, op);
 	u = normalize_vector(cp);
 	return (u);
 }

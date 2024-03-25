@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:49:12 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/11 15:39:56 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/24 22:02:01 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,17 @@ typedef struct s_env_light
 	t_color		color;
 }	t_env_light;
 
+typedef struct s_utils_cam
+{
+	t_vector	co;
+}	t_utils_cam;
+
 typedef struct s_camera
 {
 	t_point		point;
 	t_vector	vector;
 	uint8_t		fov;
+	t_utils_cam	utils;
 }	t_camera;
 
 typedef struct s_light

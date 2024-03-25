@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/21 03:16:59 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/25 11:20:41 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_vector	compute_ray(unsigned int i, unsigned int j,
 				t_camera *camera,
 				t_frame *frame);
 bool		is_ray_intersecting_obj(t_object *object,
-				t_camera *camera,
 				t_vector ray);
 
 t_vector	create_vector(t_point start_point, t_point end_point);
