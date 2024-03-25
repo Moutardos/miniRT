@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 19:54:31 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/21 02:44:57 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/25 23:33:54 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	init_data(t_data *data, char *file)
 		return (1);
 	}
 	init_frame(&data->frame, &data->settings.camera);
+	fill_utils(&data->settings.camera, &data->object_array);
 	return (0);
 }
