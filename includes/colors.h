@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:56:05 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/11 00:41:21 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/27 00:02:48 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef union u_color
 }	t_color;
 
 void	find_pix_color(unsigned int i, unsigned int j, t_data *data);
+
+t_color	get_intensified_color(t_color color, double intensity);
 
 void	color_img_pix(t_img *img, int x, int y, int color);
 

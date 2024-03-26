@@ -6,11 +6,22 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 00:35:49 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/26 21:16:05 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/27 00:07:57 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void	color_point(unsigned int i, unsigned int j,
+			t_data *data, t_point_info *point_info)
+{
+	t_color	point_color;
+	double	intensity;
+
+	intensity = get_lightintensity(data, point_info);
+	point_color = get_intensified_color(point_info->object->color, intensity);
+	color_img_pix(&data->mlx_info.img, j, i, point_color.hex);
+}
 
 void	find_pix_color(unsigned int i, unsigned int j, t_data *data)
 {
@@ -43,6 +54,6 @@ void	find_pix_color(unsigned int i, unsigned int j, t_data *data)
 	{
 		nearest_point_info.point
 			= translate_point(data->settings.camera.point, nearest_point_info.cp);
-		;
+		color_point(i, j, data, &nearest_point_info);
 	}
 }

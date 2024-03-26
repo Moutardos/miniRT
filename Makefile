@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/03/26 02:08:35 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/03/27 00:06:47 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ LIBS_TARGET			:=	libraries/minilibx-linux/libmlx.a
 SRC_DIR				:=	sources
 
 SRCS_COLORS			:=	\
-						color_img_pix.c
+						color_img_pix.c \
+						get_intensified_color.c
 
 SRCS_DESTROY		:=	\
 						destroy_data.c \
@@ -67,6 +68,7 @@ SRCS_RENDER			:=	\
 						${addprefix vector_utils/, ${SRCS_VECTOR_UTILS}} \
 						compute_ray.c \
 						find_pix_color.c \
+						get_lightintensity.c \
 						is_ray_intersecting_obj.c \
 						run_rt.c
 
