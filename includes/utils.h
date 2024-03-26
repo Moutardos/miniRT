@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:43:07 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/26 01:19:51 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/26 02:07:30 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ typedef struct s_quadratic_roots
 	};
 }	t_quadratic_roots;
 
+double				get_min_positive_root(t_quadratic_roots *roots);
 t_quadratic_roots	solve_quadratic_equation(double a, double b, double c);
 
 bool				are_doubles_equals(double x, double y);
 double				ft_dabs(double a);
+double				ft_dmin(double a, double b);
 int					ft_isdigit(char c);
 unsigned int		ft_strlen(const char *s);
 int					ft_putstr_fd(char *s, int fd);
