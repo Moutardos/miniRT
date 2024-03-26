@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 23:31:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/26 02:22:29 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/26 05:16:22 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	fill_sphere_utils(t_sphere *sphere, t_camera *camera)
 {
+	sphere->utils.radius = sphere->diameter / 2;
 	sphere->utils.center_camera = create_vector(sphere->center, camera->point);
 	sphere->utils.center_origin
 		= create_vector(sphere->center, (t_point){0, 0, 0});
@@ -22,7 +23,7 @@ void	fill_sphere_utils(t_sphere *sphere, t_camera *camera)
 	sphere->utils.c_const
 		= sphere->utils.center_origin_magnitude
 		* sphere->utils.center_origin_magnitude
-		- (sphere->diameter * sphere->diameter) / 4;
+		- sphere->utils.radius * sphere->utils.radius;
 }
 
 void	fill_plane_utils(t_plane *plane, t_camera *camera)
@@ -35,6 +36,7 @@ void	fill_plane_utils(t_plane *plane, t_camera *camera)
 void	fill_cylinder_disks_utils(t_cylinder *cylinder)
 {
 	cylinder->utils.halved_height = cylinder->height / 2;
+	cylinder->utils.radius = cylinder->diameter / 2;
 }
 
 void	fill_cylinder_tube_utils(t_cylinder *cylinder, t_camera *camera)
