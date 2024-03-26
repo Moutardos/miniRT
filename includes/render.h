@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/26 21:19:04 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/27 00:03:23 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_vector	compute_ray(unsigned int i, unsigned int j,
 bool		is_ray_intersecting_obj(t_object *object,
 				t_vector ray,
 				t_point_info *point_info);
+
+double		get_lightintensity(t_data *data, t_point_info *p_info);
 
 t_vector	create_vector(t_point start_point, t_point end_point);
 double		get_vector_magnitude(t_vector v);
