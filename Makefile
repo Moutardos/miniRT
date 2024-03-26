@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/03/25 23:55:44 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/03/26 02:08:35 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRCS_PARSING		:=	\
 						str_to_obj.c
 
 SRCS_EQUATION_UTILS	:=	\
+						get_min_positive_root.c \
 						solve_quadratic_equation.c
 
 SRCS_VECTOR_UTILS	:=	\
@@ -82,6 +83,7 @@ SRCS_UTILS			:=	\
 						${addprefix get_next_line/, ${SRCS_GNL}} \
 						are_doubles_equals.c \
 						ft_dabs.c \
+						ft_dmin.c \
 						ft_isdigit.c \
 						ft_putstr_fd.c \
 						ft_strcmp.c \

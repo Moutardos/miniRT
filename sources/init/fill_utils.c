@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 23:31:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/25 23:37:36 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/26 02:22:29 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,40 @@ void	fill_plane_utils(t_plane *plane, t_camera *camera)
 		= perform_dot_product(plane->utils.camera_point, plane->vector);
 }
 
+void	fill_cylinder_disks_utils(t_cylinder *cylinder)
+{
+	cylinder->utils.halved_height = cylinder->height / 2;
+}
+
+void	fill_cylinder_tube_utils(t_cylinder *cylinder, t_camera *camera)
+{
+	double	mag_center_camera;
+	double	squared_mag_center_camera;
+	double	mag_dir;
+	double	dot_prod_center_camera_dir;
+	double	squared_dot_prod_center_camera_dir;
+
+	cylinder->utils.center_camera
+		= create_vector(camera->point, cylinder->center);
+	mag_center_camera = get_vector_magnitude(cylinder->utils.center_camera);
+	squared_mag_center_camera = mag_center_camera * mag_center_camera;
+	mag_dir = get_vector_magnitude(cylinder->vector);
+	cylinder->utils.squared_mag_dir = mag_dir * mag_dir;
+	cylinder->utils.dsquared_mag_dir
+		= cylinder->utils.squared_mag_dir * cylinder->utils.squared_mag_dir;
+	dot_prod_center_camera_dir
+		= perform_dot_product(cylinder->utils.center_camera, cylinder->vector);
+	squared_dot_prod_center_camera_dir
+		= dot_prod_center_camera_dir * dot_prod_center_camera_dir;
+	cylinder->utils.c_const
+		= squared_dot_prod_center_camera_dir / cylinder->utils.dsquared_mag_dir
+		+ 2 * squared_dot_prod_center_camera_dir
+		/ cylinder->utils.squared_mag_dir + squared_mag_center_camera
+		- (cylinder->diameter * cylinder->diameter) / 4;
+	cylinder->utils.p_const
+		= dot_prod_center_camera_dir / cylinder->utils.squared_mag_dir;
+}
+
 void	fill_utils(t_camera *camera, t_object_array *object_array)
 {
 	int	object_index;
@@ -45,6 +79,13 @@ void	fill_utils(t_camera *camera, t_object_array *object_array)
 				&object_array->array[object_index].sphere, camera);
 		if (object_array->array[object_index].type == PL)
 			fill_plane_utils(&object_array->array[object_index].plane, camera);
+		if (object_array->array[object_index].type == CY)
+		{
+			fill_cylinder_tube_utils(
+				&object_array->array[object_index].cylinder, camera);
+			fill_cylinder_disks_utils(
+				&object_array->array[object_index].cylinder);
+		}
 		object_index++;
 	}
 }

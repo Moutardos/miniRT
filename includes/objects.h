@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/25 23:46:01 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/26 02:11:15 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,23 @@ typedef struct s_sphere
 	t_utils_sp	utils;
 }	t_sphere;
 
+typedef struct s_utils_cy
+{
+	double		halved_height;
+	t_vector	center_camera;
+	double		squared_mag_dir;
+	double		dsquared_mag_dir;
+	double		c_const;
+	double		p_const;
+}	t_utils_cy;
+
 typedef struct s_cylinder
 {
 	t_point		center;
 	t_vector	vector;
 	double		diameter;
 	double		height;
+	t_utils_cy	utils;
 }	t_cylinder;
 
 enum e_object_type
