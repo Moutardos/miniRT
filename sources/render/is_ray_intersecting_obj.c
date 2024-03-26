@@ -48,6 +48,6 @@ bool	is_ray_intersecting_obj(t_object *object, t_vector ray)
 	if (object->type == PL)
 		return (is_ray_intersecting_pl(&object->plane, ray));
 	if (object->type == SP)
-		return (is_ray_intersecting_sp(&object->sphere,ray));
+		return (is_ray_intersecting_sp(&object->sphere, ray));
 	return (false);
 }
