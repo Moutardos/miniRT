@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:22:25 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/25 23:57:48 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/26 01:19:51 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ bool	is_ray_intersecting_sp(t_sphere *sphere, t_vector ray)
 			2 * perform_dot_product(sphere->utils.center_camera, ray),
 			sphere->utils.c_const
 			);
-	if ((roots.roots_nb == 1 && roots.roots_one[0] > 0)
-		|| (roots.roots_nb == 2
-			&& (roots.roots_two[0] > 0 || roots.roots_two[1] > 0)))
+	if ((roots.nb == 1 && roots.single[0] > 0)
+		|| (roots.nb == 2
+			&& (roots.distincts[0] > 0 || roots.distincts[1] > 0)))
 		return (true);
 	else
 		return (false);

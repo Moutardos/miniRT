@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:43:07 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/15 02:47:51 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/26 01:19:51 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 
 typedef struct s_quadratic_roots
 {
-	int	roots_nb;
+	int	nb;
 	union
 	{
-		double	*roots_none;
-		double	roots_one[1];
-		double	roots_two[2];
+		double	*none;
+		double	single[1];
+		double	distincts[2];
 	};
 }	t_quadratic_roots;
 
