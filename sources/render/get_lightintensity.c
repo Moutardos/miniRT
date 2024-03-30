@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:17:02 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/30 14:44:32 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:49:14 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ bool	is_sp_intersecting_light (t_sphere *sphere, t_vector light_direction,
 	double				c;
 	
 	op = create_vector(sphere->center, p_info->point);
-	c = get_vector_magnitude(point_center)
-		* get_vector_magnitude(point_center)
+	c = get_vector_magnitude(op)
+		* get_vector_magnitude(op)
 		- sphere->utils.radius * sphere->utils.radius;
 	roots = solve_quadratic_equation(
 			1,
