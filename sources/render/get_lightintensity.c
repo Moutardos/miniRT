@@ -23,7 +23,7 @@ double	get_lightintensity(t_data *data, t_point_info *p_info)
 	global_intensity = data->settings.env_light.ratio;
 	light_direction = create_vector(p_info->point, data->settings.light.point);
 	normal_facing = p_info->normal;
-	if (perform_dot_product(normal_facing, p_info->cp) > 0)
+	if (perform_dot_product(normal_facing, p_info->cp) >= 0)
 		normal_facing = multiply_vector(-1, normal_facing);
 	light_intensity = perform_dot_product(normal_facing, light_direction);
 	if (light_intensity > 0)
