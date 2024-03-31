@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   call_handlers.c                                    :+:      :+:    :+:   */
+/*   reload_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/10 19:18:01 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/31 06:07:51 by ekhaled          ###   ########.fr       */
+/*   Created: 2024/03/31 06:05:26 by ekhaled           #+#    #+#             */
+/*   Updated: 2024/03/31 06:05:38 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <X11/keysym.h>
-
 #include "minirt.h"
-#include "mlx.h"
 
-int	call_destroynotify_handler(t_mlx_info *mlx_info)
+void	reload_scene(t_data *data)
 {
-	mlx_loop_end(mlx_info->mlx_ptr);
-	return (0);
-}
-
-int	call_keypress_handler(int keycode, t_data *data)
-{
-	if (keycode == XK_Escape)
-		mlx_loop_end(data->mlx_info.mlx_ptr);
-	reload_scene(data);
-	return (0);
+	init_frame(&data->frame, &data->settings.camera);
+	fill_utils(&data->settings.camera, &data->object_array);
+	run_rt(data);
 }

@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/03/27 00:06:47 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/03/31 06:36:17 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS_DESTROY		:=	\
 SRCS_EVENTS			:=	\
 						call_handlers.c \
 						init_hooks.c
+						reload_scene.c
 
 SRCS_INIT			:=	\
 						fill_utils.c \
