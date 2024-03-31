@@ -29,7 +29,8 @@ SRCS_DESTROY		:=	\
 
 SRCS_EVENTS			:=	\
 						call_handlers.c \
-						init_hooks.c
+						handle_camera.c \
+						init_hooks.c \
 						reload_scene.c
 
 SRCS_INIT			:=	\

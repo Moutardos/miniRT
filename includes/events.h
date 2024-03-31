@@ -13,13 +13,18 @@
 #ifndef EVENTS_H
 # define EVENTS_H
 
+# define STEP 1
+
 typedef struct s_data		t_data;
 typedef struct s_mlx_info	t_mlx_info;
+typedef struct s_camera		t_camera;
 
 void	init_hooks(t_data *data);
 
 int		call_destroynotify_handler(t_mlx_info *mlx_info);
 int		call_keypress_handler(int keycode, t_data *data);
+
+void	handle_camera(int keycode, t_camera *camera);
 
 void	reload_scene(t_data *data);
 
