@@ -6,20 +6,20 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:17:02 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/31 04:27:51 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/03/31 04:45:22 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-bool	is_sp_intersecting_light (t_sphere *sphere, t_vector light_direction,
+bool	is_sp_intersecting_light(t_sphere *sphere, t_vector light_direction,
 			t_point_info *p_info)
 {
 	t_quadratic_roots	roots;
 	double				t;
 	t_vector			op;
 	double				c;
-	
+
 	op = create_vector(sphere->center, p_info->point);
 	c = get_vector_magnitude(op)
 		* get_vector_magnitude(op)
@@ -49,7 +49,7 @@ static bool	is_there_shadow(t_data *data, t_point_info *p_info,
 		if (other_object->type == SP)
 		{
 			if (is_sp_intersecting_light(&other_object->sphere, light_direction,
-				p_info))
+					p_info))
 				return (true);
 		}
 		i++;
