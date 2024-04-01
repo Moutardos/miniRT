@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:43:07 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/26 02:07:30 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/01 10:36:46 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_quadratic_roots	solve_quadratic_equation(double a, double b, double c);
 bool				are_doubles_equals(double x, double y);
 double				ft_dabs(double a);
 double				ft_dmin(double a, double b);
+int					ft_max(int a, int b);
 int					ft_isdigit(char c);
 unsigned int		ft_strlen(const char *s);
 int					ft_putstr_fd(char *s, int fd);
