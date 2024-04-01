@@ -6,13 +6,13 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 10:36:03 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/01 10:36:22 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/01 10:44:13 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_max(int a, int b)
 {
-	if (a < b)
+	if (a > b)
 		return (a);
 	return (b);
 }
