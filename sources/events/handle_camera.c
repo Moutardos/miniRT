@@ -30,7 +30,24 @@ void	handle_camera_point(int keycode, t_point *camera_point)
 		camera_point->y -= STEP;
 }
 
+void	handle_camera_direction(int keycode, t_vector *camera_direction)
+{
+	if (keycode == XK_Up)
+		*camera_direction = (t_vector){0, 1, 0};
+	if (keycode == XK_Down)
+		*camera_direction = (t_vector){0, -1, 0};
+	if (keycode == XK_Right)
+		*camera_direction = (t_vector){1, 0, 0};
+	if (keycode == XK_Left)
+		*camera_direction = (t_vector){-1, 0, 0};
+	if (keycode == XK_Tab)
+		*camera_direction = (t_vector){0, 0, 1};
+	if (keycode == XK_Shift_L)
+		*camera_direction = (t_vector){0, 0, -1};
+}
+
 void	handle_camera(int keycode, t_camera *camera)
 {
 	handle_camera_point(keycode, &camera->point);
+	handle_camera_direction(keycode, &camera->vector);
 }
