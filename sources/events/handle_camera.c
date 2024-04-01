@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 06:08:05 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/31 06:42:58 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/01 09:46:13 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	handle_camera_point(int keycode, t_point *camera_point)
 		camera_point->x += STEP;
 	if (keycode == XK_a)
 		camera_point->x -= STEP;
-	if (keycode == XK_Up)
+	if (keycode == XK_r)
 		camera_point->y += STEP;
-	if (keycode == XK_Down)
+	if (keycode == XK_f)
 		camera_point->y -= STEP;
 }
 
