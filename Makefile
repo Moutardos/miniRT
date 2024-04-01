@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/01 10:37:04 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/04/01 10:44:52 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,7 @@ SRCS_UTILS			:=	\
 						ft_dabs.c \
 						ft_dmin.c \
 						ft_max.c \
+						ft_min.c \
 						ft_isdigit.c \
 						ft_putstr_fd.c \
 						ft_strcmp.c \
