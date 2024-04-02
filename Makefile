@@ -32,7 +32,8 @@ SRCS_EVENTS			:=	\
 						handle_rotations.c \
 						handle_translations.c \
 						init_hooks.c \
-						reload_scene.c
+						reload_scene.c \
+						update_objects.c 
 
 SRCS_INIT			:=	\
 						fill_utils.c \
