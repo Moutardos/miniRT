@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:31:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/01 22:31:52 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/02 08:16:02 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@
 # define STEP 1
 # define DIM 1
 # define RGB_INCR 50
-
-enum e_mouse_buttons
-{
-	LEFT_CLICK = 1,
-	RIGHT_CLICK,
-	MIDDLE_CLICK,
-	SCROLL_UP,
-	SCROLL_DOWN
-};
 
 typedef struct s_point			t_point;
 typedef struct s_vector			t_vector;
