@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 00:35:49 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/27 00:07:57 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/02 08:34:29 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,6 @@ void	find_pix_color(unsigned int i, unsigned int j, t_data *data)
 			= translate_point(data->settings.camera.point, nearest_point_info.cp);
 		color_point(i, j, data, &nearest_point_info);
 	}
+	else
+		color_img_pix(&data->mlx_info.img, j, i, BLACK);
 }

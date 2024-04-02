@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:56:05 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/27 00:02:48 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/02 08:34:52 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define COLORS_H
 
 # include <stdint.h>
+
+# define BLACK 0x000000
 
 typedef struct s_data	t_data;
 typedef struct s_img	t_img;
