@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 23:31:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/26 05:16:22 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/02 10:30:27 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,31 @@ void	fill_plane_utils(t_plane *plane, t_camera *camera)
 		= perform_dot_product(plane->utils.camera_point, plane->vector);
 }
 
-void	fill_cylinder_disks_utils(t_cylinder *cylinder)
+void	fill_cylinder_disks_utils(t_cylinder *cylinder, t_camera *camera)
 {
+	t_vector	cy_center_disk1_center;
+	t_vector	cy_center_disk2_center;
+
 	cylinder->utils.halved_height = cylinder->height / 2;
 	cylinder->utils.radius = cylinder->diameter / 2;
+	cy_center_disk1_center
+		= multiply_vector(cylinder->utils.halved_height, cylinder->vector);
+	cy_center_disk2_center = multiply_vector(-1, cy_center_disk1_center);
+	cylinder->utils.disk1_center
+		= translate_point(cylinder->center, cy_center_disk1_center);
+	cylinder->utils.disk2_center
+		= translate_point(cylinder->center, cy_center_disk2_center);
+	cylinder->utils.induced_plane1.point = cylinder->utils.disk1_center;
+	cylinder->utils.induced_plane2.point = cylinder->utils.disk2_center;
+	cylinder->utils.induced_plane1.vector = cylinder->vector;
+	cylinder->utils.induced_plane2.vector
+		= multiply_vector(-1, cylinder->vector);
+	fill_plane_utils(&cylinder->utils.induced_plane1, camera);
+	fill_plane_utils(&cylinder->utils.induced_plane2, camera);
+	cylinder->utils.disk1_center_camera
+		= create_vector(cylinder->utils.disk1_center, camera->point);
+	cylinder->utils.disk2_center_camera
+		= create_vector(cylinder->utils.disk2_center, camera->point);
 }
 
 void	fill_cylinder_tube_utils(t_cylinder *cylinder, t_camera *camera)
@@ -86,7 +107,7 @@ void	fill_utils(t_camera *camera, t_object_array *object_array)
 			fill_cylinder_tube_utils(
 				&object_array->array[object_index].cylinder, camera);
 			fill_cylinder_disks_utils(
-				&object_array->array[object_index].cylinder);
+				&object_array->array[object_index].cylinder, camera);
 		}
 		object_index++;
 	}

@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:22:25 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/26 21:16:55 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/02 10:32:59 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,33 @@ bool	is_ray_intersecting_cy_tube(t_cylinder *cylinder, t_vector ray,
 	return (get_vector_magnitude(o_c_proj) <= cylinder->utils.halved_height);
 }
 
-bool	is_ray_intersecting_obj(t_object *object, t_vector ray, t_point_info *point_info)
+bool	is_ray_intersecting_cy_disks(t_cylinder *cylinder, t_vector ray,
+			t_point_info *point_info)
+{
+	double	mag;
+
+	if (is_ray_intersecting_pl(&cylinder->utils.induced_plane1,
+			ray, point_info))
+		mag = get_vector_magnitude(sum_vectors(
+					cylinder->utils.disk1_center_camera, point_info->cp));
+	else if (is_ray_intersecting_pl(&cylinder->utils.induced_plane2,
+			ray, point_info))
+		mag = get_vector_magnitude(sum_vectors(
+					cylinder->utils.disk2_center_camera, point_info->cp));
+	else
+		return (false);
+	if (mag <= cylinder->utils.radius)
+		return (true);
+	return (false);
+}
+
+bool	is_ray_intersecting_obj(t_object *object, t_vector ray,
+			t_point_info *point_info)
 {
 	if (object->type == CY)
-		return (is_ray_intersecting_cy_tube(&object->cylinder, ray, point_info));
+		return (is_ray_intersecting_cy_tube(&object->cylinder, ray, point_info)
+			|| is_ray_intersecting_cy_disks(
+				&object->cylinder, ray, point_info));
 	if (object->type == PL)
 		return (is_ray_intersecting_pl(&object->plane, ray, point_info));
 	if (object->type == SP)

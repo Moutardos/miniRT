@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/26 05:15:23 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/02 10:22:25 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,12 @@ typedef struct s_utils_cy
 	double		dsquared_mag_dir;
 	double		c_const;
 	double		p_const;
+	t_point		disk1_center;
+	t_point		disk2_center;
+	t_plane		induced_plane1;
+	t_plane		induced_plane2;
+	t_vector	disk1_center_camera;
+	t_vector	disk2_center_camera;
 }	t_utils_cy;
 
 typedef struct s_cylinder
