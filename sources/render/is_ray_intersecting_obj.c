@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:22:25 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/02 10:32:59 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/03 11:30:36 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,7 @@ bool	is_ray_intersecting_cy_tube(t_cylinder *cylinder, t_vector ray,
 	dot_prod_uv = perform_dot_product(ray, cylinder->vector);
 	squared_dot_prod_uv = dot_prod_uv * dot_prod_uv;
 	roots = solve_quadratic_equation(
-			1 - ((2 * squared_dot_prod_uv) / cylinder->utils.squared_mag_dir)
-			+ (squared_dot_prod_uv / cylinder->utils.dsquared_mag_dir),
+			1 - (squared_dot_prod_uv),
 			2 * perform_dot_product(cylinder->utils.center_camera, ray),
 			cylinder->utils.c_const
 			);
@@ -79,7 +78,7 @@ bool	is_ray_intersecting_cy_tube(t_cylinder *cylinder, t_vector ray,
 		|| (roots.nb == 2 && roots.distincts[0] < 0 && roots.distincts[1] < 0))
 		return (false);
 	t = get_min_positive_root(&roots);
-	o_c_proj = multiply_vector(t * dot_prod_uv / cylinder->utils.squared_mag_dir
+	o_c_proj = multiply_vector(t * dot_prod_uv
 			+ cylinder->utils.p_const, cylinder->vector);
 	point_info->cp = multiply_vector(t, ray);
 	point_info->cp_magnitude = t;
