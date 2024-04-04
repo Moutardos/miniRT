@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 23:31:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/03 11:31:41 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/04 06:52:31 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	fill_utils(t_camera *camera, t_object_array *object_array)
 {
 	int	object_index;
 
-	camera->utils.co = create_vector(camera->point, (t_point){0, 0, 0});
 	object_index = 0;
 	while (object_index < object_array->len)
 	{
