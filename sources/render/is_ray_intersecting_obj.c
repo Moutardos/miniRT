@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:22:25 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/03 11:30:36 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/04 10:39:07 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ bool	is_ray_intersecting_cy_tube(t_cylinder *cylinder, t_vector ray,
 	squared_dot_prod_uv = dot_prod_uv * dot_prod_uv;
 	roots = solve_quadratic_equation(
 			1 - (squared_dot_prod_uv),
-			2 * perform_dot_product(cylinder->utils.center_camera, ray),
+			2 * perform_dot_product(cylinder->utils.center_camera, ray)
+			- 2 * cylinder->utils.p_const * dot_prod_uv,
 			cylinder->utils.c_const
 			);
 	if (roots.nb == 0 || (roots.nb == 1 && roots.single[0] < 0)
