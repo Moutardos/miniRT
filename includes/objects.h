@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/02 10:22:25 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/03 11:04:45 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ typedef struct s_utils_cy
 	double		halved_height;
 	double		radius;
 	t_vector	center_camera;
-	double		squared_mag_dir;
-	double		dsquared_mag_dir;
 	double		c_const;
 	double		p_const;
 	t_point		disk1_center;
