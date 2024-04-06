@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:22:25 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/04 10:39:07 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/06 10:09:26 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ bool	is_ray_intersecting_pl(t_plane *plane, t_vector ray,
 	if (are_doubles_equals(intermediate_dot_product, 0))
 	{
 		point_info->cp = (t_vector){0, 0, 0};
+		point_info->cp_magnitude = 0;
 		point_info->normal = plane->vector;
 		return (true);
 	}
