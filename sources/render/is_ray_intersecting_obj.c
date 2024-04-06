@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:22:25 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/06 10:09:26 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/06 10:32:32 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ bool	is_ray_intersecting_cy_tube(t_cylinder *cylinder, t_vector ray,
 	t_quadratic_roots	roots;
 	double				dot_prod_uv;
 	double				squared_dot_prod_uv;
-	t_vector			o_c_proj;
-	double				t;
+	t_vector			proj_o_c;
 
 	dot_prod_uv = perform_dot_product(ray, cylinder->vector);
 	squared_dot_prod_uv = dot_prod_uv * dot_prod_uv;
@@ -79,14 +78,14 @@ bool	is_ray_intersecting_cy_tube(t_cylinder *cylinder, t_vector ray,
 	if (roots.nb == 0 || (roots.nb == 1 && roots.single[0] < 0)
 		|| (roots.nb == 2 && roots.distincts[0] < 0 && roots.distincts[1] < 0))
 		return (false);
-	t = get_min_positive_root(&roots);
-	o_c_proj = multiply_vector(t * dot_prod_uv
-			+ cylinder->utils.p_const, cylinder->vector);
-	point_info->cp = multiply_vector(t, ray);
-	point_info->cp_magnitude = t;
-	point_info->normal = sum_vectors(multiply_vector(-1, o_c_proj),
-			sum_vectors(cylinder->utils.center_camera, point_info->cp));
-	return (get_vector_magnitude(o_c_proj) <= cylinder->utils.halved_height);
+	point_info->cp_magnitude = get_min_positive_root(&roots);
+	point_info->cp = multiply_vector(point_info->cp_magnitude, ray);
+	proj_o_c = multiply_vector(-(point_info->cp_magnitude * dot_prod_uv
+				+ cylinder->utils.p_const), cylinder->vector);
+	point_info->normal = normalize_vector(sum_vectors(
+				sum_vectors(point_info->cp, cylinder->utils.center_camera),
+				proj_o_c));
+	return (get_vector_magnitude(proj_o_c) <= cylinder->utils.halved_height);
 }
 
 bool	is_ray_intersecting_cy_disks(t_cylinder *cylinder, t_vector ray,
