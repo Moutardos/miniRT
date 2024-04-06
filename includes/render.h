@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/27 00:03:23 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/06 23:22:12 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_data	t_data;
 typedef struct s_camera	t_camera;
 
 void		init_frame(t_frame *frame, t_camera *camera);
+
+t_point		get_frame_origin(t_frame *frame, t_camera *camera);
 
 void		run_rt(t_data *data);
 

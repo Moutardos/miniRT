@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:31:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/02 08:18:04 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/06 23:37:52 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ typedef struct s_sphere			t_sphere;
 typedef struct s_cylinder		t_cylinder;
 
 typedef struct s_data			t_data;
+
 typedef struct s_mlx_info		t_mlx_info;
+typedef struct s_frame			t_frame;
+
 typedef struct s_camera			t_camera;
 
 void	init_hooks(t_data *data);
@@ -35,6 +38,9 @@ int		call_keypress_handler(int keycode, t_data *data);
 
 void	handle_translations(int keycode, t_point *point);
 void	handle_rotations(int keycode, t_vector *direction);
+void	handle_camera_rotations(int keycode,
+			t_camera *camera,
+			t_frame *frame);
 
 void	update_object_color(t_color *og_color, t_color *object_color);
 void	update_plane_properties(int keycode, t_plane *plane);

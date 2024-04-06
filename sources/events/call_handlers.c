@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:18:01 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/02 08:03:26 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/06 23:36:50 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ int	call_destroynotify_handler(t_mlx_info *mlx_info)
 	return (0);
 }
 
-void	handle_camera(int keycode, t_camera *camera)
+void	handle_camera(int keycode, t_camera *camera, t_frame *frame)
 {
 	handle_translations(keycode, &camera->point);
-	handle_rotations(keycode, &camera->vector);
+	if (keycode == XK_Up || keycode == XK_Down
+		|| keycode == XK_Right || keycode == XK_Left)
+		handle_camera_rotations(keycode, camera, frame);
 }
 
 void	handle_objects(int keycode, t_object_array *object_array)
@@ -69,7 +71,7 @@ int	call_keypress_handler(int keycode, t_data *data)
 		return (0);
 	}
 	if (target_keycode == XK_c)
-		handle_camera(keycode, &data->settings.camera);
+		handle_camera(keycode, &data->settings.camera, &data->frame);
 	else if (target_keycode == XK_o)
 		handle_objects(keycode, &data->object_array);
 	else if (target_keycode == XK_l)
