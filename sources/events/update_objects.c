@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 10:03:33 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/02 07:30:58 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/06 13:07:54 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	update_cylinder_properties(int keycode, t_cylinder *cylinder)
 
 	if (keycode == target_keycode)
 		return ;
-	if (keycode == XK_h || keycode == XK_w)
+	if (keycode == XK_h || keycode == XK_t)
 	{
 		target_keycode = keycode;
 		return ;
@@ -59,7 +59,7 @@ void	update_cylinder_properties(int keycode, t_cylinder *cylinder)
 		if (keycode == XK_minus)
 			cylinder->height = ft_max(0, cylinder->height - DIM);
 	}
-	else if (target_keycode == XK_w)
+	else if (target_keycode == XK_t)
 	{
 		if (keycode == XK_equal)
 			cylinder->diameter += DIM;
