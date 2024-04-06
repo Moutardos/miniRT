@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 00:04:14 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/21 03:14:48 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/06 15:32:46 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_dirs(t_vector *dir_j, t_vector *dir_i, t_vector *dir_cam)
 	if (are_doubles_equals(dir_cam->z, 0))
 	{
 		if (!are_doubles_equals(dir_cam->x, 0))
-			*dir_j = (t_vector){0, 0, dir_cam->y};
+			*dir_j = (t_vector){0, 0, dir_cam->x};
 		else
 			*dir_j = (t_vector){0, 0, -dir_cam->y};
 	}
