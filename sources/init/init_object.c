@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:06:22 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/11 17:57:47 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/07 13:00:24 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	init_sphere(t_object *object, char *line)
 	if (extract_point(&object->sphere.center, &line))
 		return (1);
 	ignore_space(&line);
-	if (extract_double(&object->sphere.diameter, &line))
+	if (extract_double(&object->sphere.diameter, &line)
+		|| object->sphere.diameter <= 0)
 		return (1);
 	ignore_space(&line);
 	if (extract_color(&object->color, &line))
@@ -61,10 +62,12 @@ int	init_cylinder(t_object *object, char *line)
 	if (extract_unit_vector(&object->cylinder.vector, &line))
 		return (1);
 	ignore_space(&line);
-	if (extract_double(&object->cylinder.diameter, &line))
+	if (extract_double(&object->cylinder.diameter, &line)
+		|| object->cylinder.diameter <= 0)
 		return (1);
 	ignore_space(&line);
-	if (extract_double(&object->cylinder.height, &line))
+	if (extract_double(&object->cylinder.height, &line)
+		|| object->cylinder.height <= 0)
 		return (1);
 	ignore_space(&line);
 	if (extract_color(&object->color, &line))

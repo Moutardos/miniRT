@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:53:49 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/31 04:38:32 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/07 12:55:11 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	extract_fov(uint8_t *fov, char **ptr_line)
 
 	if (extract_int(&raw_value, ptr_line))
 		return (2);
-	if (raw_value >= 180 || raw_value < 0)
+	if (raw_value >= 180 || raw_value <= 0)
 		return (2);
 	*fov = raw_value;
 	return (0);
