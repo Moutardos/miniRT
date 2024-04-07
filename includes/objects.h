@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/03 11:04:45 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/07 11:22:10 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ typedef struct s_utils_sp
 {
 	double		radius;
 	t_vector	center_camera;
-	t_vector	center_origin;
-	double		center_origin_magnitude;
 	double		c_const;
 }	t_utils_sp;
 

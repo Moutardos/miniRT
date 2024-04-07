@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 23:31:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/04 06:52:31 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/07 11:23:37 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 void	fill_sphere_utils(t_sphere *sphere, t_camera *camera)
 {
+	double	center_camera_magnitude;
+
 	sphere->utils.radius = sphere->diameter / 2;
 	sphere->utils.center_camera = create_vector(sphere->center, camera->point);
-	sphere->utils.center_origin
-		= create_vector(sphere->center, (t_point){0, 0, 0});
-	sphere->utils.center_origin_magnitude
-		= get_vector_magnitude(sphere->utils.center_origin);
-	sphere->utils.c_const
-		= sphere->utils.center_origin_magnitude
-		* sphere->utils.center_origin_magnitude
+	center_camera_magnitude
+		= get_vector_magnitude(sphere->utils.center_camera);
+	sphere->utils.c_const = center_camera_magnitude * center_camera_magnitude
 		- sphere->utils.radius * sphere->utils.radius;
 }
 
