@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/07 19:12:32 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/07 19:57:01 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ bool		is_ray_intersecting_sp(t_sphere *sphere,
 				t_vector ray,
 				t_point_info *point_info);
 
-
 double		get_lightintensity(t_data *data, t_point_info *p_info);
 
 t_vector	create_vector(t_point start_point, t_point end_point);
@@ -73,6 +72,5 @@ t_vector	normalize_vector(t_vector vector);
 double		perform_dot_product(t_vector vector1, t_vector vector2);
 t_vector	sum_vectors(t_vector vector1, t_vector vector2);
 t_point		translate_point(t_point point, t_vector vector);
-
 
 #endif
