@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/10 19:34:06 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/07 12:51:21 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static int	fill_settings(t_settings *settings, char *file, int *count_objects)
 		free(line);
 	}
 	close(fd);
-	ft_putstr_fd("Error while trying to read file\n", 2);
+	ft_putstr_fd("Error while allocating memory\n", 2);
 	return (2);
 }
 
@@ -122,7 +122,7 @@ int	fill_objects(t_object_array *objects, char *file)
 		free(line);
 	}
 	close(fd);
-	ft_putstr_fd("Error while trying to read file\n", 2);
+	ft_putstr_fd("Error while allocating memory\n", 2);
 	return (2);
 }
 
