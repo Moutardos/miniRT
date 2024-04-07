@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:43:07 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/01 10:44:44 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/07 13:53:13 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ double				ft_dmin(double a, double b);
 int					ft_min(int a, int b);
 int					ft_max(int a, int b);
 int					ft_isdigit(char c);
+bool				ft_iswhitespace(char c);
 unsigned int		ft_strlen(const char *s);
 int					ft_putstr_fd(char *s, int fd);
 bool				is_same_first_word(const char *s1, const char *s2);

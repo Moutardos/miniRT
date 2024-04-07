@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ignore_space.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:06:04 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/08 12:07:02 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/07 13:51:46 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ignore_space(char **ptr_line)
 {
-	while (**ptr_line == ' ')
+	while (ft_iswhitespace(**ptr_line) && **ptr_line != '\0')
 		(*ptr_line)++;
 }

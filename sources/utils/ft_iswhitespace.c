@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_same_first_word.c                               :+:      :+:    :+:   */
+/*   ft_iswhitespace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 21:40:59 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/07 13:51:46 by ekhaled          ###   ########.fr       */
+/*   Created: 2024/04/04 17:30:51 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/04/07 13:51:25 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-bool	is_same_first_word(const char *s1, const char *s2)
+bool	ft_iswhitespace(char c)
 {
-	while (*s1 == *s2)
-	{
-		if ((ft_iswhitespace(*s1)))
-			return (1);
-		s1++;
-		s2++;
-	}
-	if ((ft_iswhitespace(*s1) && ft_iswhitespace(*s1)
-			== ft_iswhitespace(*s2)))
-		return (1);
-	return (0);
+	return (c == ' ' || c == '\0' || c == '\t' || c == '\n' || c == '\v');
 }

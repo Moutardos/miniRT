@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/01 22:35:34 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/04/07 13:52:31 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,9 +90,10 @@ SRCS_UTILS			:=	\
 						are_doubles_equals.c \
 						ft_dabs.c \
 						ft_dmin.c \
+						ft_isdigit.c \
+						ft_iswhitespace.c \
 						ft_max.c \
 						ft_min.c \
-						ft_isdigit.c \
 						ft_putstr_fd.c \
 						ft_strcmp.c \
 						ft_strlen.c \
