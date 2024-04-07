@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:31:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/06 23:37:52 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/07 10:36:52 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ int		call_keypress_handler(int keycode, t_data *data);
 
 void	handle_translations(int keycode, t_point *point);
 void	handle_rotations(int keycode, t_vector *direction);
+void	handle_camera_translations(int keycode,
+			t_camera *camera,
+			t_frame *frame);
 void	handle_camera_rotations(int keycode,
 			t_camera *camera,
 			t_frame *frame);

@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:18:01 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/06 23:36:50 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/07 10:30:01 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	call_destroynotify_handler(t_mlx_info *mlx_info)
 
 void	handle_camera(int keycode, t_camera *camera, t_frame *frame)
 {
-	handle_translations(keycode, &camera->point);
+	if (keycode == XK_w || keycode == XK_s
+		|| keycode == XK_a || keycode == XK_d
+		|| keycode == XK_r || keycode == XK_f)
+		handle_camera_translations(keycode, camera, frame);
 	if (keycode == XK_Up || keycode == XK_Down
 		|| keycode == XK_Right || keycode == XK_Left)
 		handle_camera_rotations(keycode, camera, frame);

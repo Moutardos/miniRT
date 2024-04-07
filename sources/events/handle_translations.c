@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 22:29:32 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/02 08:26:00 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/07 10:37:33 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,25 @@ void	handle_translations(int keycode, t_point *point)
 		point->y += STEP;
 	else if (keycode == XK_f)
 		point->y -= STEP;
+}
+
+void	handle_camera_translations(int keycode, t_camera *camera,
+			t_frame *frame)
+{
+	if (keycode == XK_w)
+		camera->point = translate_point(camera->point, camera->vector);
+	if (keycode == XK_s)
+		camera->point = translate_point(camera->point,
+				multiply_vector(-1, camera->vector));
+	if (keycode == XK_d)
+		camera->point = translate_point(camera->point, frame->dir_j);
+	if (keycode == XK_a)
+		camera->point = translate_point(camera->point,
+				multiply_vector(-1, frame->dir_j));
+	if (keycode == XK_f)
+		camera->point = translate_point(camera->point, frame->dir_i);
+	if (keycode == XK_r)
+		camera->point = translate_point(camera->point,
+				multiply_vector(-1, frame->dir_i));
+	frame->origin = get_frame_origin(frame, camera);
 }
