@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/07 12:51:21 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/07 13:40:37 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,31 +46,21 @@ static int	read_line_settings(t_settings *settings, char *line, int *count)
 
 static int	read_line_objects(t_object_array *objects, char *line)
 {
-	int					error;
 	static int			i = 0;
-	enum e_object_type	type;
 
 	if (i >= objects->len)
 		return (0);
-	error = 0;
-	if (str_to_obj(line, &type))
+	if (str_to_obj(line, &objects->array[i].type))
 		return (0);
-	if (type == PL)
-		error = init_plane(&objects->array[i], line);
-	else if (type == SP)
-		error = init_sphere(&objects->array[i], line);
-	else if (type == CY)
-		error = init_cylinder(&objects->array[i], line);
-	i++;
-	if (!error)
-		return (0);
-	if (error == 1)
+	if (init_object(&objects->array[i], line))
 	{
 		ft_putstr_fd("Error\nWrong values\n", 2);
 		ft_putstr_fd(line, 2);
 		ft_putstr_fd("\n", 2);
+		return (1);
 	}
-	return (1);
+	i++;
+	return (0);
 }
 
 static int	fill_settings(t_settings *settings, char *file, int *count_objects)

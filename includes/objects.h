@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/07 11:22:10 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/07 13:29:36 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,7 @@ typedef struct s_object_array
 	int			len;
 }	t_object_array;
 
-int		init_sphere(t_object *object, char *line);
-int		init_plane(t_object *object, char *line);
-int		init_cylinder(t_object *object, char *line);
+int		init_object(t_object *object, char *line);
 
 void	fill_utils(t_camera *camera, t_object_array *object_array);
 
