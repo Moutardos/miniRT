@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/06 23:22:12 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/07 19:12:32 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,16 @@ t_vector	compute_ray(unsigned int i, unsigned int j,
 bool		is_ray_intersecting_obj(t_object *object,
 				t_vector ray,
 				t_point_info *point_info);
+bool		is_ray_intersecting_cy(t_cylinder *cylinder,
+				t_vector ray,
+				t_point_info *point_info);
+bool		is_ray_intersecting_pl(t_plane *plane,
+				t_vector ray,
+				t_point_info *point_info);
+bool		is_ray_intersecting_sp(t_sphere *sphere,
+				t_vector ray,
+				t_point_info *point_info);
+
 
 double		get_lightintensity(t_data *data, t_point_info *p_info);
 

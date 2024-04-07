@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/07 13:52:31 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/04/07 19:15:16 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,13 +67,19 @@ SRCS_VECTOR_UTILS	:=	\
 						sum_vectors.c \
 						translate_point.c 
 
+SRCS_OBJ_INTER		:=	\
+						is_ray_intersecting_cy.c \
+						is_ray_intersecting_obj.c \
+						is_ray_intersecting_pl.c \
+						is_ray_intersecting_sp.c 
+
 SRCS_RENDER			:=	\
 						${addprefix equation_utils/, ${SRCS_EQUATION_UTILS}} \
 						${addprefix vector_utils/, ${SRCS_VECTOR_UTILS}} \
+						${addprefix object_intersections/, ${SRCS_OBJ_INTER}} \
 						compute_ray.c \
 						find_pix_color.c \
 						get_lightintensity.c \
-						is_ray_intersecting_obj.c \
 						run_rt.c
 
 SRCS_GNL			:=	\
