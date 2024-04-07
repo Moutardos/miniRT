@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/07 13:29:36 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/07 19:34:40 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_vector
 
 typedef struct s_utils_pl
 {
-	t_vector		camera_point;
+	t_vector		point_camera;
 	double			dot_prod_const;
 }	t_utils_pl;
 

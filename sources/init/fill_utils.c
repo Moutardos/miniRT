@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 23:31:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/07 11:23:37 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/07 19:35:16 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	fill_sphere_utils(t_sphere *sphere, t_camera *camera)
 
 void	fill_plane_utils(t_plane *plane, t_camera *camera)
 {
-	plane->utils.camera_point = create_vector(camera->point, plane->point);
+	plane->utils.point_camera = create_vector(plane->point, camera->point);
 	plane->utils.dot_prod_const
-		= perform_dot_product(plane->utils.camera_point, plane->vector);
+		= -perform_dot_product(plane->utils.point_camera, plane->vector);
 }
 
 void	fill_cylinder_disks_utils(t_cylinder *cylinder, t_camera *camera)
