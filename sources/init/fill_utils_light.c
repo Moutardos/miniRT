@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:36:31 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/05 22:24:16 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/07 17:49:13 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 
 void	fill_sphere_utils_l(t_sphere *sphere, t_light *light)
 {
-	sphere->utils.center_light = create_vector(light->point, sphere->center);
+	sphere->utils.center_light = create_vector(sphere->center, light->point);
 	sphere->utils.center_light_magnitude
 		= get_vector_magnitude(sphere->utils.center_light);
 	sphere->utils.l_const = 
 		sphere->utils.center_light_magnitude
 		* sphere->utils.center_light_magnitude
 		- sphere->utils.radius * sphere->utils.radius;
+}
+
+void	fill_plane_utils_l(t_plane *plane, t_light *light)
+{
+	plane->utils.light_point = create_vector(light->point, plane->point);
+	plane->utils.dot_prod_const_l
+		= perform_dot_product(plane->utils.light_point, plane->vector);
 }
 
 void	fill_cylinder_tube_utils_l(t_cylinder *cylinder, t_light *light)
@@ -31,7 +38,7 @@ void	fill_cylinder_tube_utils_l(t_cylinder *cylinder, t_light *light)
 	double	squared_dot_prod_center_light_dir;
 
 	cylinder->utils.center_light
-		= create_vector(light->point, cylinder->center);
+		= create_vector(cylinder->center, light->point);
 	mag_center_light = get_vector_magnitude(cylinder->utils.center_light);
 	squared_mag_center_light = mag_center_light * mag_center_light;
 	dot_prod_center_light_dir
@@ -55,6 +62,9 @@ void	fill_utils_light(t_light *light, t_object_array *object_array)
 		if (object_array->array[object_index].type == SP)
 			fill_sphere_utils_l(
 				&object_array->array[object_index].sphere, light);
+		if (object_array->array[object_index].type == PL)
+			fill_plane_utils_l(
+				&object_array->array[object_index].plane, light);
 		if (object_array->array[object_index].type == CY)
 			fill_cylinder_tube_utils_l(
 				&object_array->array[object_index].cylinder, light);

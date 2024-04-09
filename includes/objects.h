@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 14:19:41 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:20:08 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_utils_pl
 {
 	t_vector		point_camera;
 	double			dot_prod_const;
+	t_vector		light_point;
+	double			dot_prod_const_l;
 }	t_utils_pl;
 
 typedef struct s_plane

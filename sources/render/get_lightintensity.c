@@ -6,14 +6,14 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:17:02 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/05 19:34:29 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/07 18:47:05 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 static bool	is_there_shadow(t_data *data,
-			t_vector light_direction, t_point hitpoint)
+			t_vector light_direction, t_point_info *point_info)
 {
 	t_object	*other_object;
 	int			i;
@@ -26,7 +26,9 @@ static bool	is_there_shadow(t_data *data,
 	while (i < data->object_array.len)
 	{
 		other_object = &data->object_array.array[i];
-		if (is_obj_intersecting_light(other_object, lightray, hitpoint, t_max))
+		if (other_object != point_info->object
+			&& is_obj_intersecting_light(other_object, lightray,
+				point_info->point, t_max))
 			return (true);
 		i++;
 	}
@@ -44,11 +46,11 @@ double	get_lightintensity(t_data *data, t_point_info *p_info)
 	normal_facing = p_info->normal;
 	if (perform_dot_product(normal_facing, p_info->cp) >= 0)
 		normal_facing = multiply_vector(-1, normal_facing);
-	light_direction = create_vector(p_info->point, data->settings.light.point);
+	light_direction = create_vector(data->settings.light.point, p_info->point);
 	fill_utils_light(&data->settings.light, &data->object_array);
-	if (is_there_shadow(data, light_direction, p_info->point))
+	if (is_there_shadow(data, light_direction, p_info))
 		return (global_intensity);
-	light_intensity = perform_dot_product(normal_facing, light_direction);
+	light_intensity = -perform_dot_product(normal_facing, light_direction);
 	if (light_intensity > 0)
 	{
 		light_intensity *= data->settings.light.ratio;

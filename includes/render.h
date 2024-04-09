@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 14:17:48 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:20:03 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "objects.h"
 
-# define HITPOINT_OFFSET 0.01
+# define HITPOINT_OFFSET 0.001
 
 typedef struct s_frame
 {
