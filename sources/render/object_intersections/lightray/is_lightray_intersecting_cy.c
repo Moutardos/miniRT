@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:05:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/09 21:21:57 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 22:19:21 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ double	is_lightray_intersecting_cy_tube(t_cylinder *cylinder,
 				+ cylinder->utils.lp_const), cylinder->vector);
 	if (get_vector_magnitude(proj_o_c) > cylinder->utils.halved_height)
 		return (false);
-	return (t < (t_max + HITPOINT_OFFSET) && t > HITPOINT_OFFSET);
+	return (t < (t_max + EPSILON) && t > EPSILON);
 }
 
 bool	is_lightray_intersecting_cy_disk(t_plane *induced_plane,
@@ -53,7 +53,7 @@ bool	is_lightray_intersecting_cy_disk(t_plane *induced_plane,
 	if (are_doubles_equals(intermediate_dot_product, 0))
 		return (false);
 	t = induced_plane->utils.dot_prod_const_light / intermediate_dot_product;
-	if (t >= (t_max + HITPOINT_OFFSET) || t < HITPOINT_OFFSET)
+	if (t >= (t_max + EPSILON) || t < EPSILON)
 		return (false);
 	mag = get_vector_magnitude(
 			sum_vectors(induced_plane->utils.point_light,
