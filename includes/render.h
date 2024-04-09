@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 14:21:00 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:57:30 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,10 @@ void		init_point_info(t_point_info *point_info);
 
 void		find_pix_color(unsigned int i, unsigned int j, t_data *data);
 
-
 t_vector	compute_ray(unsigned int i, unsigned int j,
 				t_camera *camera,
 				t_frame *frame);
 
-bool		is_obj_intersecting_light(t_object *object,
-				t_vector lightray, double t_max);
 bool		is_ray_intersecting_obj(t_object *object,
 				t_vector ray,
 				t_point_info *point_info);
@@ -69,6 +66,15 @@ bool		is_ray_intersecting_pl(t_plane *plane,
 bool		is_ray_intersecting_sp(t_sphere *sphere,
 				t_vector ray,
 				t_point_info *point_info);
+
+bool		is_lightray_intersecting_obj(t_object *object,
+				t_vector lightray, double t_max);
+bool		is_lightray_intersecting_cy(t_cylinder *cylinder, t_vector lightray,
+				double t_max);
+bool		is_lightray_intersecting_pl(t_plane *plane,
+				t_vector lightray, double t_max);
+bool		is_lightray_intersecting_sp(t_sphere *sphere,
+				t_vector lightray, double t_max);
 
 double		get_lightintensity(t_data *data, t_point_info *p_info);
 

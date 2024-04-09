@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:36:31 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/07 17:49:13 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:54:46 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	fill_sphere_utils_l(t_sphere *sphere, t_light *light)
 
 void	fill_plane_utils_l(t_plane *plane, t_light *light)
 {
-	plane->utils.light_point = create_vector(light->point, plane->point);
+	plane->utils.light_point = create_vector(plane->point, light->point);
 	plane->utils.dot_prod_const_l
-		= perform_dot_product(plane->utils.light_point, plane->vector);
+		= -perform_dot_product(plane->utils.light_point, plane->vector);
 }
 
 void	fill_cylinder_tube_utils_l(t_cylinder *cylinder, t_light *light)
@@ -52,6 +52,12 @@ void	fill_cylinder_tube_utils_l(t_cylinder *cylinder, t_light *light)
 	cylinder->utils.lp_const = dot_prod_center_light_dir;
 }
 
+void	fill_cylinder_disk_utils_l(t_cylinder *cylinder, t_light *light)
+{
+	fill_plane_utils_l(&cylinder->utils.induced_plane1, light);
+	fill_plane_utils_l(&cylinder->utils.induced_plane2, light);
+}
+
 void	fill_utils_light(t_light *light, t_object_array *object_array)
 {
 	int	object_index;
@@ -66,8 +72,12 @@ void	fill_utils_light(t_light *light, t_object_array *object_array)
 			fill_plane_utils_l(
 				&object_array->array[object_index].plane, light);
 		if (object_array->array[object_index].type == CY)
+		{
 			fill_cylinder_tube_utils_l(
 				&object_array->array[object_index].cylinder, light);
+			fill_cylinder_disk_utils_l(
+				&object_array->array[object_index].cylinder, light);
+		}
 		object_index++;
 	}
 }

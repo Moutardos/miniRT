@@ -1,51 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_obj_intersecting_light.c                        :+:      :+:    :+:   */
+/*   is_lightray_intersecting_cy.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:05:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/08 12:31:42 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:56:28 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-bool	is_sp_intersecting_light(t_sphere *sphere, t_vector lightray,
-			double t_max)
-{
-	t_quadratic_roots	roots;
-	double				t;
-
-	roots = solve_quadratic_equation(
-			1,
-			2 * perform_dot_product(sphere->utils.center_light, lightray),
-			sphere->utils.l_const
-			);
-	if (roots.nb == 0 || (roots.nb == 1 && roots.single[0] < 0)
-		|| (roots.nb == 2 && roots.distincts[0] < 0 && roots.distincts[1] < 0))
-		return (false);
-	t = get_min_positive_root(&roots);
-	return (t < (t_max + HITPOINT_OFFSET) && t > HITPOINT_OFFSET);
-}
-
-bool	is_pl_intersecting_light(t_plane *plane, t_vector lightray,
-		double t_max)
-{
-	double		intermediate_dot_product;
-	double		t;
-
-	intermediate_dot_product
-		= perform_dot_product(lightray, plane->vector);
-	if (are_doubles_equals(intermediate_dot_product, 0))
-		return (false);
-	t = plane->utils.dot_prod_const_l / intermediate_dot_product;
-	return (t < (t_max + HITPOINT_OFFSET) && t > HITPOINT_OFFSET);
-}
-
-bool	is_cy_intersecting_light(t_cylinder *cylinder, t_vector lightray,
-			double t_max)
+double	is_lightray_intersecting_cy_tube(t_cylinder *cylinder,
+		t_vector lightray, double t_max)
 {
 	t_quadratic_roots	roots;
 	double				dot_prod_uv;
@@ -72,21 +40,34 @@ bool	is_cy_intersecting_light(t_cylinder *cylinder, t_vector lightray,
 	return (t < (t_max + HITPOINT_OFFSET) && t > HITPOINT_OFFSET);
 }
 
-bool	is_obj_intersecting_light(t_object *object,
-			t_vector lightray, double t_max)
+bool	is_lightray_intersecting_cy_disk(t_plane *induced_plane,
+			double disk_radius, t_vector lightray, double t_max)
 {
-	if (object->type == SP)
-	{
-		return (is_sp_intersecting_light(&object->sphere, lightray,
-				t_max));
-	}
-	if (object->type == PL)
-	{
-		return (is_pl_intersecting_light(&object->plane, lightray, t_max));
-	}
-	if (object->type == CY)
-	{
-		return (is_cy_intersecting_light(&object->cylinder, lightray, t_max));
-	}
-	return (false);
+	double		mag;
+	double		intermediate_dot_product;
+	double		t;
+
+	intermediate_dot_product
+		= perform_dot_product(lightray, induced_plane->vector);
+	if (are_doubles_equals(intermediate_dot_product, 0))
+		return (false);
+	t = induced_plane->utils.dot_prod_const_l / intermediate_dot_product;
+	if (t >= (t_max + HITPOINT_OFFSET) || t < HITPOINT_OFFSET)
+		return (false);
+	mag = get_vector_magnitude(
+			sum_vectors(induced_plane->utils.light_point,
+				multiply_vector(t, lightray)));
+	return (mag <= disk_radius);
+}
+
+bool	is_lightray_intersecting_cy(t_cylinder *cylinder, t_vector lightray,
+			double t_max)
+{
+	if (is_lightray_intersecting_cy_disk(&cylinder->utils.induced_plane1,
+			cylinder->utils.radius, lightray, t_max))
+		return (true);
+	if (is_lightray_intersecting_cy_disk(&cylinder->utils.induced_plane2,
+			cylinder->utils.radius, lightray, t_max))
+		return (true);
+	return (is_lightray_intersecting_cy_tube(cylinder, lightray, t_max));
 }
