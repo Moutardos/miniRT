@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:17:02 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/07 18:47:05 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:26:12 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static bool	is_there_shadow(t_data *data,
 		other_object = &data->object_array.array[i];
 		if (other_object != point_info->object
 			&& is_obj_intersecting_light(other_object, lightray,
-				point_info->point, t_max))
+				t_max))
 			return (true);
 		i++;
 	}

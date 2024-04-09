@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:05:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/07 18:47:54 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:31:42 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,11 @@ bool	is_sp_intersecting_light(t_sphere *sphere, t_vector lightray,
 }
 
 bool	is_pl_intersecting_light(t_plane *plane, t_vector lightray,
-			t_point hitpoint, double t_max)
+		double t_max)
 {
 	double		intermediate_dot_product;
 	double		t;
 
-	(void) hitpoint;
 	intermediate_dot_product
 		= perform_dot_product(lightray, plane->vector);
 	if (are_doubles_equals(intermediate_dot_product, 0))
@@ -74,7 +73,7 @@ bool	is_cy_intersecting_light(t_cylinder *cylinder, t_vector lightray,
 }
 
 bool	is_obj_intersecting_light(t_object *object,
-			t_vector lightray, t_point hitpoint, double t_max)
+			t_vector lightray, double t_max)
 {
 	if (object->type == SP)
 	{
@@ -83,8 +82,7 @@ bool	is_obj_intersecting_light(t_object *object,
 	}
 	if (object->type == PL)
 	{
-		return (is_pl_intersecting_light(&object->plane, lightray,
-				hitpoint, t_max));
+		return (is_pl_intersecting_light(&object->plane, lightray, t_max));
 	}
 	if (object->type == CY)
 	{
