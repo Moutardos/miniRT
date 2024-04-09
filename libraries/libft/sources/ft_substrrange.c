@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substrrange.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 23:37:02 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/06 22:29:06 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:54:02 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-#include "minirt.h"
+#include "libft.h"
 
 char	*ft_substrrange(char *buffer,
 			unsigned int start_index, unsigned int end_index)

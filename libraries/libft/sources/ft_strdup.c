@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchri.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 23:21:37 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/06 22:29:17 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/01/01 17:07:58 by ekhaled           #+#    #+#             */
+/*   Updated: 2024/04/09 20:54:02 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include <stdlib.h>
 
-int	ft_strchri(const char *str, char c)
+#include "libft.h"
+
+char	*ft_strdup(char *str)
 {
-	int	i;
+	char	*dup;
+	int		i;
 
 	if (!str)
-		return (-2);
+		return (NULL);
+	dup = malloc((ft_strlen(str) + 1) * sizeof(char));
+	if (!dup)
+		return (NULL);
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == c)
-			return (i);
+		dup[i] = str[i];
 		i++;
 	}
-	if (str[i] == c)
-		return (i);
-	return (-1);
+	dup[i] = '\0';
+	return (dup);
 }

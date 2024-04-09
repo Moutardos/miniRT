@@ -6,12 +6,13 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 22:29:44 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 12:09:28 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 21:19:50 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <X11/keysym.h>
 
+#include "libft.h"
 #include "minirt.h"
 
 void	handle_rotations(int keycode,

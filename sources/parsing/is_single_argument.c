@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   is_single_argument.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:24:46 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/06 21:57:16 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/09 21:20:43 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
+#include "libft.h"
 #include "minirt.h"
 
 bool	is_single_argument(int argc)

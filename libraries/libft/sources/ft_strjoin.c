@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:41:32 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/06 22:29:09 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:54:02 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-#include "minirt.h"
+#include "libft.h"
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {

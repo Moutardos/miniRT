@@ -6,12 +6,13 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 19:05:51 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 20:40:12 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 21:21:46 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
+#include "libft.h"
 #include "minirt.h"
 
 bool	is_camray_intersecting_pl(t_plane *plane, t_vector ray,

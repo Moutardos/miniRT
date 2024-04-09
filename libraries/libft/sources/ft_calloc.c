@@ -1,20 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   are_doubles_equals.c                               :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 18:16:30 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/11 18:42:30 by ekhaled          ###   ########.fr       */
+/*   Created: 2024/01/01 17:41:23 by ekhaled           #+#    #+#             */
+/*   Updated: 2024/04/09 20:54:02 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
+#include <stdlib.h>
+#include <stdint.h>
 
-#include "minirt.h"
+#include "libft.h"
 
-bool	are_doubles_equals(double x, double y)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	return (ft_dabs(x - y) < EPSILON);
+	void	*res;
+	size_t	res_size;
+	size_t	i;
+
+	if (!nmemb || !size)
+		return (malloc(0));
+	if (nmemb > SIZE_MAX / size)
+		return (NULL);
+	res_size = nmemb * size;
+	res = malloc(res_size);
+	if (!res)
+		return (NULL);
+	i = 0;
+	while (i < res_size)
+	{
+		((char *)res)[i] = '\0';
+		i++;
+	}
+	return (res);
 }

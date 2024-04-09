@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_check.c                                       :+:      :+:    :+:   */
+/*   is_same_first_word.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/10 16:42:18 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/09 21:20:20 by ekhaled          ###   ########.fr       */
+/*   Created: 2024/03/06 21:40:59 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/04/09 20:54:02 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <stdio.h>
-
 #include "libft.h"
-#include "minirt.h"
 
-int	file_check(int *fd, char *file)
+bool	is_same_first_word(const char *s1, const char *s2)
 {
-	if (ft_strlen(file) < 3 || ft_strcmp(file + (ft_strlen(file) - 3), ".rt"))
+	while (*s1 == *s2)
 	{
-		ft_putstr_fd("Error\n", 2);
-		ft_putstr_fd("Expecting .rt extension\n", 2);
-		return (1);
+		if ((ft_iswhitespace(*s1)))
+			return (1);
+		s1++;
+		s2++;
 	}
-	*fd = open(file, O_RDONLY);
-	if (*fd < 0)
-	{
-		perror("Error\n");
+	if ((ft_iswhitespace(*s1) && ft_iswhitespace(*s1)
+			== ft_iswhitespace(*s2)))
 		return (1);
-	}
 	return (0);
 }

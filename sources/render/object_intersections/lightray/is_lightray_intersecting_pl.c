@@ -6,10 +6,11 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:05:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/09 18:52:25 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 21:22:02 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minirt.h"
 
 bool	is_lightray_intersecting_pl(t_plane *plane, t_vector lightray,

@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_same_first_word.c                               :+:      :+:    :+:   */
+/*   get_min_positive_root.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 21:40:59 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/07 13:51:46 by ekhaled          ###   ########.fr       */
+/*   Created: 2024/03/26 02:03:38 by ekhaled           #+#    #+#             */
+/*   Updated: 2024/04/09 21:22:07 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minirt.h"
 
-bool	is_same_first_word(const char *s1, const char *s2)
+double	get_min_positive_root(t_quadratic_roots *roots)
 {
-	while (*s1 == *s2)
-	{
-		if ((ft_iswhitespace(*s1)))
-			return (1);
-		s1++;
-		s2++;
-	}
-	if ((ft_iswhitespace(*s1) && ft_iswhitespace(*s1)
-			== ft_iswhitespace(*s2)))
-		return (1);
-	return (0);
+	if (roots->nb == 1)
+		return (roots->single[0]);
+	if (roots->distincts[1] < 0)
+		return (roots->distincts[0]);
+	else if (roots->distincts[0] < 0)
+		return (roots->distincts[1]);
+	else
+		return (ft_dmin(roots->distincts[0], roots->distincts[1]));
 }

@@ -6,13 +6,14 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/07 13:40:37 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 21:20:32 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <unistd.h>
 
+#include "libft.h"
 #include "minirt.h"
 
 static int	read_line_settings(t_settings *settings, char *line, int *count)

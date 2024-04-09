@@ -6,12 +6,13 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 10:03:33 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 12:39:03 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 21:20:00 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <X11/keysym.h>
 
+#include "libft.h"
 #include "minirt.h"
 
 void	update_object_color(t_color *og_color, t_color *object_color)

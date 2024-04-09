@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strchri.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/31 00:47:48 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/06 22:29:13 by lcozdenm         ###   ########.fr       */
+/*   Created: 2023/12/30 23:21:37 by ekhaled           #+#    #+#             */
+/*   Updated: 2024/04/09 20:54:02 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-char	*ft_strcpy(char *dest, const char *src)
+int	ft_strchri(const char *str, char c)
 {
 	int	i;
 
+	if (!str)
+		return (-2);
 	i = 0;
-	while (src[i])
+	while (str[i])
 	{
-		dest[i] = src[i];
+		if (str[i] == c)
+			return (i);
 		i++;
 	}
-	return (dest);
+	if (str[i] == c)
+		return (i);
+	return (-1);
 }

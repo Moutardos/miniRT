@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_unit_vector.c                             :+:      :+:    :+:   */
+/*   are_doubles_equals.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 23:50:18 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/11 17:19:01 by ekhaled          ###   ########.fr       */
+/*   Created: 2024/03/11 18:16:30 by ekhaled           #+#    #+#             */
+/*   Updated: 2024/04/09 20:55:22 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
+#include "libft.h"
 
-#include "minirt.h"
-
-bool	is_unit_vector(t_vector v)
+bool	are_doubles_equals(double x, double y)
 {
-	return (are_doubles_equals(get_vector_magnitude(v), 1));
+	return (ft_dabs(x - y) < EPSILON);
 }

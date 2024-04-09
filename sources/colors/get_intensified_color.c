@@ -6,10 +6,11 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 00:07:41 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/27 00:07:02 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 21:19:51 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minirt.h"
 
 t_color	get_intensified_color(t_color color, double intensity)

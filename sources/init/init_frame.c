@@ -6,12 +6,13 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 00:04:14 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/06 15:32:46 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 21:20:09 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
+#include "libft.h"
 #include "minirt.h"
 
 void	init_dirs(t_vector *dir_j, t_vector *dir_i, t_vector *dir_cam)

@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iswhitespace.c                                  :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 17:30:51 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/07 13:51:25 by ekhaled          ###   ########.fr       */
+/*   Created: 2023/12/31 00:47:48 by ekhaled           #+#    #+#             */
+/*   Updated: 2024/04/09 20:54:02 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-bool	ft_iswhitespace(char c)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	return (c == ' ' || c == '\0' || c == '\t' || c == '\n' || c == '\v');
+	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	return (dest);
 }

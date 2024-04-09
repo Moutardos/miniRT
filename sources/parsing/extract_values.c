@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   extract_values.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 15:17:43 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/10 19:54:41 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/09 21:20:14 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
 
+#include "libft.h"
 #include "minirt.h"
 
 int	extract_int(int *value, char **ptr_line)

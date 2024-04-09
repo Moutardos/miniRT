@@ -6,15 +6,17 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/09 20:33:35 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/04/09 22:03:45 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				:=	miniRT
 
 
-LIBS				:=	mlx Xext X11 m
-LIBS_TARGET			:=	libraries/minilibx-linux/libmlx.a
+LIBS				:=	mlx Xext X11 m ft
+LIBS_TARGET			:=	\
+						libraries/minilibx-linux/libmlx.a \
+						libraries/libft/libft.a
 
 
 SRC_DIR				:=	sources
@@ -90,38 +92,17 @@ SRCS_OBJ_INTER		:=	\
 						${addprefix lightray/, ${SRCS_LIGHTRAY}}
 
 SRCS_RENDER			:=	\
-						${addprefix equation_utils/, ${SRCS_EQUATION_UTILS}} \
 						${addprefix object_intersections/, ${SRCS_OBJ_INTER}} \
-						${addprefix vector_utils/, ${SRCS_VECTOR_UTILS}} \
 						compute_ray.c \
 						find_pix_color.c \
 						get_lightintensity.c \
 						init_point_info.c \
 						run_rt.c
 
-SRCS_GNL			:=	\
-						ft_calloc.c \
-						ft_strchri.c \
-						ft_strcpy.c \
-						ft_strdup.c \
-						ft_strjoin.c \
-						ft_substrrange.c \
-						get_next_line.c
-
 SRCS_UTILS			:=	\
-						${addprefix get_next_line/, ${SRCS_GNL}} \
-						are_doubles_equals.c \
-						ft_dabs.c \
-						ft_dmin.c \
-						ft_isdigit.c \
-						ft_iswhitespace.c \
-						ft_max.c \
-						ft_min.c \
-						ft_isdigit.c \
-						ft_putstr_fd.c \
-						ft_strcmp.c \
-						ft_strlen.c \
-						is_same_first_word.c 
+						${addprefix equation_utils/, ${SRCS_EQUATION_UTILS}} \
+						${addprefix vector_utils/, ${SRCS_VECTOR_UTILS}}
+
 
 SRCS				:=	\
 						${addprefix colors/, ${SRCS_COLORS}} \
@@ -140,8 +121,8 @@ OBJ_DIR				:=	objects
 OBJS				:=	${SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o}
 
 CFLAGS				:=	-Wall -Wextra -Werror
-CPPFLAGS			:=	-I includes -I libraries/minilibx-linux
-LDFLAGS				:=	$(addprefix -L,$(dir $(LIBS_TARGET)))
+CPPFLAGS			:=	-I includes -I libraries/minilibx-linux -I libraries/libft/includes
+LDFLAGS				:=	${addprefix -L, ${dir ${LIBS_TARGET}}}
 LDLIBS				:=	${addprefix -l, ${LIBS}}
 
 
@@ -155,13 +136,14 @@ ${NAME}: $(LIBS_TARGET) ${OBJS}
 
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c
 	${DIR_DUP}
-	${CC} ${CFLAGS} ${CPPFLAGS} -c -o $@ $< -gdwarf-4
+	${CC} ${CFLAGS} ${CPPFLAGS} -c -o $@ $<
 
 $(LIBS_TARGET):
 	$(MAKE) -C $(@D)
 
-clean:
-	${MAKE} clean -C $(dir $(LIBS_TARGET))
+clean: 
+	${MAKE} clean -C libraries/minilibx-linux/
+	${MAKE} fclean -C libraries/libft/
 	${RM} ${OBJ_DIR}
 
 fclean: clean
@@ -169,3 +151,5 @@ fclean: clean
 
 re: fclean
 	${MAKE} all
+
+.PHONY: clean fclean re

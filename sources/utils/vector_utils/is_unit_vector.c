@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_min_positive_root.c                            :+:      :+:    :+:   */
+/*   is_unit_vector.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/26 02:03:38 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/26 02:13:09 by ekhaled          ###   ########.fr       */
+/*   Created: 2024/03/06 23:50:18 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/03/11 17:19:01 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
+
+#include "libft.h"
 #include "minirt.h"
 
-double	get_min_positive_root(t_quadratic_roots *roots)
+bool	is_unit_vector(t_vector v)
 {
-	if (roots->nb == 1)
-		return (roots->single[0]);
-	if (roots->distincts[1] < 0)
-		return (roots->distincts[0]);
-	else if (roots->distincts[0] < 0)
-		return (roots->distincts[1]);
-	else
-		return (ft_dmin(roots->distincts[0], roots->distincts[1]));
+	return (are_doubles_equals(get_vector_magnitude(v), 1));
 }

@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:43:07 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/07 13:53:13 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 22:06:36 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,13 @@ typedef struct s_quadratic_roots
 double				get_min_positive_root(t_quadratic_roots *roots);
 t_quadratic_roots	solve_quadratic_equation(double a, double b, double c);
 
-bool				are_doubles_equals(double x, double y);
-double				ft_dabs(double a);
-double				ft_dmin(double a, double b);
-int					ft_min(int a, int b);
-int					ft_max(int a, int b);
-int					ft_isdigit(char c);
-bool				ft_iswhitespace(char c);
-unsigned int		ft_strlen(const char *s);
-int					ft_putstr_fd(char *s, int fd);
-bool				is_same_first_word(const char *s1, const char *s2);
-int					ft_strcmp(const char *str1, const char *str2);
-
-/* get_next_line */
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 35
-# endif
-
-int					get_next_line(char **line_p, int fd);
-void				*ft_calloc(size_t nmemb, size_t size);
-int					ft_strchri(const char *str, char c);
-char				*ft_strcpy(char *dest, const char *src);
-char				*ft_strdup(char *str);
-char				*ft_strjoin(const char *s1, const char *s2);
-char				*ft_substrrange(char *buffer,
-						unsigned int start_index, unsigned int end_index);
+t_vector			create_vector(t_point start_point, t_point end_point);
+double				get_vector_magnitude(t_vector v);
+bool				is_unit_vector(t_vector v);
+t_vector			multiply_vector(double scalar, t_vector vector);
+t_vector			normalize_vector(t_vector vector);
+double				perform_dot_product(t_vector vector1, t_vector vector2);
+t_vector			sum_vectors(t_vector vector1, t_vector vector2);
+t_point				translate_point(t_point point, t_vector vector);
 
 #endif
