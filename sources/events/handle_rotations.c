@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 22:29:44 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/06 23:43:07 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 12:09:28 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,26 @@
 
 #include "minirt.h"
 
-void	handle_rotations(int keycode, t_vector *direction)
+void	handle_rotations(int keycode,
+			t_camera *camera, t_frame *frame, t_vector *direction)
 {
-	if (keycode == XK_Up)
-		*direction = (t_vector){0, 1, 0};
-	else if (keycode == XK_Down)
-		*direction = (t_vector){0, -1, 0};
-	else if (keycode == XK_Right)
-		*direction = (t_vector){1, 0, 0};
-	else if (keycode == XK_Left)
-		*direction = (t_vector){-1, 0, 0};
-	else if (keycode == XK_Tab)
-		*direction = (t_vector){0, 0, 1};
-	else if (keycode == XK_Shift_L)
-		*direction = (t_vector){0, 0, -1};
+	if (ft_dabs(perform_dot_product(frame->dir_j, *direction)) == 1)
+	{
+		if (keycode == XK_Right || keycode == XK_Left)
+			*direction = frame->dir_i;
+	}
+	else if (ft_dabs(perform_dot_product(frame->dir_i, *direction)) == 1)
+	{
+		if (keycode == XK_Right || keycode == XK_Left)
+			*direction = frame->dir_j;
+		if (keycode == XK_Up || keycode == XK_Down)
+			*direction = camera->vector;
+	}
+	else if (ft_dabs(perform_dot_product(camera->vector, *direction)) == 1)
+	{
+		if (keycode == XK_Up || keycode == XK_Down)
+			*direction = frame->dir_i;
+	}
 }
 
 void	handle_camera_rotations(int keycode, t_camera *camera,

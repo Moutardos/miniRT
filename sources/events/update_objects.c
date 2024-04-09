@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 10:03:33 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/06 13:07:54 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 12:18:02 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ void	update_object_color(t_color *og_color, t_color *object_color)
 	};
 }
 
-void	update_plane_properties(int keycode, t_plane *plane)
+void	update_plane_properties(int keycode,
+			t_camera *camera, t_frame *frame, t_plane *plane)
 {
 	handle_translations(keycode, &plane->point);
-	handle_rotations(keycode, &plane->vector);
+	handle_rotations(keycode, camera, frame, &plane->vector);
 }
 
 void	update_sphere_properties(int keycode, t_sphere *sphere)
@@ -39,7 +40,8 @@ void	update_sphere_properties(int keycode, t_sphere *sphere)
 		sphere->diameter = ft_max(0, sphere->diameter - DIM);
 }
 
-void	update_cylinder_properties(int keycode, t_cylinder *cylinder)
+void	update_cylinder_properties(int keycode,
+			t_camera *camera, t_frame *frame, t_cylinder *cylinder)
 {
 	static int	target_keycode = XK_h;
 
@@ -51,7 +53,7 @@ void	update_cylinder_properties(int keycode, t_cylinder *cylinder)
 		return ;
 	}
 	handle_translations(keycode, &cylinder->center);
-	handle_rotations(keycode, &cylinder->vector);
+	handle_rotations(keycode, camera, frame, &cylinder->vector);
 	if (target_keycode == XK_h)
 	{
 		if (keycode == XK_equal)

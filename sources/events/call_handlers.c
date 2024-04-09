@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:18:01 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/07 10:30:01 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 12:17:37 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	handle_camera(int keycode, t_camera *camera, t_frame *frame)
 		handle_camera_rotations(keycode, camera, frame);
 }
 
-void	handle_objects(int keycode, t_object_array *object_array)
+void	handle_objects(int keycode,
+			t_camera *camera, t_frame *frame, t_object_array *object_array)
 {
 	static int		i;
 	static t_color	og_color;
@@ -50,11 +51,13 @@ void	handle_objects(int keycode, t_object_array *object_array)
 		update_object_color(&og_color, &object_array->array[i].color);
 	}
 	if (object_array->array[i].type == PL)
-		update_plane_properties(keycode, &object_array->array[i].plane);
+		update_plane_properties(keycode, camera,
+			frame, &object_array->array[i].plane);
 	else if (object_array->array[i].type == SP)
 		update_sphere_properties(keycode, &object_array->array[i].sphere);
 	else if (object_array->array[i].type == CY)
-		update_cylinder_properties(keycode, &object_array->array[i].cylinder);
+		update_cylinder_properties(keycode, camera,
+			frame, &object_array->array[i].cylinder);
 }
 
 int	call_keypress_handler(int keycode, t_data *data)
@@ -68,7 +71,8 @@ int	call_keypress_handler(int keycode, t_data *data)
 	if (keycode == XK_c || keycode == XK_o || keycode == XK_l)
 	{
 		if (keycode == XK_o || target_keycode == XK_o)
-			handle_objects(keycode, &data->object_array);
+			handle_objects(keycode, &data->settings.camera,
+				&data->frame, &data->object_array);
 		target_keycode = keycode;
 		reload_scene(data);
 		return (0);
@@ -76,7 +80,8 @@ int	call_keypress_handler(int keycode, t_data *data)
 	if (target_keycode == XK_c)
 		handle_camera(keycode, &data->settings.camera, &data->frame);
 	else if (target_keycode == XK_o)
-		handle_objects(keycode, &data->object_array);
+		handle_objects(keycode, &data->settings.camera,
+			&data->frame, &data->object_array);
 	else if (target_keycode == XK_l)
 		handle_translations(keycode, &data->settings.light.point);
 	reload_scene(data);
