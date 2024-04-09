@@ -6,15 +6,12 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:53:49 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/07 12:55:11 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 22:09:42 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-/* @return: 1 if it couldn't extract a correct double
-			2 if coma was expected and got something else
-*/
 int	extract_point(t_point *point, char **ptr_line)
 {
 	if (extract_double(&point->x, ptr_line))
