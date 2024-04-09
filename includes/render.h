@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 10:42:32 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 14:17:17 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define RENDER_H
 
 # include "objects.h"
+
+# define HITPOINT_OFFSET 0.01
 
 typedef struct s_frame
 {
@@ -52,6 +54,9 @@ void		find_pix_color(unsigned int i, unsigned int j, t_data *data);
 t_vector	compute_ray(unsigned int i, unsigned int j,
 				t_camera *camera,
 				t_frame *frame);
+
+bool		is_obj_intersecting_light(t_object *object, t_point_info *p_info,
+				t_vector lightray, double t_max);
 bool		is_ray_intersecting_obj(t_object *object,
 				t_vector ray,
 				t_point_info *point_info);
