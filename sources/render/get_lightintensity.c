@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_lightintensity.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:17:02 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/09 16:30:26 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/09 22:32:20 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 static bool	is_there_shadow(t_data *data, t_vector light_direction,
-			double light_distance, t_point_info *point_info)
+			double light_distance)
 {
 	t_object	*other_object;
 	int			i;
@@ -24,8 +24,7 @@ static bool	is_there_shadow(t_data *data, t_vector light_direction,
 	while (i < data->object_array.len)
 	{
 		other_object = &data->object_array.array[i];
-		if (other_object != point_info->object
-			&& is_lightray_intersecting_obj(other_object, lightray,
+		if (is_lightray_intersecting_obj(other_object, lightray,
 				light_distance))
 			return (true);
 		i++;
@@ -47,7 +46,7 @@ double	get_lightintensity(t_data *data, t_point_info *p_info)
 		normal_facing = multiply_vector(-1, normal_facing);
 	light_direction = create_vector(data->settings.light.point, p_info->point);
 	light_distance = get_vector_magnitude(light_direction);
-	if (is_there_shadow(data, light_direction, light_distance, p_info))
+	if (is_there_shadow(data, light_direction, light_distance))
 		return (global_intensity);
 	dot_prod_nl = -perform_dot_product(normal_facing, light_direction);
 	if (dot_prod_nl > 0)

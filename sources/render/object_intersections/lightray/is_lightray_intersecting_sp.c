@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:05:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/09 22:20:47 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 22:25:35 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ bool	is_lightray_intersecting_sp(t_sphere *sphere, t_vector lightray,
 		|| (roots.nb == 2 && roots.distincts[0] < 0 && roots.distincts[1] < 0))
 		return (false);
 	t = get_min_positive_root(&roots);
-	return (t < (t_max + EPSILON) && t > EPSILON);
+	return (t < t_max - EPSILON);
 }
