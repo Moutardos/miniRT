@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 00:35:49 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 10:56:22 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 20:20:21 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	find_pix_color(unsigned int i, unsigned int j, t_data *data)
 	while (object_index < data->object_array.len)
 	{
 		init_point_info(&current_point_info);
-		if (is_ray_intersecting_obj(data->object_array.array + object_index,
+		if (is_camray_intersecting_obj(data->object_array.array + object_index,
 				ray, &current_point_info))
 		{
 			if (nearest_point_info.cp_magnitude == -1

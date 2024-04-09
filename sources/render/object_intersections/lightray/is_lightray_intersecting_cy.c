@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_lightray_intersecting_cy.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:05:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/09 15:56:28 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:16:44 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ bool	is_lightray_intersecting_cy_disk(t_plane *induced_plane,
 		= perform_dot_product(lightray, induced_plane->vector);
 	if (are_doubles_equals(intermediate_dot_product, 0))
 		return (false);
-	t = induced_plane->utils.dot_prod_const_l / intermediate_dot_product;
+	t = induced_plane->utils.dot_prod_const_light / intermediate_dot_product;
 	if (t >= (t_max + HITPOINT_OFFSET) || t < HITPOINT_OFFSET)
 		return (false);
 	mag = get_vector_magnitude(
-			sum_vectors(induced_plane->utils.light_point,
+			sum_vectors(induced_plane->utils.point_light,
 				multiply_vector(t, lightray)));
 	return (mag <= disk_radius);
 }

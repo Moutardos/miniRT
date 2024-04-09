@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 14:20:08 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:16:39 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ typedef struct s_vector
 typedef struct s_utils_pl
 {
 	t_vector		point_camera;
-	double			dot_prod_const;
-	t_vector		light_point;
-	double			dot_prod_const_l;
+	double			dot_prod_const_camera;
+	t_vector		point_light;
+	double			dot_prod_const_light;
 }	t_utils_pl;
 
 typedef struct s_plane
@@ -53,10 +53,9 @@ typedef struct s_utils_sp
 {
 	double		radius;
 	t_vector	center_camera;
-	double		c_const;
+	double		cc_const;
 	t_vector	center_light;
-	double		center_light_magnitude;
-	double		l_const;
+	double		lc_const;
 }	t_utils_sp;
 
 typedef struct s_sphere
@@ -71,8 +70,8 @@ typedef struct s_utils_cy
 	double		halved_height;
 	double		radius;
 	t_vector	center_camera;
-	double		c_const;
-	double		p_const;
+	double		cc_const;
+	double		cp_const;
 	t_vector	center_light;
 	double		lc_const;
 	double		lp_const;
@@ -80,8 +79,6 @@ typedef struct s_utils_cy
 	t_point		disk2_center;
 	t_plane		induced_plane1;
 	t_plane		induced_plane2;
-	t_vector	disk1_center_camera;
-	t_vector	disk2_center_camera;
 }	t_utils_cy;
 
 typedef struct s_cylinder
@@ -120,7 +117,20 @@ typedef struct s_object_array
 
 int		init_object(t_object *object, char *line);
 
-void	fill_utils(t_camera *camera, t_object_array *object_array);
-void	fill_utils_light(t_light *light, t_object_array *object_array);
+void	fill_utils(t_camera *camera,
+			t_light *light,
+			t_object_array *object_array);
+
+void	fill_plane_utils(t_plane *plane,
+			t_camera *camera,
+			t_light *light);
+
+void	fill_sphere_utils(t_sphere *sphere,
+			t_camera *camera,
+			t_light *light);
+
+void	fill_cylinder_utils(t_cylinder *cylinder,
+			t_camera *camera,
+			t_light *light);
 
 #endif

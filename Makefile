@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+         #
+#    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/09 14:49:04 by lcozdenm         ###   ########.fr        #
+#    Updated: 2024/04/09 20:33:35 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,9 +35,14 @@ SRCS_EVENTS			:=	\
 						reload_scene.c \
 						update_objects.c 
 
+SRCS_FILL_UTILS		:=	\
+						fill_utils_cylinder.c \
+						fill_utils_plane.c \
+						fill_utils_sphere.c \
+						fill_utils.c 
+
 SRCS_INIT			:=	\
-						fill_utils.c \
-						fill_utils_light.c \
+						${addprefix fill_utils/, ${SRCS_FILL_UTILS}} \
 						init_data.c \
 						init_frame.c \
 						init_mlx_info.c \
@@ -68,20 +73,26 @@ SRCS_VECTOR_UTILS	:=	\
 						sum_vectors.c \
 						translate_point.c 
 
-SRCS_OBJ_INTER		:=	\
+SRCS_CAMRAY			:=	\
+						is_camray_intersecting_cy.c \
+						is_camray_intersecting_obj.c \
+						is_camray_intersecting_pl.c \
+						is_camray_intersecting_sp.c 
+
+SRCS_LIGHTRAY		:=	\
 						is_lightray_intersecting_cy.c \
 						is_lightray_intersecting_obj.c \
 						is_lightray_intersecting_pl.c \
-						is_lightray_intersecting_sp.c \
-						is_ray_intersecting_cy.c \
-						is_ray_intersecting_obj.c \
-						is_ray_intersecting_pl.c \
-						is_ray_intersecting_sp.c 
+						is_lightray_intersecting_sp.c 
+
+SRCS_OBJ_INTER		:=	\
+						${addprefix camray/, ${SRCS_CAMRAY}} \
+						${addprefix lightray/, ${SRCS_LIGHTRAY}}
 
 SRCS_RENDER			:=	\
 						${addprefix equation_utils/, ${SRCS_EQUATION_UTILS}} \
-						${addprefix vector_utils/, ${SRCS_VECTOR_UTILS}} \
 						${addprefix object_intersections/, ${SRCS_OBJ_INTER}} \
+						${addprefix vector_utils/, ${SRCS_VECTOR_UTILS}} \
 						compute_ray.c \
 						find_pix_color.c \
 						get_lightintensity.c \
