@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_utils_light.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:36:31 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/09 15:54:46 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:02:57 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	fill_sphere_utils_l(t_sphere *sphere, t_light *light)
 	sphere->utils.center_light = create_vector(sphere->center, light->point);
 	sphere->utils.center_light_magnitude
 		= get_vector_magnitude(sphere->utils.center_light);
-	sphere->utils.l_const = 
-		sphere->utils.center_light_magnitude
+	sphere->utils.l_const
+		= sphere->utils.center_light_magnitude
 		* sphere->utils.center_light_magnitude
 		- sphere->utils.radius * sphere->utils.radius;
 }
