@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/07 19:34:40 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 14:18:08 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "colors.h"
 
 typedef struct s_camera	t_camera;
+typedef struct s_light	t_light;
 
 typedef struct s_point
 {
@@ -51,6 +52,9 @@ typedef struct s_utils_sp
 	double		radius;
 	t_vector	center_camera;
 	double		c_const;
+	t_vector	center_light;
+	double		center_light_magnitude;
+	double		l_const;
 }	t_utils_sp;
 
 typedef struct s_sphere
@@ -112,5 +116,6 @@ typedef struct s_object_array
 int		init_object(t_object *object, char *line);
 
 void	fill_utils(t_camera *camera, t_object_array *object_array);
+void	fill_utils_light(t_light *light, t_object_array *object_array);
 
 #endif
