@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 19:54:31 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/25 23:33:54 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 16:32:47 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int	init_data(t_data *data, char *file)
 	}
 	init_frame(&data->frame, &data->settings.camera);
 	fill_utils(&data->settings.camera, &data->object_array);
+	fill_utils_light(&data->settings.light, &data->object_array);
 	return (0);
 }
