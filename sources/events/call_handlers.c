@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:18:01 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 12:17:37 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 12:46:42 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	handle_objects(int keycode,
 		update_plane_properties(keycode, camera,
 			frame, &object_array->array[i].plane);
 	else if (object_array->array[i].type == SP)
-		update_sphere_properties(keycode, &object_array->array[i].sphere);
+		update_sphere_properties(keycode, camera,
+			frame, &object_array->array[i].sphere);
 	else if (object_array->array[i].type == CY)
 		update_cylinder_properties(keycode, camera,
 			frame, &object_array->array[i].cylinder);
@@ -83,7 +84,8 @@ int	call_keypress_handler(int keycode, t_data *data)
 		handle_objects(keycode, &data->settings.camera,
 			&data->frame, &data->object_array);
 	else if (target_keycode == XK_l)
-		handle_translations(keycode, &data->settings.light.point);
+		handle_translations(keycode, &data->settings.camera,
+			&data->frame, &data->settings.light.point);
 	reload_scene(data);
 	return (0);
 }

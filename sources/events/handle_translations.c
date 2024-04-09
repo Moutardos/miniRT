@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 22:29:32 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/07 10:37:33 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 12:51:53 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,27 @@
 
 #include "minirt.h"
 
-void	handle_translations(int keycode, t_point *point)
+void	handle_translations(int keycode,
+			t_camera *camera, t_frame *frame, t_point *point)
 {
 	if (keycode == XK_w)
-		point->z += STEP;
+		*point = translate_point(*point,
+				multiply_vector(STEP, camera->vector));
 	else if (keycode == XK_s)
-		point->z -= STEP;
+		*point = translate_point(*point,
+				multiply_vector(-STEP, camera->vector));
 	else if (keycode == XK_d)
-		point->x += STEP;
+		*point = translate_point(*point,
+				multiply_vector(STEP, frame->dir_j));
 	else if (keycode == XK_a)
-		point->x -= STEP;
+		*point = translate_point(*point,
+				multiply_vector(-STEP, frame->dir_j));
 	else if (keycode == XK_r)
-		point->y += STEP;
+		*point = translate_point(*point,
+				multiply_vector(-STEP, frame->dir_i));
 	else if (keycode == XK_f)
-		point->y -= STEP;
+		*point = translate_point(*point,
+				multiply_vector(STEP, frame->dir_i));
 }
 
 void	handle_camera_translations(int keycode, t_camera *camera,

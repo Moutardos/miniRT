@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 10:03:33 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 12:18:02 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 12:39:03 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ void	update_object_color(t_color *og_color, t_color *object_color)
 void	update_plane_properties(int keycode,
 			t_camera *camera, t_frame *frame, t_plane *plane)
 {
-	handle_translations(keycode, &plane->point);
+	handle_translations(keycode, camera, frame, &plane->point);
 	handle_rotations(keycode, camera, frame, &plane->vector);
 }
 
-void	update_sphere_properties(int keycode, t_sphere *sphere)
+void	update_sphere_properties(int keycode,
+			t_camera *camera, t_frame *frame, t_sphere *sphere)
 {
-	handle_translations(keycode, &sphere->center);
+	handle_translations(keycode, camera, frame, &sphere->center);
 	if (keycode == XK_equal)
 		sphere->diameter += DIM;
 	else if (keycode == XK_minus)
@@ -52,7 +53,7 @@ void	update_cylinder_properties(int keycode,
 		target_keycode = keycode;
 		return ;
 	}
-	handle_translations(keycode, &cylinder->center);
+	handle_translations(keycode, camera, frame, &cylinder->center);
 	handle_rotations(keycode, camera, frame, &cylinder->vector);
 	if (target_keycode == XK_h)
 	{

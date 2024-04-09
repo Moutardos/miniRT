@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:31:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 12:01:30 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 12:36:03 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	init_hooks(t_data *data);
 int		call_destroynotify_handler(t_mlx_info *mlx_info);
 int		call_keypress_handler(int keycode, t_data *data);
 
-void	handle_translations(int keycode, t_point *point);
+void	handle_translations(int keycode,
+			t_camera *camera,
+			t_frame *frame,
+			t_point *point);
 void	handle_rotations(int keycode,
 			t_camera *camera,
 			t_frame *frame,
@@ -54,6 +57,8 @@ void	update_plane_properties(int keycode,
 			t_frame *frame,
 			t_plane *plane);
 void	update_sphere_properties(int keycode,
+			t_camera *camera,
+			t_frame *frame,
 			t_sphere *sphere);
 void	update_cylinder_properties(int keycode,
 			t_camera *camera,
