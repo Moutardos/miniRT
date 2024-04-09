@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/07 19:57:01 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 10:42:32 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ t_point		get_frame_origin(t_frame *frame, t_camera *camera);
 
 void		run_rt(t_data *data);
 
+void		init_point_info(t_point_info *point_info);
+
 void		find_pix_color(unsigned int i, unsigned int j, t_data *data);
+
 
 t_vector	compute_ray(unsigned int i, unsigned int j,
 				t_camera *camera,

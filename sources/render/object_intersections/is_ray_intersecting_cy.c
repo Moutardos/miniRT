@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 19:04:45 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/07 19:13:23 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 10:55:57 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,56 +43,37 @@ bool	is_ray_intersecting_cy_tube(t_cylinder *cylinder, t_vector ray,
 	return (get_vector_magnitude(proj_o_c) <= cylinder->utils.halved_height);
 }
 
-bool	is_ray_intersecting_cy_disks(t_cylinder *cylinder, t_vector ray,
-			t_point_info *point_info)
+bool	is_ray_intersecting_cy_disk(t_plane *induced_plane, double disk_radius,
+			t_vector ray, t_point_info *point_info)
 {
-	double			mag;
-	bool			is_intersecting_p1;
-	bool			is_intersecting_p2;
-	t_point_info	point_info_p1;
-	t_point_info	point_info_p2;
+	double	mag;
 
-	point_info_p1 = *point_info;
-	point_info_p2 = *point_info;
-	is_intersecting_p1 = is_ray_intersecting_pl(
-			&cylinder->utils.induced_plane1, ray, &point_info_p1);
-	is_intersecting_p2 = is_ray_intersecting_pl(
-			&cylinder->utils.induced_plane2, ray, &point_info_p2);
-	if (is_intersecting_p1 && is_intersecting_p2)
-	{
-		if (point_info_p1.cp_magnitude < point_info_p2.cp_magnitude)
-		{
-			*point_info = point_info_p1;
-			mag = get_vector_magnitude(sum_vectors(
-						cylinder->utils.disk1_center_camera, point_info->cp));
-		}
-		else
-		{
-			*point_info = point_info_p2;
-			mag = get_vector_magnitude(sum_vectors(
-						cylinder->utils.disk2_center_camera, point_info->cp));
-		}
-	}
-	else if (is_intersecting_p1)
-	{
-		*point_info = point_info_p1;
-		mag = get_vector_magnitude(sum_vectors(
-					cylinder->utils.disk1_center_camera, point_info->cp));
-	}
-	else if (is_intersecting_p2)
-	{
-		*point_info = point_info_p2;
-		mag = get_vector_magnitude(sum_vectors(
-					cylinder->utils.disk2_center_camera, point_info->cp));
-	}
-	else
+	if (!is_ray_intersecting_pl(induced_plane, ray, point_info))
 		return (false);
-	return (mag <= cylinder->utils.radius);
+	mag = get_vector_magnitude(
+			sum_vectors(induced_plane->utils.point_camera, point_info->cp));
+	return (mag <= disk_radius);
 }
 
 bool	is_ray_intersecting_cy(t_cylinder *cylinder, t_vector ray,
 			t_point_info *point_info)
 {
-	return (is_ray_intersecting_cy_tube(cylinder, ray, point_info)
-		|| is_ray_intersecting_cy_tube(cylinder, ray, point_info));
+	t_point_info	current_point_info;
+
+	init_point_info(&current_point_info);
+	if (is_ray_intersecting_cy_disk(&cylinder->utils.induced_plane1,
+			cylinder->utils.radius, ray, &current_point_info))
+		if (point_info->cp_magnitude == -1
+			|| current_point_info.cp_magnitude < point_info->cp_magnitude)
+			*point_info = current_point_info;
+	if (is_ray_intersecting_cy_disk(&cylinder->utils.induced_plane2,
+			cylinder->utils.radius, ray, &current_point_info))
+		if (point_info->cp_magnitude == -1
+			|| current_point_info.cp_magnitude < point_info->cp_magnitude)
+			*point_info = current_point_info;
+	if (is_ray_intersecting_cy_tube(cylinder, ray, &current_point_info))
+		if (point_info->cp_magnitude == -1
+			|| current_point_info.cp_magnitude < point_info->cp_magnitude)
+			*point_info = current_point_info;
+	return (point_info->cp_magnitude != -1);
 }

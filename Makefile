@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/07 19:15:16 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/04/09 10:57:36 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRCS_RENDER			:=	\
 						compute_ray.c \
 						find_pix_color.c \
 						get_lightintensity.c \
+						init_point_info.c \
 						run_rt.c
 
 SRCS_GNL			:=	\
