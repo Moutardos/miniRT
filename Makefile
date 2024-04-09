@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/09 22:03:45 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/04/09 22:37:54 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,19 +61,6 @@ SRCS_PARSING		:=	\
 						is_single_argument.c \
 						str_to_obj.c
 
-SRCS_EQUATION_UTILS	:=	\
-						get_min_positive_root.c \
-						solve_quadratic_equation.c
-
-SRCS_VECTOR_UTILS	:=	\
-						create_vector.c \
-						get_vector_magnitude.c \
-						is_unit_vector.c \
-						multiply_vector.c \
-						normalize_vector.c \
-						perform_dot_product.c \
-						sum_vectors.c \
-						translate_point.c 
 
 SRCS_CAMRAY			:=	\
 						is_camray_intersecting_cy.c \
@@ -93,11 +80,25 @@ SRCS_OBJ_INTER		:=	\
 
 SRCS_RENDER			:=	\
 						${addprefix object_intersections/, ${SRCS_OBJ_INTER}} \
+						apply_shader.c \
 						compute_ray.c \
 						find_pix_color.c \
-						get_lightintensity.c \
 						init_point_info.c \
 						run_rt.c
+
+SRCS_EQUATION_UTILS	:=	\
+						get_min_positive_root.c \
+						solve_quadratic_equation.c
+
+SRCS_VECTOR_UTILS	:=	\
+						create_vector.c \
+						get_vector_magnitude.c \
+						is_unit_vector.c \
+						multiply_vector.c \
+						normalize_vector.c \
+						perform_dot_product.c \
+						sum_vectors.c \
+						translate_point.c 
 
 SRCS_UTILS			:=	\
 						${addprefix equation_utils/, ${SRCS_EQUATION_UTILS}} \

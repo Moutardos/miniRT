@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 00:35:49 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 20:20:21 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 22:36:40 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	color_object_point(unsigned int i, unsigned int j,
 	t_color	point_color;
 	double	intensity;
 
-	intensity = get_lightintensity(data, point_info);
+	intensity = apply_shader(data, point_info);
 	point_color = get_intensified_color(point_info->object->color, intensity);
 	color_img_pix(&data->mlx_info.img, j, i, point_color.hex);
 }

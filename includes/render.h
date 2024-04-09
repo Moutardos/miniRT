@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 22:19:42 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/09 22:36:40 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ bool		is_lightray_intersecting_pl(t_plane *plane,
 bool		is_lightray_intersecting_sp(t_sphere *sphere,
 				t_vector lightray, double t_max);
 
-double		get_lightintensity(t_data *data, t_point_info *p_info);
+double		apply_shader(t_data *data, t_point_info *p_info);
 
 #endif

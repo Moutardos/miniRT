@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_lightintensity.c                               :+:      :+:    :+:   */
+/*   apply_shader.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -32,7 +32,7 @@ static bool	is_there_shadow(t_data *data, t_vector light_direction,
 	return (false);
 }
 
-double	get_lightintensity(t_data *data, t_point_info *p_info)
+double	apply_shader(t_data *data, t_point_info *p_info)
 {
 	double		global_intensity;
 	double		dot_prod_nl;
