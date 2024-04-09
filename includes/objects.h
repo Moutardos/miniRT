@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 14:18:08 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:19:41 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ typedef struct s_utils_cy
 	t_vector	center_camera;
 	double		c_const;
 	double		p_const;
+	t_vector	center_light;
+	double		lc_const;
+	double		lp_const;
 	t_point		disk1_center;
 	t_point		disk2_center;
 	t_plane		induced_plane1;

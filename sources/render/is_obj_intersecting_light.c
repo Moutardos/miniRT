@@ -6,13 +6,13 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:05:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/05 19:41:36 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:29:22 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-bool	is_sp_intersecting_light (t_sphere *sphere, t_vector lightray,
+bool	is_sp_intersecting_light(t_sphere *sphere, t_vector lightray,
 			double t_max)
 {
 	t_quadratic_roots	roots;
@@ -30,7 +30,7 @@ bool	is_sp_intersecting_light (t_sphere *sphere, t_vector lightray,
 	return (t < t_max && t > HITPOINT_OFFSET);
 }
 
-bool	is_pl_intersecting_light (t_plane *plane, t_vector lightray,
+bool	is_pl_intersecting_light(t_plane *plane, t_vector lightray,
 			t_point hitpoint, double t_max)
 {
 	double		intermediate_dot_product;
@@ -41,8 +41,36 @@ bool	is_pl_intersecting_light (t_plane *plane, t_vector lightray,
 	if (are_doubles_equals(intermediate_dot_product, 0))
 		return (false);
 	t = (perform_dot_product(create_vector(hitpoint, plane->point),
-		plane->vector) / intermediate_dot_product);
+				plane->vector) / intermediate_dot_product);
 	return (t < (t_max + HITPOINT_OFFSET) && t > HITPOINT_OFFSET);
+}
+
+bool	is_cy_intersecting_light(t_cylinder *cylinder, t_vector lightray,
+			double t_max)
+{
+	t_quadratic_roots	roots;
+	double				dot_prod_uv;
+	double				squared_dot_prod_uv;
+	t_vector			o_c_proj;
+	double				t;
+
+	dot_prod_uv = perform_dot_product(lightray, cylinder->vector);
+	squared_dot_prod_uv = dot_prod_uv * dot_prod_uv;
+	roots = solve_quadratic_equation(
+			1 - (squared_dot_prod_uv),
+			2 * perform_dot_product(cylinder->utils.center_light, lightray)
+			- 2 * cylinder->utils.lp_const * dot_prod_uv,
+			cylinder->utils.lc_const
+			);
+	if (roots.nb == 0 || (roots.nb == 1 && roots.single[0] < 0)
+		|| (roots.nb == 2 && roots.distincts[0] < 0 && roots.distincts[1] < 0))
+		return (false);
+	t = t_max - get_min_positive_root(&roots);
+	o_c_proj = multiply_vector(t * dot_prod_uv
+			+ cylinder->utils.lp_const, cylinder->vector);
+	if (get_vector_magnitude(o_c_proj) > cylinder->utils.halved_height)
+		return (false);
+	return (t < t_max && t > HITPOINT_OFFSET);
 }
 
 bool	is_obj_intersecting_light(t_object *object,
@@ -51,11 +79,16 @@ bool	is_obj_intersecting_light(t_object *object,
 	if (object->type == SP)
 	{
 		return (is_sp_intersecting_light(&object->sphere, lightray,
-			t_max));
+				t_max));
 	}
 	if (object->type == PL)
 	{
-		return (is_pl_intersecting_light(&object->plane, lightray, hitpoint, t_max));
+		return (is_pl_intersecting_light(&object->plane, lightray,
+				hitpoint, t_max));
+	}
+	if (object->type == CY)
+	{
+		return (is_cy_intersecting_light(&object->cylinder, lightray, t_max));
 	}
 	return (false);
 }
