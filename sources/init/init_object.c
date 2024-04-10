@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:06:22 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/07 13:39:34 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/10 15:37:00 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,27 @@ int	init_cylinder(t_cylinder *cylinder, char **line)
 	return (0);
 }
 
+int	init_cone(t_cone *cone, char **line)
+{
+	*line += 2;
+	ignore_space(line);
+	if (extract_point(&cone->center, line))
+		return (1);
+	ignore_space(line);
+	if (extract_unit_vector(&cone->vector, line))
+		return (1);
+	ignore_space(line);
+	if (extract_double(&cone->diameter, line)
+		|| cone->diameter <= 0)
+		return (1);
+	ignore_space(line);
+	if (extract_double(&cone->height, line)
+		|| cone->height <= 0)
+		return (1);
+	ignore_space(line);
+	return (0);
+}
+
 int	init_object(t_object *object, char *line)
 {
 	int	error;
@@ -71,6 +92,8 @@ int	init_object(t_object *object, char *line)
 		error = init_sphere(&object->sphere, &line);
 	else if (object->type == CY)
 		error = init_cylinder(&object->cylinder, &line);
+	else if (object->type == CO)
+		error = init_cone(&object->cone, &line);
 	if (error)
 		return (1);
 	if (extract_color(&object->color, &line))

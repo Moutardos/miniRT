@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 20:54:49 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/10 15:34:21 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,26 @@ typedef struct s_cylinder
 	t_utils_cy	utils;
 }	t_cylinder;
 
+typedef struct s_utils_co
+{
+
+}	t_utils_co;
+
+typedef struct s_cone
+{
+	t_point		center;
+	t_vector	vector;
+	double		diameter;
+	double		height;
+	t_utils_co	utils;
+}	t_cone;
+
 enum e_object_type
 {
 	PL,
 	SP,
-	CY
+	CY,
+	CO
 };
 
 typedef struct s_object
@@ -104,6 +119,7 @@ typedef struct s_object
 		t_plane		plane;
 		t_sphere	sphere;
 		t_cylinder	cylinder;
+		t_cone		cone;
 	};
 }	t_object;
 
