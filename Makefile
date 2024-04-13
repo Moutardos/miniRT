@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/09 22:37:54 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/04/13 19:50:40 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ SRCS_PARSING		:=	\
 
 SRCS_CAMRAY			:=	\
 						is_camray_intersecting_cy.c \
+						is_camray_intersecting_disk.c \
 						is_camray_intersecting_obj.c \
 						is_camray_intersecting_pl.c \
 						is_camray_intersecting_sp.c 

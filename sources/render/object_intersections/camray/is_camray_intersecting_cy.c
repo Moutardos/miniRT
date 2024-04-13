@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 19:04:45 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 20:40:42 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/13 19:49:03 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,6 @@ bool	is_camray_intersecting_cy_tube(t_cylinder *cylinder, t_vector ray,
 				sum_vectors(point_info->cp, cylinder->utils.center_camera),
 				proj_o_c));
 	return (get_vector_magnitude(proj_o_c) <= cylinder->utils.halved_height);
-}
-
-bool	is_camray_intersecting_cy_disk(t_plane *induced_plane,
-			double disk_radius, t_vector ray, t_point_info *point_info)
-{
-	double	mag;
-
-	if (!is_camray_intersecting_pl(induced_plane, ray, point_info))
-		return (false);
-	mag = get_vector_magnitude(
-			sum_vectors(induced_plane->utils.point_camera, point_info->cp));
-	return (mag <= disk_radius);
 }
 
 bool	is_camray_intersecting_cy(t_cylinder *cylinder, t_vector ray,
