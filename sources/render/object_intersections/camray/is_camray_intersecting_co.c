@@ -6,10 +6,11 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 18:21:18 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/13 14:32:30 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/13 15:28:19 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minirt.h"
 
 bool	is_camray_intersecting_co_tube(t_cone *cone, t_vector ray,
@@ -18,6 +19,8 @@ bool	is_camray_intersecting_co_tube(t_cone *cone, t_vector ray,
 	t_quadratic_roots	roots;
 	double				dot_prod_uv;
 	double				squared_dot_prod_uv;
+	double				t;
+	double				p;
 
 	dot_prod_uv = perform_dot_product(ray, cone->vector);
 	squared_dot_prod_uv = dot_prod_uv * dot_prod_uv;
@@ -30,8 +33,12 @@ bool	is_camray_intersecting_co_tube(t_cone *cone, t_vector ray,
 	if (roots.nb == 0 || (roots.nb == 1 && roots.single[0] < 0)
 		|| (roots.nb == 2 && roots.distincts[0] < 0 && roots.distincts[1] < 0))
 		return (false);
-	point_info->cp_magnitude = get_min_positive_root(&roots);
-	point_info->cp = multiply_vector(point_info->cp_magnitude, ray);
+	t = get_min_positive_root(&roots);
+	p = -(t * dot_prod_uv + cone->utils.dot_prod_disk1_center_camera_dir);
+	if (p < 0 || p > cone->height)
+		return (false);
+	point_info->cp_magnitude = t;
+	point_info->cp = multiply_vector(t, ray);
 	return (true);
 }
 

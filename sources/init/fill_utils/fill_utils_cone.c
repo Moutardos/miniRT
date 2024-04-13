@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 17:40:21 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/13 14:36:45 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/13 15:16:46 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 void	fill_cone_tube_camera_utils(t_cone *cone, t_camera *camera)
 {
 	double	mag_d1_center_camera;
-	double	dot_prod_d1_center_camera_dir;
 	double	squared_dot_prod_d1_center_camera_dir;
 
 	cone->utils.disk1_center_camera
 		= create_vector(cone->utils.disk1_center, camera->point);
 	mag_d1_center_camera
 		= get_vector_magnitude(cone->utils.disk1_center_camera);
-	dot_prod_d1_center_camera_dir
+	cone->utils.dot_prod_disk1_center_camera_dir
 		= perform_dot_product(cone->utils.disk1_center_camera, cone->vector);
 	squared_dot_prod_d1_center_camera_dir
-		= dot_prod_d1_center_camera_dir * dot_prod_d1_center_camera_dir;
+		= cone->utils.dot_prod_disk1_center_camera_dir
+		* cone->utils.dot_prod_disk1_center_camera_dir;
 	cone->utils.ca_const = 1 + cone->utils.radius * cone->utils.radius
 		/ cone->height * cone->height;
 	cone->utils.cb_const
-		= -2 * dot_prod_d1_center_camera_dir * cone->utils.ca_const;
+		= -2 * cone->utils.dot_prod_disk1_center_camera_dir
+		* cone->utils.ca_const;
 	cone->utils.cc_const = mag_d1_center_camera * mag_d1_center_camera
 		- squared_dot_prod_d1_center_camera_dir
 		* cone->utils.ca_const;

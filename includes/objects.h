@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/13 14:36:34 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/13 15:15:13 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct s_utils_co
 	double		cb_const;
 	double		cc_const;
 	double		radius;
+	double		dot_prod_disk1_center_camera_dir;
 }	t_utils_co;
 
 typedef struct s_cone
