@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 18:21:18 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/13 19:31:07 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/13 20:20:19 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,17 @@ bool	is_camray_intersecting_co_tube(t_cone *cone, t_vector ray,
 bool	is_camray_intersecting_co(t_cone *cone, t_vector ray,
 			t_point_info *point_info)
 {
-	return (is_camray_intersecting_co_tube(cone, ray, point_info));
+	t_point_info	current_point_info;
+
+	init_point_info(&current_point_info);
+	if (is_camray_intersecting_disk(&cone->utils.induced_plane2,
+			cone->utils.radius, ray, &current_point_info))
+		if (point_info->cp_magnitude == -1
+			|| current_point_info.cp_magnitude < point_info->cp_magnitude)
+			*point_info = current_point_info;
+	if (is_camray_intersecting_co_tube(cone, ray, &current_point_info))
+		if (point_info->cp_magnitude == -1
+			|| current_point_info.cp_magnitude < point_info->cp_magnitude)
+			*point_info = current_point_info;
+	return (point_info->cp_magnitude != -1);
 }

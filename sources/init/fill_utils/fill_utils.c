@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 23:31:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/13 14:36:17 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/13 20:15:52 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	fill_utils(t_camera *camera, t_light *light,
 				camera, light);
 		if (object_array->array[object_index].type == CO)
 			fill_cone_utils(&object_array->array[object_index].cone,
-				camera);
+				camera, light);
 		object_index++;
 	}
 }

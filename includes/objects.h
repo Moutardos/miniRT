@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/13 15:15:13 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/13 20:12:02 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ typedef struct s_utils_co
 {
 	t_vector	disk1_center_camera;
 	t_point		disk1_center;
+	t_point		disk2_center;
+	t_plane		induced_plane2;
 	double		ca_const;
 	double		cb_const;
 	double		cc_const;
@@ -154,6 +156,7 @@ void	fill_cylinder_utils(t_cylinder *cylinder,
 			t_light *light);
 
 void	fill_cone_utils(t_cone *cone,
-			t_camera *camera);
+			t_camera *camera,
+			t_light *light);
 
 #endif

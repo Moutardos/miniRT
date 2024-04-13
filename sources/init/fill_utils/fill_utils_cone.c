@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 17:40:21 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/13 15:16:46 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/13 20:20:21 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	fill_cone_tube_camera_utils(t_cone *cone, t_camera *camera)
 	squared_dot_prod_d1_center_camera_dir
 		= cone->utils.dot_prod_disk1_center_camera_dir
 		* cone->utils.dot_prod_disk1_center_camera_dir;
-	cone->utils.ca_const = 1 + cone->utils.radius * cone->utils.radius
-		/ cone->height * cone->height;
+	cone->utils.ca_const = 1 + (cone->utils.radius * cone->utils.radius
+		/ cone->height * cone->height);
 	cone->utils.cb_const
 		= -2 * cone->utils.dot_prod_disk1_center_camera_dir
 		* cone->utils.ca_const;
@@ -36,22 +36,31 @@ void	fill_cone_tube_camera_utils(t_cone *cone, t_camera *camera)
 		* cone->utils.ca_const;
 }
 
-void	fill_cone_disks_utils(t_cone *cone)
+void	fill_cone_disks_utils(t_cone *cone,
+			t_camera *camera, t_light *light)
 {
 	t_vector	co_center_disk1_center;
+	t_vector	co_center_disk2_center;
 	double		halved_height;
 
 	cone->utils.radius = cone->diameter / 2;
 	halved_height = cone->height / 2;
 	co_center_disk1_center
 		= multiply_vector(halved_height, cone->vector);
+	co_center_disk2_center = multiply_vector(-1, co_center_disk1_center);
 	cone->utils.disk1_center
 		= translate_point(cone->center, co_center_disk1_center);
+	cone->utils.disk2_center
+		= translate_point(cone->center, co_center_disk2_center);
+	cone->utils.induced_plane2.point = cone->utils.disk2_center;
+	cone->utils.induced_plane2.vector
+		= multiply_vector(-1, cone->vector);
+	fill_plane_utils(&cone->utils.induced_plane2, camera, light);
 }
 
 void	fill_cone_utils(t_cone *cone,
-			t_camera *camera)
+			t_camera *camera, t_light *light)
 {
-	fill_cone_disks_utils(cone);
+	fill_cone_disks_utils(cone, camera, light);
 	fill_cone_tube_camera_utils(cone, camera);
 }
