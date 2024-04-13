@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:43:07 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/09 22:06:36 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/13 19:25:31 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ bool				is_unit_vector(t_vector v);
 t_vector			multiply_vector(double scalar, t_vector vector);
 t_vector			normalize_vector(t_vector vector);
 double				perform_dot_product(t_vector vector1, t_vector vector2);
+t_vector			perform_cross_product(t_vector vector1, t_vector vector2);
 t_vector			sum_vectors(t_vector vector1, t_vector vector2);
 t_point				translate_point(t_point point, t_vector vector);
 

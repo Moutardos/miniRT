@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/13 19:58:10 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/04/13 19:59:07 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,6 +99,7 @@ SRCS_VECTOR_UTILS	:=	\
 						is_unit_vector.c \
 						multiply_vector.c \
 						normalize_vector.c \
+						perform_cross_product.c \
 						perform_dot_product.c \
 						sum_vectors.c \
 						translate_point.c 
