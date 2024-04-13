@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minirt.h"
 
 t_vector	get_cone_normal(t_cone *cone, t_vector cp)
