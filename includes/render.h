@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/13 20:17:08 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/13 20:18:28 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,13 @@ bool		is_camray_intersecting_pl(t_plane *plane,
 bool		is_camray_intersecting_sp(t_sphere *sphere,
 				t_vector ray,
 				t_point_info *point_info);
+bool		is_camray_intersecting_cy(t_cylinder *cylinder,
+				t_vector ray,
+				t_point_info *point_info);
+bool		is_camray_intersecting_co(t_cone *cone,
+				t_vector ray,
+				t_point_info *point_info);
+
 
 bool		is_lightray_intersecting_obj(t_object *object,
 				t_vector lightray, double t_max);

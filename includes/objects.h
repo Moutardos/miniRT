@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/10 15:34:21 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/13 14:36:34 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,12 @@ typedef struct s_cylinder
 
 typedef struct s_utils_co
 {
-
+	t_vector	disk1_center_camera;
+	t_point		disk1_center;
+	double		ca_const;
+	double		cb_const;
+	double		cc_const;
+	double		radius;
 }	t_utils_co;
 
 typedef struct s_cone
@@ -146,5 +151,8 @@ void	fill_sphere_utils(t_sphere *sphere,
 void	fill_cylinder_utils(t_cylinder *cylinder,
 			t_camera *camera,
 			t_light *light);
+
+void	fill_cone_utils(t_cone *cone,
+			t_camera *camera);
 
 #endif
