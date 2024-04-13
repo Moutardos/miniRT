@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 19:04:45 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/13 19:49:03 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/13 20:17:14 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ bool	is_camray_intersecting_cy(t_cylinder *cylinder, t_vector ray,
 	t_point_info	current_point_info;
 
 	init_point_info(&current_point_info);
-	if (is_camray_intersecting_cy_disk(&cylinder->utils.induced_plane1,
+	if (is_camray_intersecting_disk(&cylinder->utils.induced_plane1,
 			cylinder->utils.radius, ray, &current_point_info))
 		if (point_info->cp_magnitude == -1
 			|| current_point_info.cp_magnitude < point_info->cp_magnitude)
 			*point_info = current_point_info;
-	if (is_camray_intersecting_cy_disk(&cylinder->utils.induced_plane2,
+	if (is_camray_intersecting_disk(&cylinder->utils.induced_plane2,
 			cylinder->utils.radius, ray, &current_point_info))
 		if (point_info->cp_magnitude == -1
 			|| current_point_info.cp_magnitude < point_info->cp_magnitude)

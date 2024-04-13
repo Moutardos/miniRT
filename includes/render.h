@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/13 19:50:27 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/13 20:17:08 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_vector	compute_ray(unsigned int i, unsigned int j,
 bool		is_camray_intersecting_obj(t_object *object,
 				t_vector ray,
 				t_point_info *point_info);
-bool		is_camray_intersecting_cy_disk(t_plane *induced_plane,
+bool		is_camray_intersecting_disk(t_plane *induced_plane,
 				double disk_radius,
 				t_vector ray,
 				t_point_info *point_info);
