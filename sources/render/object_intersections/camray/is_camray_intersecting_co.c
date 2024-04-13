@@ -6,12 +6,25 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 18:21:18 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/13 15:28:19 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/13 19:31:07 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minirt.h"
+
+t_vector	get_cone_normal(t_cone *cone, t_vector cp)
+{
+	t_vector	d1_center_point;
+	t_vector	tangent_vector;
+	t_vector	normal;
+
+	d1_center_point
+		= sum_vectors(cone->utils.disk1_center_camera, cp);
+	tangent_vector = perform_cross_product(cone->vector, d1_center_point);
+	normal = perform_cross_product(tangent_vector, d1_center_point);
+	return (normalize_vector(normal));
+}
 
 bool	is_camray_intersecting_co_tube(t_cone *cone, t_vector ray,
 			t_point_info *point_info)
@@ -39,6 +52,7 @@ bool	is_camray_intersecting_co_tube(t_cone *cone, t_vector ray,
 		return (false);
 	point_info->cp_magnitude = t;
 	point_info->cp = multiply_vector(t, ray);
+	point_info->normal = get_cone_normal(cone, point_info->cp);
 	return (true);
 }
 
