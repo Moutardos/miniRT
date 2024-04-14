@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_info.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:59:13 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/08 11:43:54 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/14 21:33:26 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MLX_INFO_H
 # define MLX_INFO_H
 
-# define WIN_W 1920
-# define WIN_H 1080
+# define WIN_W 1280
+# define WIN_H 720
 
 typedef struct s_img
 {
