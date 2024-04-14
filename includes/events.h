@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:31:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 12:36:03 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 15:34:22 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@
 typedef struct s_point			t_point;
 typedef struct s_vector			t_vector;
 
+typedef struct s_object			t_object;
 typedef struct s_plane			t_plane;
 typedef struct s_sphere			t_sphere;
 typedef struct s_cylinder		t_cylinder;
+typedef struct s_cone			t_cone;
 
 typedef struct s_data			t_data;
 
@@ -52,18 +54,10 @@ void	handle_camera_rotations(int keycode,
 			t_frame *frame);
 
 void	update_object_color(t_color *og_color, t_color *object_color);
-void	update_plane_properties(int keycode,
+void	update_object_properties(int keycode,
 			t_camera *camera,
 			t_frame *frame,
-			t_plane *plane);
-void	update_sphere_properties(int keycode,
-			t_camera *camera,
-			t_frame *frame,
-			t_sphere *sphere);
-void	update_cylinder_properties(int keycode,
-			t_camera *camera,
-			t_frame *frame,
-			t_cylinder *cylinder);
+			t_object *object);
 
 void	reload_scene(t_data *data);
 

@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/14 04:28:45 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/04/14 15:34:26 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ SRCS_EVENTS			:=	\
 						handle_translations.c \
 						init_hooks.c \
 						reload_scene.c \
-						update_objects.c 
+						update_object_color.c \
+						update_object_properties.c
 
 SRCS_FILL_UTILS		:=	\
 						fill_utils_cone.c \

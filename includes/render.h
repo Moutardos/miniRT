@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/14 04:42:26 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 15:36:39 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ bool		is_camray_intersecting_cy(t_cylinder *cylinder,
 bool		is_camray_intersecting_co(t_cone *cone,
 				t_vector ray,
 				t_point_info *point_info);
-
 
 bool		is_lightray_intersecting_obj(t_object *object,
 				t_vector lightray, double t_max);
