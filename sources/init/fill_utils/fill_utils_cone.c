@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 17:40:21 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/14 04:18:28 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 14:07:07 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	fill_cone_tube_light_utils(t_cone *cone, t_light *light)
 	squared_dot_prod_d1_center_light_dir
 		= cone->utils.dot_prod_disk1_center_light_dir
 		* cone->utils.dot_prod_disk1_center_light_dir;
-	cone->utils.la_const = 1 + (cone->utils.radius * cone->utils.radius
-		/ cone->height * cone->height);
+	cone->utils.la_const = 1 + (cone->utils.radius * cone->utils.radius)
+		/ (cone->height * cone->height);
 	cone->utils.lb_const
 		= -2 * cone->utils.dot_prod_disk1_center_light_dir
 		* cone->utils.ca_const;
@@ -50,8 +50,8 @@ void	fill_cone_tube_camera_utils(t_cone *cone, t_camera *camera)
 	squared_dot_prod_d1_center_camera_dir
 		= cone->utils.dot_prod_disk1_center_camera_dir
 		* cone->utils.dot_prod_disk1_center_camera_dir;
-	cone->utils.ca_const = 1 + (cone->utils.radius * cone->utils.radius
-		/ cone->height * cone->height);
+	cone->utils.ca_const = 1 + (cone->utils.radius * cone->utils.radius)
+		/ (cone->height * cone->height);
 	cone->utils.cb_const
 		= -2 * cone->utils.dot_prod_disk1_center_camera_dir
 		* cone->utils.ca_const;
