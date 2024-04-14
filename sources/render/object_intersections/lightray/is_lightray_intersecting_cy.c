@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_lightray_intersecting_cy.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:05:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 21:03:51 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/15 18:06:19 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,17 @@ double	is_lightray_intersecting_cy_tube(t_cylinder *cylinder,
 	squared_dot_prod_uv = dot_prod_uv * dot_prod_uv;
 	roots = solve_quadratic_equation(
 			1 - (squared_dot_prod_uv),
-			2 * perform_dot_product(cylinder->utils.center_light, lightray)
-			- 2 * cylinder->utils.lp_const * dot_prod_uv,
-			cylinder->utils.lc_const
+			2 * perform_dot_product(cylinder->utils.light_utils->center_light,
+				lightray)
+			- 2 * cylinder->utils.light_utils->lp_const * dot_prod_uv,
+			cylinder->utils.light_utils->lc_const
 			);
 	if (roots.nb == 0 || (roots.nb == 1 && roots.single[0] < 0)
 		|| (roots.nb == 2 && roots.distincts[0] < 0 && roots.distincts[1] < 0))
 		return (false);
 	t = get_min_positive_root(&roots);
 	proj_o_c = multiply_vector(-(t * dot_prod_uv
-				+ cylinder->utils.lp_const), cylinder->vector);
+				+ cylinder->utils.light_utils->lp_const), cylinder->vector);
 	if (get_vector_magnitude(proj_o_c) > cylinder->utils.halved_height)
 		return (false);
 	return (t < (t_max - OFFSET) && t > OFFSET);

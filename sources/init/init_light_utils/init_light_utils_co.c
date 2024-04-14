@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_data.c                                     :+:      :+:    :+:   */
+/*   init_light_utils_co.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 11:43:23 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 16:22:48 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/04/11 15:11:51 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/04/14 17:43:14 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	destroy_data(t_data *data)
+int	init_light_utils_co(t_cone *cone, int len)
 {
-	destroy_mlx_info(&data->mlx_info);
-	if (data->object_array.len > 0)
+	cone->utils.light_utils_array.array
+		= malloc(sizeof(t_light_utils_co) * len);
+	if (!cone->utils.light_utils_array.array)
+		return (1);
+	cone->utils.light_utils_array.len = len;
+	if (init_light_utils_pl(&cone->utils.induced_plane2, len))
 	{
-		destroy_light_utils(&data->object_array, data->object_array.len);
-		destroy_bump_maps(&data->object_array);
-		free(data->object_array.array);
+		free(cone->utils.light_utils_array.array);
+		return (1);
 	}
-	if (data->settings.light_array.len > 0)
-		free(data->settings.light_array.array);
+	return (0);
 }

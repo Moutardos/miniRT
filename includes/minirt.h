@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:14:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/03/21 00:28:52 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/11 19:04:53 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "colors.h"
+# include "textures.h"
 # include "events.h"
 # include "mlx_info.h"
 # include "objects.h"

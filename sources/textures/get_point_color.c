@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_data.c                                     :+:      :+:    :+:   */
+/*   get_point_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 11:43:23 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 16:22:48 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/04/01 18:38:16 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/04/12 11:55:50 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "minirt.h"
 
-void	destroy_data(t_data *data)
+t_color	get_point_color(t_object *object, t_point point)
 {
-	destroy_mlx_info(&data->mlx_info);
-	if (data->object_array.len > 0)
-	{
-		destroy_light_utils(&data->object_array, data->object_array.len);
-		destroy_bump_maps(&data->object_array);
-		free(data->object_array.array);
-	}
-	if (data->settings.light_array.len > 0)
-		free(data->settings.light_array.array);
+	t_texture_coordinates	coord;
+
+	if (object->texture.type == NONE)
+		return (object->texture.color);
+	coord = point_to_texture_coordinates(object, point);
+	if (object->texture.type == CH)
+		return (get_checker_pattern(coord, &object->texture));
+	else
+		return (object->texture.color);
 }

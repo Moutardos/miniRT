@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_pix_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 00:35:49 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 22:36:40 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/11 14:27:57 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	color_object_point(unsigned int i, unsigned int j,
 			t_data *data, t_point_info *point_info)
 {
 	t_color	point_color;
-	double	intensity;
 
-	intensity = apply_shader(data, point_info);
-	point_color = get_intensified_color(point_info->object->color, intensity);
+	point_info->pc = multiply_vector(-1, point_info->cp);
+	point_color = get_point_color(point_info->object, point_info->point);
+	apply_shader(&point_color, data, point_info);
 	color_img_pix(&data->mlx_info.img, j, i, point_color.hex);
 }
 

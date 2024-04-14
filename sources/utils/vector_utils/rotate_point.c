@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_data.c                                     :+:      :+:    :+:   */
+/*   rotate_point.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 11:43:23 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 16:22:48 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/04/04 14:42:12 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/04/12 11:54:36 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	destroy_data(t_data *data)
+t_point	rotate_point(t_point point, t_vector rotate)
 {
-	destroy_mlx_info(&data->mlx_info);
-	if (data->object_array.len > 0)
-	{
-		destroy_light_utils(&data->object_array, data->object_array.len);
-		destroy_bump_maps(&data->object_array);
-		free(data->object_array.array);
-	}
-	if (data->settings.light_array.len > 0)
-		free(data->settings.light_array.array);
+	if (rotate.y != 0)
+		return (point);
+	if (rotate.z != 0)
+		return ((t_point){point.x, point.z, point.y});
+	if (rotate.x != 0)
+		return ((t_point){point.y, point.x, point.z});
+	return (point);
 }

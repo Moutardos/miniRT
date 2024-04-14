@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_settings.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:26:49 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/11 15:39:05 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/08 13:15:53 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,15 @@ static void	init_default_camera(t_camera *camera)
 	};
 }
 
-static void	init_default_light(t_light *light)
+static void	init_default_light(t_light_array *light_array)
 {
-	light->ratio = LIGHT_RATIO;
-	light->color.hex = LIGHT_COLOR;
-	light->point = (t_point){
-		.x = LIGHT_POINT_X,
-		.y = LIGHT_POINT_Y,
-		.z = LIGHT_POINT_Z
-	};
+	light_array->array = NULL;
+	light_array->len = 0;
 }
 
 void	init_settings(t_settings *settings)
 {
 	init_default_env_light(&settings->env_light);
 	init_default_camera(&settings->camera);
-	init_default_light(&settings->light);
+	init_default_light(&settings->light_array);
 }

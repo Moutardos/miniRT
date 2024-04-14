@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_lightray_intersecting_co.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 04:23:23 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/20 14:22:18 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/21 14:59:12 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ double	get_min_cone_root_light(t_quadratic_roots *roots,
 	double		p[2];
 	double		c;
 
-	c = cone->utils.dot_prod_disk1_center_light_dir;
+	c = cone->utils.light_utils->dot_prod_disk1_center_light_dir;
 	if (roots->nb == 1 && roots->single[0] > 0)
 	{
 		p[0] = -(roots->single[0] * dot_prod_uv + c);
@@ -54,10 +54,11 @@ bool	is_lightray_intersecting_co_tube(t_cone *cone,
 	dot_prod_uv = perform_dot_product(lightray, cone->vector);
 	squared_dot_prod_uv = dot_prod_uv * dot_prod_uv;
 	roots = solve_quadratic_equation(
-			1 - (squared_dot_prod_uv) * cone->utils.la_const,
-			2 * perform_dot_product(cone->utils.disk1_center_light, lightray)
-			+ dot_prod_uv * cone->utils.lb_const,
-			cone->utils.lc_const
+			1 - (squared_dot_prod_uv) * cone->utils.light_utils->la_const,
+			2 * perform_dot_product(cone->utils.light_utils->disk1_center_light,
+				lightray)
+			+ dot_prod_uv * cone->utils.light_utils->lb_const,
+			cone->utils.light_utils->lc_const
 			);
 	if (roots.nb == 0 || (roots.nb == 1 && roots.single[0] < 0)
 		|| (roots.nb == 2 && roots.distincts[0] < 0 && roots.distincts[1] < 0))

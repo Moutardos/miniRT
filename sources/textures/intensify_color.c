@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_data.c                                     :+:      :+:    :+:   */
+/*   intensify_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 11:43:23 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 16:22:48 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/03/22 00:07:41 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/04/11 14:37:49 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minirt.h"
 
-void	destroy_data(t_data *data)
+void	intensify_color(t_color *color, t_color_intensity color_intensity)
 {
-	destroy_mlx_info(&data->mlx_info);
-	if (data->object_array.len > 0)
-	{
-		destroy_light_utils(&data->object_array, data->object_array.len);
-		destroy_bump_maps(&data->object_array);
-		free(data->object_array.array);
-	}
-	if (data->settings.light_array.len > 0)
-		free(data->settings.light_array.array);
+	color->r = ft_dmin(color->r * color_intensity[0], 255);
+	color->g = ft_dmin(color->g * color_intensity[1], 255);
+	color->b = ft_dmin(color->b * color_intensity[2], 255);
 }

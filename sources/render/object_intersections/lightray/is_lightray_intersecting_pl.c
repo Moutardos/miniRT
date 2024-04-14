@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_lightray_intersecting_pl.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:05:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 21:03:35 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/15 18:07:41 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ bool	is_lightray_intersecting_pl(t_plane *plane, t_vector lightray,
 		= perform_dot_product(lightray, plane->vector);
 	if (are_doubles_equals(intermediate_dot_product, 0))
 		return (false);
-	t = plane->utils.dot_prod_const_light / intermediate_dot_product;
+	t = plane->utils.light_utils->dot_prod_const_light
+		/ intermediate_dot_product;
 	return (t < (t_max - OFFSET) && t > OFFSET);
 }

@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_data.c                                     :+:      :+:    :+:   */
+/*   point_to_texture_coord.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 11:43:23 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 16:22:48 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/04/14 17:48:41 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/04/14 17:53:35 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	destroy_data(t_data *data)
+t_texture_coordinates	point_to_texture_coordinates(t_object *object,
+						t_point point)
 {
-	destroy_mlx_info(&data->mlx_info);
-	if (data->object_array.len > 0)
-	{
-		destroy_light_utils(&data->object_array, data->object_array.len);
-		destroy_bump_maps(&data->object_array);
-		free(data->object_array.array);
-	}
-	if (data->settings.light_array.len > 0)
-		free(data->settings.light_array.array);
+	if (object->type == SP)
+		return (get_sp_coord(&object->sphere, point));
+	if (object->type == PL)
+		return (get_pl_coord(&object->plane, point));
+	if (object->type == CO)
+		return (get_co_coord(&object->cone, point));
+	if (object->type == CY)
+		return (get_cy_coord(&object->cylinder, point));
+	return ((t_texture_coordinates){0});
 }
