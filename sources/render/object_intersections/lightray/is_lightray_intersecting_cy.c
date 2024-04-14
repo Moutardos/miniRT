@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:05:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/09 22:28:32 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 04:33:04 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,13 @@ double	is_lightray_intersecting_cy_tube(t_cylinder *cylinder,
 	return (t < (t_max - EPSILON) && t > EPSILON);
 }
 
-bool	is_lightray_intersecting_cy_disk(t_plane *induced_plane,
-			double disk_radius, t_vector lightray, double t_max)
-{
-	double		mag;
-	double		intermediate_dot_product;
-	double		t;
-
-	intermediate_dot_product
-		= perform_dot_product(lightray, induced_plane->vector);
-	if (are_doubles_equals(intermediate_dot_product, 0))
-		return (false);
-	t = induced_plane->utils.dot_prod_const_light / intermediate_dot_product;
-	if (t >= (t_max + EPSILON) || t < EPSILON)
-		return (false);
-	mag = get_vector_magnitude(
-			sum_vectors(induced_plane->utils.point_light,
-				multiply_vector(t, lightray)));
-	return (mag <= disk_radius);
-}
-
 bool	is_lightray_intersecting_cy(t_cylinder *cylinder, t_vector lightray,
 			double t_max)
 {
-	if (is_lightray_intersecting_cy_disk(&cylinder->utils.induced_plane1,
+	if (is_lightray_intersecting_disk(&cylinder->utils.induced_plane1,
 			cylinder->utils.radius, lightray, t_max))
 		return (true);
-	if (is_lightray_intersecting_cy_disk(&cylinder->utils.induced_plane2,
+	if (is_lightray_intersecting_disk(&cylinder->utils.induced_plane2,
 			cylinder->utils.radius, lightray, t_max))
 		return (true);
 	return (is_lightray_intersecting_cy_tube(cylinder, lightray, t_max));

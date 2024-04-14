@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/13 19:59:07 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/04/14 04:28:45 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ SRCS_CAMRAY			:=	\
 SRCS_LIGHTRAY		:=	\
 						is_lightray_intersecting_cy.c \
 						is_lightray_intersecting_obj.c \
+						is_lightray_intersecting_disk.c \
 						is_lightray_intersecting_pl.c \
 						is_lightray_intersecting_sp.c 
 
