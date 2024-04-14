@@ -6,13 +6,25 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 19:04:45 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/14 21:21:19 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 21:28:32 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
 #include "minirt.h"
+
+t_vector	get_cylinder_normal(t_cylinder *cylinder,
+				t_vector cp, t_vector proj_o_c)
+{
+	t_vector	normal;
+
+	normal
+		= sum_vectors(
+			sum_vectors(cp, cylinder->utils.center_camera),
+			proj_o_c);
+	return (normalize_vector(normal));
+}
 
 bool	is_camray_intersecting_cy_tube(t_cylinder *cylinder, t_vector ray,
 			t_point_info *point_info)
@@ -39,8 +51,8 @@ bool	is_camray_intersecting_cy_tube(t_cylinder *cylinder, t_vector ray,
 	point_info->cp = multiply_vector(point_info->cp_magnitude, ray);
 	proj_o_c = multiply_vector(-(point_info->cp_magnitude * dot_prod_uv
 				+ cylinder->utils.cp_const), cylinder->vector);
-	point_info->normal = normalize_vector(sum_vectors(
-				sum_vectors(point_info->cp, cylinder->utils.center_camera), proj_o_c));
+	point_info->normal
+		= get_cylinder_normal(cylinder, point_info->cp, proj_o_c);
 	return (get_vector_magnitude(proj_o_c) <= cylinder->utils.halved_height);
 }
 
