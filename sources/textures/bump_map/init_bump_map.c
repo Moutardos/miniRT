@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:29:32 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 16:34:35 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 00:27:56 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	fill_bump_map(t_bump_map *bump_map, t_vector *map, char *path)
 int	init_bump_map(t_bump_map *bump_map, char **line)
 {
 	static t_vector	*map_wood = NULL;
+	static t_vector	*map_sand = NULL;
 
 	if (bump_map->type == WOOD)
 	{
@@ -60,6 +61,20 @@ int	init_bump_map(t_bump_map *bump_map, char **line)
 				return (free(map_wood), 1);
 		}
 		bump_map->map = &map_wood;
+		return (0);
+	}
+	if (bump_map->type == SAND)
+	{
+		bump_map->height = BM_SAND_H;
+		bump_map->width = BM_SAND_W;
+		*line += ft_strlen("sand");
+		if (map_sand == NULL)
+		{
+			map_sand = malloc(sizeof(t_vector) * BM_SAND_SIZE);
+			if (!map_sand || fill_bump_map(bump_map, map_sand, "texture/sand"))
+				return (free(map_sand), 1);
+		}
+		bump_map->map = &map_sand;
 		return (0);
 	}
 	return (1);
