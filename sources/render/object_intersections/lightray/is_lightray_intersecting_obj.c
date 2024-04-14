@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_lightray_intersecting_obj.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:05:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/09 15:56:49 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/14 04:35:53 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ bool	is_lightray_intersecting_obj(t_object *object,
 	{
 		return (is_lightray_intersecting_cy(&object->cylinder, lightray,
 				t_max));
+	}
+	if (object->type == CO)
+	{
+		return (is_lightray_intersecting_co(&object->cone, lightray, t_max));
 	}
 	return (false);
 }

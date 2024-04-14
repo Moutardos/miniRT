@@ -72,6 +72,7 @@ SRCS_CAMRAY			:=	\
 						is_camray_intersecting_sp.c 
 
 SRCS_LIGHTRAY		:=	\
+						is_lightray_intersecting_co.c \
 						is_lightray_intersecting_cy.c \
 						is_lightray_intersecting_obj.c \
 						is_lightray_intersecting_disk.c \
