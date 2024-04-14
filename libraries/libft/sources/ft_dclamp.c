@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_surface_normal.c                               :+:      :+:    :+:   */
+/*   ft_dclamp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 16:41:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 20:56:33 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/04/14 20:28:49 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/04/21 15:02:59 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void	get_surface_normal(t_point_info *p_info)
+double	ft_dclamp(double value, double min, double max)
 {
-	p_info->surface_normal = p_info->normal;
-	if (perform_dot_product(p_info->surface_normal, p_info->cp) >= 0)
-		p_info->surface_normal = multiply_vector(-1, p_info->normal);
-	if (p_info->object->texture.type == BUMP)
-		p_info->surface_normal = perturb_normal(p_info);
+	if (value > max)
+		return (max);
+	if (value < min)
+		return (min);
+	return (value);
 }

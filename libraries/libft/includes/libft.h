@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:48:30 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/20 14:14:28 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/21 15:01:42 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 bool				are_doubles_equals(double x, double y);
 double				ft_dabs(double a);
+double				ft_dclamp(double value, double min, double max);
 double				ft_dmin(double a, double b);
 double				ft_dmax(double a, double b);
 int					ft_min(int a, int b);
