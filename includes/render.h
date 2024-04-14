@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/15 18:06:42 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:14:21 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,5 @@ void		apply_shader(t_color *point_color,
 				t_point_info *p_info);
 
 void		get_surface_normal(t_point_info *p_info);
-t_vector	perturb_normal(t_vector normal_facing,
-				t_point_info *point_info);
+t_vector	perturb_normal(t_point_info *point_info);
 #endif

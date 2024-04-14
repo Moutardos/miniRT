@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
+#    By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 20:55:42 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/14 20:31:54 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/04/15 18:14:07 by lcozdenm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS		:=	\
 				ft_calloc.c \
 				ft_dabs.c \
 				ft_dmax.c \
+				ft_dclamp.c \
 				ft_dmin.c \
 				ft_isdigit.c \
 				ft_iswhitespace.c \
