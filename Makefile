@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
+#    By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/15 18:16:04 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/04/21 14:56:12 by lcozdenm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,6 @@ LIBS_TARGET			:=	\
 
 
 SRC_DIR				:=	sources
-
-SRCS_COLORS			:=	\
-						color_img_pix.c \
-						get_intensified_color.c
 
 SRCS_DESTROY		:=	\
 						destroy_data.c \
@@ -45,8 +41,16 @@ SRCS_FILL_UTILS		:=	\
 						fill_utils_sphere.c \
 						fill_utils.c 
 
+SRCS_INIT_L_UTILS	:=	\
+						init_light_utils_co.c \
+						init_light_utils_cy.c \
+						init_light_utils_pl.c \
+						init_light_utils_sp.c \
+						init_light_utils.c
+
 SRCS_INIT			:=	\
 						${addprefix fill_utils/, ${SRCS_FILL_UTILS}} \
+						${addprefix init_light_utils/, ${SRCS_INIT_L_UTILS}} \
 						init_data.c \
 						init_frame.c \
 						init_mlx_info.c \
@@ -61,7 +65,8 @@ SRCS_PARSING		:=	\
 						fill_data.c \
 						ignore_space.c \
 						is_single_argument.c \
-						str_to_obj.c
+						str_to_obj.c \
+						str_to_texture.c
 
 
 SRCS_CAMRAY			:=	\
@@ -92,28 +97,55 @@ SRCS_RENDER			:=	\
 						init_point_info.c \
 						run_rt.c
 
+SRCS_BUMP_MAP		:=	\
+						destroy_bump_maps.c \
+						init_bump_map.c \
+						perturb_normal.c
+
+SRCS_MAPPING_OBJECT	:=	\
+						get_co_coord.c \
+						get_cy_coord.c \
+						get_pl_coord.c \
+						get_sp_coord.c \
+						point_to_texture_coord.c
+
+SRCS_TEXTURES		:=	\
+						${addprefix bump_map/, ${SRCS_BUMP_MAP}} \
+						${addprefix mapping_object/, ${SRCS_MAPPING_OBJECT}} \
+						checker.c \
+						color_img_pix.c \
+						get_colored_intensity.c \
+						get_point_color.c \
+						init_color_intensity.c \
+						intensify_color.c \
+						init_texture.c
+
 SRCS_EQUATION_UTILS	:=	\
 						get_min_positive_root.c \
 						solve_quadratic_equation.c
 
 SRCS_VECTOR_UTILS	:=	\
 						create_vector.c \
+						get_surface_normal.c \
 						get_vector_magnitude.c \
 						is_unit_vector.c \
 						multiply_vector.c \
 						normalize_vector.c \
 						perform_cross_product.c \
 						perform_dot_product.c \
+						rotate_point.c \
+						rotate_point.c \
 						sum_vectors.c \
 						translate_point.c 
 
+
 SRCS_UTILS			:=	\
 						${addprefix equation_utils/, ${SRCS_EQUATION_UTILS}} \
-						${addprefix vector_utils/, ${SRCS_VECTOR_UTILS}}
+						${addprefix vector_utils/, ${SRCS_VECTOR_UTILS}} \
 
 
 SRCS				:=	\
-						${addprefix colors/, ${SRCS_COLORS}} \
+						${addprefix textures/, ${SRCS_TEXTURES}} \
 						${addprefix destroy/, ${SRCS_DESTROY}} \
 						${addprefix events/, ${SRCS_EVENTS}} \
 						${addprefix init/, ${SRCS_INIT}} \
@@ -144,7 +176,7 @@ ${NAME}: $(LIBS_TARGET) ${OBJS}
 
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c
 	${DIR_DUP}
-	${CC} ${CFLAGS} ${CPPFLAGS} -c -o $@ $<
+	${CC} ${CFLAGS} ${CPPFLAGS} -c -o $@ $< -g3
 
 $(LIBS_TARGET):
 	$(MAKE) -C $(@D)

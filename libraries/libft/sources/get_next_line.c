@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 21:19:17 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 20:54:02 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/12 14:40:14 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,21 +103,21 @@ static bool	get_read_line(char **line_p, int fd, char *buffer)
 
 int	get_next_line(char **line_p, int fd)
 {
-	static char	buffer[BUFFER_SIZE];
+	static char	buffer[BUFFER_SIZE][1024];
 	int			newline_index;
 
 	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (1);
-	newline_index = ft_strchri(buffer, '\n');
+	newline_index = ft_strchri(buffer[fd], '\n');
 	if (newline_index >= 0)
 	{
-		*line_p = ft_substrrange(buffer, 0, newline_index);
+		*line_p = ft_substrrange(buffer[fd], 0, newline_index);
 		if (!(*line_p))
 			return (1);
-		if (!update_buffer(buffer, buffer,
-				newline_index + 1, ft_strlen(buffer)))
+		if (!update_buffer(buffer[fd], buffer[fd],
+				newline_index + 1, ft_strlen(buffer[fd])))
 			return (1);
 		return (0);
 	}
-	return (get_read_line(line_p, fd, buffer));
+	return (get_read_line(line_p, fd, buffer[fd]));
 }

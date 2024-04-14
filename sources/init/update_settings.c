@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_settings.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:26:42 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/03/11 17:57:47 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/08 14:15:17 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,6 @@ int	update_env_light(t_env_light *env_light, char *line)
 
 int	update_light(t_light *light, char *line)
 {
-	static int	count = 0;
-
-	count++;
-	if (count > 1)
-		return (1);
 	line++;
 	ignore_space(&line);
 	if (extract_point(&light->point, &line))
@@ -51,8 +46,6 @@ int	update_light(t_light *light, char *line)
 	if (light->ratio < 0 || light->ratio > 1)
 		return (2);
 	ignore_space(&line);
-	if (*line == '\n' || *line == '\0')
-		return (0);
 	if (extract_color(&light->color, &line))
 		return (2);
 	ignore_space(&line);

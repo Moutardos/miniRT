@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:43:07 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/13 19:25:31 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 16:53:00 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdbool.h>
 # include <stdlib.h>
+
+typedef double	t_matrix_3x3[3][3];
 
 typedef struct s_quadratic_roots
 {
@@ -38,6 +40,7 @@ t_vector			normalize_vector(t_vector vector);
 double				perform_dot_product(t_vector vector1, t_vector vector2);
 t_vector			perform_cross_product(t_vector vector1, t_vector vector2);
 t_vector			sum_vectors(t_vector vector1, t_vector vector2);
+t_point				rotate_point(t_point point, t_vector rotate);
 t_point				translate_point(t_point point, t_vector vector);
 
 #endif

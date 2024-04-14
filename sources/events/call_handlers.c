@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_handlers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:18:01 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/14 15:35:05 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 16:55:44 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,32 @@ void	handle_objects(int keycode,
 	static t_color	og_color;
 
 	if (keycode == XK_c || keycode == XK_l)
-		object_array->array[i].color = og_color;
+		object_array->array[i].texture.color = og_color;
 	else if (keycode == XK_o)
-		update_object_color(&og_color, &object_array->array[i].color);
+		update_object_color(&og_color, &object_array->array[i].texture.color);
 	else if (keycode == XK_n)
 	{
-		object_array->array[i].color = og_color;
+		object_array->array[i].texture.color = og_color;
 		i++;
 		if (i == object_array->len)
 			i = 0;
-		update_object_color(&og_color, &object_array->array[i].color);
+		update_object_color(&og_color, &object_array->array[i].texture.color);
 	}
 	update_object_properties(keycode, camera, frame, &object_array->array[i]);
+}
+
+void	handle_light(int keycode, t_data *data, t_light_array *light_array)
+{
+	static int		i = 0;
+
+	if (keycode == XK_n)
+	{
+		i++;
+		if (i == light_array->len)
+			i = 0;
+	}
+	handle_translations(keycode, &data->settings.camera,
+		&data->frame, &light_array->array[i].point);
 }
 
 int	call_keypress_handler(int keycode, t_data *data)
@@ -76,8 +90,7 @@ int	call_keypress_handler(int keycode, t_data *data)
 		handle_objects(keycode, &data->settings.camera,
 			&data->frame, &data->object_array);
 	else if (target_keycode == XK_l)
-		handle_translations(keycode, &data->settings.camera,
-			&data->frame, &data->settings.light.point);
+		handle_light(keycode, data, &data->settings.light_array);
 	reload_scene(data);
 	return (0);
 }

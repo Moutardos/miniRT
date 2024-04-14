@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_data.c                                     :+:      :+:    :+:   */
+/*   destroy_bump_maps.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 11:43:23 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 16:22:48 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/04/14 15:43:30 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/04/14 19:02:52 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	destroy_data(t_data *data)
+void	destroy_bump_maps(t_object_array *objects)
 {
-	destroy_mlx_info(&data->mlx_info);
-	if (data->object_array.len > 0)
+	int	i;
+
+	i = 0;
+	while (i < objects->len)
 	{
-		destroy_light_utils(&data->object_array, data->object_array.len);
-		destroy_bump_maps(&data->object_array);
-		free(data->object_array.array);
+		if (objects->array[i].texture.type == BUMP)
+		{
+			if (*(objects->array[i].texture.map.map) != NULL)
+			{
+				free(*(objects->array[i].texture.map.map));
+				*(objects->array[i].texture.map.map) = NULL;
+			}
+		}
+		i++;
 	}
-	if (data->settings.light_array.len > 0)
-		free(data->settings.light_array.array);
 }

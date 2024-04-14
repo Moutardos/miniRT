@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/09 21:20:32 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 17:40:11 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include "libft.h"
 #include "minirt.h"
 
-static int	read_line_settings(t_settings *settings, char *line, int *count)
+static int	read_line_settings(t_settings *settings, char *line,
+			int *count_object, int *count_light)
 {
 	int		error;
 
@@ -25,12 +26,12 @@ static int	read_line_settings(t_settings *settings, char *line, int *count)
 		error = update_camera(&settings->camera, line);
 	else if (is_same_first_word(line, "A"))
 		error = update_env_light(&settings->env_light, line);
-	else if (is_same_first_word(line, "L"))
-		error = update_light(&settings->light, line);
+	else if (is_same_first_word(line, "l"))
+		(*count_light)++;
 	else if (is_same_first_word(line, "\n"))
 		return (0);
 	else if (!str_to_obj(line, NULL))
-		(*count)++;
+		(*count_object)++;
 	else
 		return (ft_putstr_fd("Error\nUnknown identifier\n", 2), 1);
 	if (!error)
@@ -45,26 +46,37 @@ static int	read_line_settings(t_settings *settings, char *line, int *count)
 	return (1);
 }
 
-static int	read_line_objects(t_object_array *objects, char *line)
+static int	read_line_arrays(t_object_array *objects, t_light_array *lights,
+			char *line)
 {
-	static int			i = 0;
+	static int	i_obj = 0;
+	static int	i_light = 0;
+	int			error;
+	char		*original_line;
 
-	if (i >= objects->len)
+	original_line = line;
+	error = 0;
+	if (is_same_first_word(line, "l"))
+	{
+		error = update_light(&lights->array[i_light], line);
+		i_light++;
+	}
+	else if (str_to_obj(line, &objects->array[i_obj].type))
 		return (0);
-	if (str_to_obj(line, &objects->array[i].type))
-		return (0);
-	if (init_object(&objects->array[i], line))
+	else
+		error = init_object(&objects->array[i_obj++], line);
+	if (error)
 	{
 		ft_putstr_fd("Error\nWrong values\n", 2);
 		ft_putstr_fd(line, 2);
 		ft_putstr_fd("\n", 2);
 		return (1);
 	}
-	i++;
 	return (0);
 }
 
-static int	fill_settings(t_settings *settings, char *file, int *count_objects)
+static int	fill_settings(t_settings *settings, char *file, int *count_object,
+			int *count_light)
 {
 	int		fd;
 	char	*line;
@@ -78,7 +90,7 @@ static int	fill_settings(t_settings *settings, char *file, int *count_objects)
 			close(fd);
 			return (0);
 		}
-		if (read_line_settings(settings, line, count_objects))
+		if (read_line_settings(settings, line, count_object, count_light))
 		{
 			free(line);
 			close(fd);
@@ -91,39 +103,57 @@ static int	fill_settings(t_settings *settings, char *file, int *count_objects)
 	return (2);
 }
 
-int	fill_objects(t_object_array *objects, char *file)
+int	fill_arrays(t_object_array *objects, t_light_array *lights, char *file)
 {
 	char			*line;
 	int				fd;
 
-	objects->array = malloc(sizeof(t_object) * objects->len);
-	if (!objects->array)
-	{
-		ft_putstr_fd("Error while allocating memory\n", 2);
-		return (1);
-	}
 	if (file_check(&fd, file))
 		return (1);
 	while (!get_next_line(&line, fd))
 	{
 		if (!line)
-			return (close(fd), 0);
-		if (read_line_objects(objects, line))
-			return (free(objects->array), free(line), close(fd), 1);
+		{
+			close(fd);
+			if (init_light_utils(objects, lights))
+				return (free(objects->array), free(lights->array), 1);
+			return (0);
+		}
+		if (read_line_arrays(objects, lights, line))
+		{
+			close(fd);
+			return (free(objects->array), free(lights->array), free(line), 1);
+		}
 		free(line);
 	}
 	close(fd);
 	ft_putstr_fd("Error while allocating memory\n", 2);
-	return (2);
+	return (1);
 }
 
 int	fill_data(t_data *data, char *file)
 {
-	if (fill_settings(&data->settings, file, &data->object_array.len))
+	t_object_array	*objects;
+	t_light_array	*lights;
+
+	if (fill_settings(&data->settings, file, &data->object_array.len,
+			&data->settings.light_array.len))
 		return (1);
-	if (data->object_array.len > 0)
+	lights = &data->settings.light_array;
+	objects = &data->object_array;
+	if (objects->len > 0 || lights->len > 0)
 	{
-		if (fill_objects(&data->object_array, file))
+		if (objects->len > 0)
+			objects->array = malloc(sizeof(t_object) * objects->len);
+		if (lights->len > 0)
+			lights->array = malloc(sizeof(t_light) * lights->len);
+		if ((lights->len > 0 && !lights->array) 
+			|| (objects->len > 0 && !objects->array))
+		{
+			ft_putstr_fd("Error while allocating memory\n", 2);
+			return (1);
+		}
+		if (fill_arrays(objects, lights, file))
 			return (1);
 	}
 	return (0);

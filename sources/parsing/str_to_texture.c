@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_data.c                                     :+:      :+:    :+:   */
+/*   str_to_texture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 11:43:23 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 16:22:48 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/04/01 17:58:39 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/04/12 14:49:37 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minirt.h"
 
-void	destroy_data(t_data *data)
+bool	str_to_texture(char *str, t_texture *texture)
 {
-	destroy_mlx_info(&data->mlx_info);
-	if (data->object_array.len > 0)
+	if (is_same_first_word(str, ""))
 	{
-		destroy_light_utils(&data->object_array, data->object_array.len);
-		destroy_bump_maps(&data->object_array);
-		free(data->object_array.array);
+		texture->type = NONE;
+		return (0);
 	}
-	if (data->settings.light_array.len > 0)
-		free(data->settings.light_array.array);
+	if (is_same_first_word(str, "ch"))
+	{
+		texture->type = CH;
+		return (0);
+	}
+	if (is_same_first_word(str, "wood"))
+	{
+		texture->type = BUMP;
+		texture->map.type = WOOD;
+		return (0);
+	}
+	return (1);
 }

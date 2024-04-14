@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_data.c                                     :+:      :+:    :+:   */
+/*   init_light_utils_sp.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 11:43:23 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 16:22:48 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/04/11 15:11:51 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/04/12 12:28:49 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	destroy_data(t_data *data)
+int	init_light_utils_sp(t_sphere *sphere, int len)
 {
-	destroy_mlx_info(&data->mlx_info);
-	if (data->object_array.len > 0)
-	{
-		destroy_light_utils(&data->object_array, data->object_array.len);
-		destroy_bump_maps(&data->object_array);
-		free(data->object_array.array);
-	}
-	if (data->settings.light_array.len > 0)
-		free(data->settings.light_array.array);
+	sphere->utils.light_utils_array.array
+		= malloc(sizeof(t_light_utils_sp) * len);
+	if (!sphere->utils.light_utils_array.array)
+		return (1);
+	sphere->utils.light_utils_array.len = len;
+	return (0);
 }

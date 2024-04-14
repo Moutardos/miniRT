@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_object.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:06:22 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/10 15:37:00 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 16:51:33 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	init_object(t_object *object, char *line)
 		error = init_cone(&object->cone, &line);
 	if (error)
 		return (1);
-	if (extract_color(&object->color, &line))
+	if (init_texture(&object->texture, &line))
 		return (1);
 	ignore_space(&line);
 	if (*line != '\n' && *line != '\0')

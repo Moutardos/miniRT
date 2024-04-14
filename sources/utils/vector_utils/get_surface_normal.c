@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_data.c                                     :+:      :+:    :+:   */
+/*   get_surface_normal.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 11:43:23 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 16:22:48 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/04/12 16:41:28 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/04/12 17:06:23 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	destroy_data(t_data *data)
+void	get_surface_normal(t_point_info *p_info)
 {
-	destroy_mlx_info(&data->mlx_info);
-	if (data->object_array.len > 0)
-	{
-		destroy_light_utils(&data->object_array, data->object_array.len);
-		destroy_bump_maps(&data->object_array);
-		free(data->object_array.array);
-	}
-	if (data->settings.light_array.len > 0)
-		free(data->settings.light_array.array);
+	p_info->surface_normal = p_info->normal;
+	if (perform_dot_product(p_info->surface_normal, p_info->cp) >= 0)
+		p_info->surface_normal = multiply_vector(-1, p_info->normal);
+	if (p_info->object->texture.type == BUMP)
+		p_info->surface_normal = perturb_normal(p_info->surface_normal, p_info);
 }
