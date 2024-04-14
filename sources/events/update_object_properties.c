@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_objects_properties.c                        :+:      :+:    :+:   */
+/*   update_object_properties.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 10:03:33 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/14 15:31:21 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 20:33:30 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	update_sphere_properties(int keycode,
 	if (keycode == XK_equal)
 		sphere->diameter += DIM;
 	else if (keycode == XK_minus)
-		sphere->diameter = ft_max(0, sphere->diameter - DIM);
+		sphere->diameter = ft_dmax(EPSILON, sphere->diameter - DIM);
 }
 
 void	update_cylinder_properties(int keycode,
@@ -51,14 +51,14 @@ void	update_cylinder_properties(int keycode,
 		if (keycode == XK_equal)
 			cylinder->height += DIM;
 		if (keycode == XK_minus)
-			cylinder->height = ft_max(0, cylinder->height - DIM);
+			cylinder->height = ft_dmax(EPSILON, cylinder->height - DIM);
 	}
 	else if (target_keycode == XK_t)
 	{
 		if (keycode == XK_equal)
 			cylinder->diameter += DIM;
 		if (keycode == XK_minus)
-			cylinder->diameter = ft_max(0, cylinder->diameter - DIM);
+			cylinder->diameter = ft_dmax(EPSILON, cylinder->diameter - DIM);
 	}
 }
 
@@ -81,14 +81,14 @@ void	update_cone_properties(int keycode,
 		if (keycode == XK_equal)
 			cone->height += DIM;
 		if (keycode == XK_minus)
-			cone->height = ft_max(0, cone->height - DIM);
+			cone->height = ft_dmax(EPSILON, cone->height - DIM);
 	}
 	else if (target_keycode == XK_t)
 	{
 		if (keycode == XK_equal)
 			cone->diameter += DIM;
 		if (keycode == XK_minus)
-			cone->diameter = ft_max(0, cone->diameter - DIM);
+			cone->diameter = ft_dmax(EPSILON, cone->diameter - DIM);
 	}
 }
 

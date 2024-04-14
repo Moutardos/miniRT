@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:48:30 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 21:31:49 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 20:30:48 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 bool				are_doubles_equals(double x, double y);
 double				ft_dabs(double a);
 double				ft_dmin(double a, double b);
+double				ft_dmax(double a, double b);
 int					ft_min(int a, int b);
 int					ft_max(int a, int b);
 int					ft_isdigit(char c);
