@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/15 18:14:21 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:16:55 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ bool		is_camray_intersecting_co(t_cone *cone,
 				t_vector ray,
 				t_point_info *point_info);
 
-
 bool		is_lightray_intersecting_obj(t_object *object,
 				t_vector lightray,
 				double t_max,
@@ -98,7 +97,7 @@ bool		is_lightray_intersecting_pl(t_plane *plane,
 bool		is_lightray_intersecting_sp(t_sphere *sphere,
 				t_vector lightray,
 				double t_max);
-	
+
 void		apply_shader(t_color *point_color,
 				t_data *data,
 				t_point_info *p_info);

@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:56:05 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/14 19:18:02 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:18:34 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # define BM_WOOD_W 1024
 # define BM_WOOD_H 1024
 # define BM_WOOD_SIZE 1048576
+# define BM_SAND_W 736
+# define BM_SAND_H 736
+# define BM_SAND_SIZE 541696
 
 # define BLACK 0x000000
 
@@ -60,7 +63,8 @@ enum e_texture_type
 
 enum e_bump_map_type
 {
-	WOOD
+	WOOD,
+	SAND
 };
 typedef struct s_texture_coordinates
 {
