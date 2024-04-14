@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 04:23:23 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/14 04:41:35 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 21:03:56 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	is_lightray_intersecting_co_tube(t_cone *cone,
 	p = -(t * dot_prod_uv + cone->utils.dot_prod_disk1_center_light_dir);
 	if (p < 0 || p > cone->height)
 		return (false);
-	return (t < (t_max - EPSILON) && t > EPSILON);
+	return (t < (t_max - OFFSET) && t > OFFSET);
 }
 
 bool	is_lightray_intersecting_co(t_cone *cone, t_vector lightray,

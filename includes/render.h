@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/14 15:36:39 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 21:03:08 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define RENDER_H
 
 # include "objects.h"
+
+# define OFFSET 0.02
 
 typedef struct s_frame
 {

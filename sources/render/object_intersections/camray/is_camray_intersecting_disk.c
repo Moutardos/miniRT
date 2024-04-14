@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:49:19 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/13 20:17:03 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 21:15:12 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ bool	is_camray_intersecting_disk(t_plane *induced_plane,
 {
 	double	mag;
 
-	if (!is_camray_intersecting_pl(induced_plane, ray, point_info))
+	if (!is_camray_intersecting_pl(induced_plane, ray, point_info)
+		|| point_info->cp_magnitude <= OFFSET)
 		return (false);
 	mag = get_vector_magnitude(
 			sum_vectors(induced_plane->utils.point_camera, point_info->cp));

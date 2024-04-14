@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 19:03:28 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 20:39:41 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 21:07:20 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ bool	is_camray_intersecting_sp(t_sphere *sphere, t_vector ray,
 		|| (roots.nb == 2 && roots.distincts[0] < 0 && roots.distincts[1] < 0))
 		return (false);
 	t = get_min_positive_root(&roots);
+	if (t <= OFFSET)
+		return (false);
 	point_info->cp = multiply_vector(t, ray);
 	point_info->cp_magnitude = t;
 	point_info->normal = multiply_vector(1 / sphere->utils.radius,

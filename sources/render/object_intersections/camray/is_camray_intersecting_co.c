@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 18:21:18 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/13 20:20:19 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 21:08:38 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	is_camray_intersecting_co_tube(t_cone *cone, t_vector ray,
 		return (false);
 	t = get_min_positive_root(&roots);
 	p = -(t * dot_prod_uv + cone->utils.dot_prod_disk1_center_camera_dir);
-	if (p < 0 || p > cone->height)
+	if (t <= OFFSET || p < 0 || p > cone->height)
 		return (false);
 	point_info->cp_magnitude = t;
 	point_info->cp = multiply_vector(t, ray);

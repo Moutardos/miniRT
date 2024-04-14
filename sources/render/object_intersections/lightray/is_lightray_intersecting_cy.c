@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:05:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 04:33:04 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/14 21:03:51 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ double	is_lightray_intersecting_cy_tube(t_cylinder *cylinder,
 				+ cylinder->utils.lp_const), cylinder->vector);
 	if (get_vector_magnitude(proj_o_c) > cylinder->utils.halved_height)
 		return (false);
-	return (t < (t_max - EPSILON) && t > EPSILON);
+	return (t < (t_max - OFFSET) && t > OFFSET);
 }
 
 bool	is_lightray_intersecting_cy(t_cylinder *cylinder, t_vector lightray,
