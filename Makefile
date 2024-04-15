@@ -6,7 +6,7 @@
 #    By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/14 15:34:26 by ekhaled          ###   ########.fr        #
+#    Updated: 2024/04/15 18:16:04 by ekhaled          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -148,6 +148,8 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c
 
 $(LIBS_TARGET):
 	$(MAKE) -C $(@D)
+
+bonus: all
 
 clean: 
 	${MAKE} clean -C libraries/minilibx-linux/
