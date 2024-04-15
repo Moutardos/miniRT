@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 00:35:49 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/11 14:27:57 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 00:23:04 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	color_object_point(unsigned int i, unsigned int j,
 	t_color	point_color;
 
 	point_info->pc = multiply_vector(-1, point_info->cp);
-	point_color = get_point_color(point_info->object, point_info->point);
+	point_color = get_point_color(point_info);
 	apply_shader(&point_color, data, point_info);
 	color_img_pix(&data->mlx_info.img, j, i, point_color.hex);
 }

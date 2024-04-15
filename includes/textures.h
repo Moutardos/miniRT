@@ -6,15 +6,15 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:56:05 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/15 18:18:34 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:19:28 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEXTURES_H
 # define TEXTURES_H
 
-# define CHECKER_W 8
-# define CHECKER_H 12
+# define CHECKER_W 2
+# define CHECKER_H 2
 
 # define BM_WOOD_W 1024
 # define BM_WOOD_H 1024
@@ -100,7 +100,7 @@ typedef struct s_texture
 void					find_pix_color(unsigned int i, unsigned int j,
 							t_data *data);
 
-t_color					get_point_color(t_object *object, t_point point);
+t_color					get_point_color(t_point_info *point_info);
 
 void					init_color_intensity(t_color_intensity color_intensity);
 void					get_colored_intensity(
@@ -111,13 +111,15 @@ void					intensify_color(t_color *color,
 
 void					color_img_pix(t_img *img, int x, int y, int color);
 
-t_texture_coordinates	get_cy_coord(t_cylinder *cylinder, t_point point);
-t_texture_coordinates	get_co_coord(t_cone *cone, t_point point);
-t_texture_coordinates	get_pl_coord(t_plane *plane, t_point point);
-t_texture_coordinates	get_sp_coord(t_sphere *sphere, t_point point);
+t_texture_coordinates	get_cy_coord(t_cylinder *cylinder,
+							t_point_info *point_info);
+t_texture_coordinates	get_co_coord(t_cone *cone, t_point_info *point_info);
+t_texture_coordinates	get_pl_coord(t_plane *plane,
+							t_point_info *point_info);
+t_texture_coordinates	get_sp_coord(t_sphere *sphere,
+							t_point_info *point_info);
 
-t_texture_coordinates	point_to_texture_coordinates(t_object *object,
-							t_point point);
+t_texture_coordinates	point_to_texture_coordinates(t_point_info *point_info);
 int						init_texture(t_texture *texture, char **line);
 
 int						init_bump_map(t_bump_map *map, char **line);
