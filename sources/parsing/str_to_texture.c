@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 17:58:39 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 21:29:49 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:03:07 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ bool	str_to_texture(char *str, t_texture *texture)
 	if (is_same_first_word(str, "wood"))
 	{
 		texture->type = BUMP;
-		texture->map.type = WOOD;
+		texture->bump_map.type = WOOD;
 		return (0);
 	}
 	if (is_same_first_word(str, "sand"))
 	{
 		texture->type = BUMP;
-		texture->map.type = SAND;
+		texture->bump_map.type = SAND;
 		return (0);
 	}
 	return (1);
