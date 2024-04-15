@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:58:44 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/15 02:15:23 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 03:10:42 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,35 @@
 #include "libft.h"
 #include "minirt.h"
 
-bool	init_checker(t_checker *checker, char **line)
+static void	get_checker_size(t_checker *checker, enum e_object_type type)
+{
+	if (type == CO)
+	{
+		checker->width = CHECKER_CO_W;
+		checker->height = CHECKER_CO_H;
+	}
+	else if (type == CY)
+	{
+		checker->width = CHECKER_CY_W;
+		checker->height = CHECKER_CY_H;
+	}
+	else if (type == SP)
+	{
+		checker->width = CHECKER_SP_W;
+		checker->height = CHECKER_SP_H;
+	}
+	else if (type == PL)
+	{
+		checker->width = CHECKER_PL_W;
+		checker->height = CHECKER_PL_H;
+	}
+}
+
+bool	init_checker(t_checker *checker, enum e_object_type type, char **line)
 {
 	*line += 2;
 	ignore_space(line);
-	checker->width = CHECKER_W;
-	checker->height = CHECKER_H;
+	get_checker_size(checker, type);
 	if (extract_color(&checker->color_b, line))
 		return (1);
 	return (0);

@@ -6,13 +6,13 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 17:49:45 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/12 14:48:48 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 02:57:27 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	init_texture(t_texture *texture, char **line)
+int	init_texture(t_texture *texture, enum e_object_type type, char **line)
 {
 	if (extract_color(&texture->color, line))
 		return (1);
@@ -21,7 +21,7 @@ int	init_texture(t_texture *texture, char **line)
 		return (1);
 	if (texture->type == CH)
 	{
-		if (init_checker(&texture->checker, line))
+		if (init_checker(&texture->checker, type, line))
 			return (1);
 	}
 	if (texture->type == BUMP)

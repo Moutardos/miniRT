@@ -6,15 +6,21 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:56:05 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/15 18:19:28 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:20:14 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEXTURES_H
 # define TEXTURES_H
 
-# define CHECKER_W 2
-# define CHECKER_H 2
+# define CHECKER_PL_W 2
+# define CHECKER_PL_H 2
+# define CHECKER_CY_W 4
+# define CHECKER_CY_H 4
+# define CHECKER_CO_W 6
+# define CHECKER_CO_H 6
+# define CHECKER_SP_W 6
+# define CHECKER_SP_H 6
 
 # define BM_WOOD_W 1024
 # define BM_WOOD_H 1024
@@ -39,6 +45,8 @@ typedef struct s_sphere			t_sphere;
 typedef struct s_cylinder		t_cylinder;
 typedef struct s_cone			t_cone;
 typedef struct s_plane			t_plane;
+
+enum e_object_type;
 
 typedef double					t_color_intensity[3];
 
@@ -120,12 +128,16 @@ t_texture_coordinates	get_sp_coord(t_sphere *sphere,
 							t_point_info *point_info);
 
 t_texture_coordinates	point_to_texture_coordinates(t_point_info *point_info);
-int						init_texture(t_texture *texture, char **line);
+int						init_texture(t_texture *texture,
+						enum e_object_type type,
+						char **line);
 
 int						init_bump_map(t_bump_map *map, char **line);
 void					destroy_bump_maps(t_object_array *objects);
 
-bool					init_checker(t_checker *checker, char **line);
+bool					init_checker(t_checker *checker,
+							enum e_object_type type,
+							char **line);
 t_color					get_checker_pattern(t_texture_coordinates point,
 							t_texture *texture);
 
