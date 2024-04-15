@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:56:05 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/15 18:20:14 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:23:27 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_cylinder		t_cylinder;
 typedef struct s_cone			t_cone;
 typedef struct s_plane			t_plane;
 
-enum e_object_type;
+enum							e_object_type;
 
 typedef double					t_color_intensity[3];
 
@@ -101,7 +101,7 @@ typedef struct s_texture
 	union
 	{
 		t_checker	checker;
-		t_bump_map	map;
+		t_bump_map	bump_map;
 	};
 }	t_texture;
 
@@ -129,8 +129,8 @@ t_texture_coordinates	get_sp_coord(t_sphere *sphere,
 
 t_texture_coordinates	point_to_texture_coordinates(t_point_info *point_info);
 int						init_texture(t_texture *texture,
-						enum e_object_type type,
-						char **line);
+							enum e_object_type type,
+							char **line);
 
 int						init_bump_map(t_bump_map *map, char **line);
 void					destroy_bump_maps(t_object_array *objects);

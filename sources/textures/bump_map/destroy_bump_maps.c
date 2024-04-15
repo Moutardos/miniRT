@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 15:43:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/15 02:18:37 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:54:58 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	destroy_bump_maps(t_object_array *objects)
 	{
 		if (objects->array[i].texture.type == BUMP)
 		{
-			if (*(objects->array[i].texture.map.map) != NULL)
+			if (*(objects->array[i].texture.bump_map.map) != NULL)
 			{
-				free(*(objects->array[i].texture.map.map));
-				*(objects->array[i].texture.map.map) = NULL;
+				free(*(objects->array[i].texture.bump_map.map));
+				*(objects->array[i].texture.bump_map.map) = NULL;
 			}
 		}
 		i++;
