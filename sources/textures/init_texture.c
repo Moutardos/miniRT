@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 17:49:45 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/15 02:57:27 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:54:40 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	init_texture(t_texture *texture, enum e_object_type type, char **line)
 	}
 	if (texture->type == BUMP)
 	{
-		if (init_bump_map(&texture->map, line))
+		if (init_bump_map(&texture->bump_map, line))
 			return (1);
 	}
 	return (0);
