@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 22:29:32 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 12:51:53 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/15 18:36:30 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,22 @@ void	handle_camera_translations(int keycode, t_camera *camera,
 			t_frame *frame)
 {
 	if (keycode == XK_w)
-		camera->point = translate_point(camera->point, camera->vector);
+		camera->point = translate_point(camera->point,
+				multiply_vector(STEP, camera->vector));
 	if (keycode == XK_s)
 		camera->point = translate_point(camera->point,
-				multiply_vector(-1, camera->vector));
+				multiply_vector(-STEP, camera->vector));
 	if (keycode == XK_d)
-		camera->point = translate_point(camera->point, frame->dir_j);
+		camera->point = translate_point(camera->point,
+				multiply_vector(STEP, frame->dir_j));
 	if (keycode == XK_a)
 		camera->point = translate_point(camera->point,
-				multiply_vector(-1, frame->dir_j));
+				multiply_vector(-STEP, frame->dir_j));
 	if (keycode == XK_f)
-		camera->point = translate_point(camera->point, frame->dir_i);
+		camera->point = translate_point(camera->point,
+				multiply_vector(STEP, frame->dir_i));
 	if (keycode == XK_r)
 		camera->point = translate_point(camera->point,
-				multiply_vector(-1, frame->dir_i));
+				multiply_vector(-STEP, frame->dir_i));
 	frame->origin = get_frame_origin(frame, camera);
 }
