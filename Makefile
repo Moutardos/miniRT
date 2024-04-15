@@ -6,7 +6,7 @@
 #    By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/21 14:56:12 by lcozdenm         ###   ########.fr        #
+#    Updated: 2024/04/21 15:05:21 by lcozdenm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,10 @@ SRC_DIR				:=	sources
 
 SRCS_DESTROY		:=	\
 						destroy_data.c \
-						destroy_mlx_info.c
+						destroy_mlx_info.c \
+						destroy_object_array.c \
+						destroy_light_array.c \
+						destroy_light_utils.c
 
 SRCS_EVENTS			:=	\
 						call_handlers.c \
@@ -172,11 +175,11 @@ DIR_DUP				=	mkdir -p ${@D}
 all: ${NAME}
 
 ${NAME}: $(LIBS_TARGET) ${OBJS}
-	${CC} ${LDFLAGS} $^ ${LDLIBS} -o $@
+	${CC} ${LDFLAGS} $^ ${LDLIBS} -o $@ 
 
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c
 	${DIR_DUP}
-	${CC} ${CFLAGS} ${CPPFLAGS} -c -o $@ $< -g3
+	${CC} ${CFLAGS} ${CPPFLAGS} -c -o $@ $< -ggdb
 
 $(LIBS_TARGET):
 	$(MAKE) -C $(@D)

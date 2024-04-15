@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   file_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 16:42:18 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/09 21:20:20 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/15 17:16:40 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
-#include <stdio.h>
+#include <string.h>
+#include <errno.h>
 
 #include "libft.h"
 #include "minirt.h"
@@ -27,7 +28,9 @@ int	file_check(int *fd, char *file)
 	*fd = open(file, O_RDONLY);
 	if (*fd < 0)
 	{
-		perror("Error\n");
+		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd(strerror(errno), 2);
+		ft_putstr_fd("\n", 2);
 		return (1);
 	}
 	return (0);
