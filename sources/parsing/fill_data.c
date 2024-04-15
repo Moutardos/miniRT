@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 17:40:11 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:17:53 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ static int	read_line_arrays(t_object_array *objects, t_light_array *lights,
 		ft_putstr_fd("Error\nWrong values\n", 2);
 		ft_putstr_fd(line, 2);
 		ft_putstr_fd("\n", 2);
-		return (1);
+		return (destroy_object_array(objects, i_obj),
+			destroy_light_array(lights), 1);
 	}
 	return (0);
 }
@@ -116,14 +117,14 @@ int	fill_arrays(t_object_array *objects, t_light_array *lights, char *file)
 		{
 			close(fd);
 			if (init_light_utils(objects, lights))
-				return (free(objects->array), free(lights->array), 1);
+			{
+				return (destroy_light_array(lights),
+					destroy_object_array(objects, objects->len), 1);
+			}
 			return (0);
 		}
 		if (read_line_arrays(objects, lights, line))
-		{
-			close(fd);
-			return (free(objects->array), free(lights->array), free(line), 1);
-		}
+			return (close(fd), free(line), 1);
 		free(line);
 	}
 	close(fd);
@@ -144,9 +145,9 @@ int	fill_data(t_data *data, char *file)
 	if (objects->len > 0 || lights->len > 0)
 	{
 		if (objects->len > 0)
-			objects->array = malloc(sizeof(t_object) * objects->len);
+			objects->array = ft_calloc(objects->len, sizeof(t_object));
 		if (lights->len > 0)
-			lights->array = malloc(sizeof(t_light) * lights->len);
+			lights->array = ft_calloc(lights->len, sizeof(t_light));
 		if ((lights->len > 0 && !lights->array) 
 			|| (objects->len > 0 && !objects->array))
 		{

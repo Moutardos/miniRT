@@ -6,11 +6,10 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:38:16 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/15 00:24:12 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:39:48 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "minirt.h"
 
 t_color	get_point_color(t_point_info *point_info)

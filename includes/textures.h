@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:56:05 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/15 18:23:27 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:24:16 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int						init_texture(t_texture *texture,
 							char **line);
 
 int						init_bump_map(t_bump_map *map, char **line);
-void					destroy_bump_maps(t_object_array *objects);
+void					destroy_bump_maps(t_object_array *objects, int len);
 
 bool					init_checker(t_checker *checker,
 							enum e_object_type type,
