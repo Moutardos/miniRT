@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:10:26 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 21:21:33 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 02:39:23 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,18 @@ void	get_tbn_matrix(t_matrix_3x3 tbn, t_point_info *point_info)
 	t_vector	tangent;
 	t_vector	bitangent;
 
-	tangent = perform_cross_product(point_info->object->cone.vector, point_info->surface_normal);
+	if (point_info->object->type == CO)
+		tangent = perform_cross_product(point_info->object->cone.vector,
+				point_info->surface_normal);
+	else if (point_info->object->type == PL)
+		tangent = perform_cross_product(point_info->object->plane.vector,
+				(t_vector) {1,0,0});
+	else if (point_info->object->type == CY)
+		tangent = perform_cross_product(point_info->object->cylinder.vector,
+				point_info->surface_normal);
+	else
+		tangent = perform_cross_product((t_vector){0, 0, 1},
+				point_info->surface_normal);
 	bitangent = perform_cross_product(tangent, point_info->surface_normal);
 	fill_tbn(tbn, tangent, bitangent, point_info->surface_normal);
 }
@@ -66,8 +77,9 @@ t_vector	perturb_normal(t_point_info *point_info)
 	t_vector				bump_normal;
 	t_matrix_3x3			tbn;
 
-	coord = point_to_texture_coordinates(point_info->object, point_info->point);
+	coord = point_to_texture_coordinates(point_info);
 	get_tbn_matrix(tbn, point_info);
 	bump_normal = get_normal_bump_map(coord, &point_info->object->texture.map);
+	bump_normal = normalize_vector(sum_vectors(multiply_vector(2, bump_normal), (t_vector){-1,-1,-1}));
 	return (normalize_vector(multiply_vector_by_3x3matrix(bump_normal, tbn)));
 }

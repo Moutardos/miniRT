@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 17:50:27 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 17:50:41 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/15 02:40:15 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include "libft.h"
 #include "minirt.h"
 
-t_texture_coordinates	get_pl_coord(t_plane *plane, t_point point)
+t_texture_coordinates	get_pl_coord(t_plane *plane, t_point_info *point_info)
 {
 	t_point	centered_point;
 	double	x;
 	double	y;
 
-	centered_point = translate_point(point,
+	centered_point = translate_point(point_info->point,
 			create_vector(plane->point, (t_point){0, 0, 0}));
 	centered_point = rotate_point(centered_point, plane->vector);
 	x = fmod(centered_point.x, 1);
