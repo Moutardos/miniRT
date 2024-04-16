@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:05:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 16:48:35 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:54:47 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,15 @@ void	setup_current_light_utils_cy(t_cylinder *cylinder, int light_index)
 	disk2->utils.light_utils
 		= &(disk2->utils.light_utils_array.array[light_index]);
 }
-
+void	setup_current_light_utils_co(t_cone *cone, int light_index)
+{
+	t_plane	*disk2;
+	cone->utils.light_utils
+		=&(cone->utils.light_utils_array.array[light_index]);
+	disk2 = &cone->utils.induced_plane2;
+	disk2->utils.light_utils
+		=&(disk2->utils.light_utils_array.array[light_index]);
+}
 bool	is_lightray_intersecting_obj(t_object *object,
 			t_vector lightray, double t_max, int light_index)
 {
@@ -51,6 +59,7 @@ bool	is_lightray_intersecting_obj(t_object *object,
 	}
 	if (object->type == CO)
 	{
+		setup_current_light_utils_co(&object->cone, light_index);
 		return (is_lightray_intersecting_co(&object->cone, lightray, t_max));
 	}
 	return (false);
