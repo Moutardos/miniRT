@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 04:26:47 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/15 18:05:54 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:54:39 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	is_lightray_intersecting_disk(t_plane *induced_plane,
 		return (false);
 	t = induced_plane->utils.light_utils->dot_prod_const_light
 		/ intermediate_dot_product;
-	if (t >= (t_max - OFFSET) || t < OFFSET)
+	if (t >= (t_max - OFFSET_LIGHT) || t < OFFSET_LIGHT)
 		return (false);
 	mag = get_vector_magnitude(
 			sum_vectors(induced_plane->utils.light_utils->point_light,

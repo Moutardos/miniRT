@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 04:23:23 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/21 14:59:12 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/21 15:06:54 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ bool	is_lightray_intersecting_co_tube(t_cone *cone,
 		|| (roots.nb == 2 && roots.distincts[0] < 0 && roots.distincts[1] < 0))
 		return (false);
 	t = get_min_cone_root_light(&roots, dot_prod_uv, cone);
-	return (t < (t_max - OFFSET) && t > OFFSET);
+	return (t < (t_max - OFFSET_LIGHT) && t > OFFSET_LIGHT);
 }
 
 bool	is_lightray_intersecting_co(t_cone *cone, t_vector lightray,

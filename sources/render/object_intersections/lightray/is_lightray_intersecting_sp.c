@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:05:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/15 18:04:27 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:54:39 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ bool	is_lightray_intersecting_sp(t_sphere *sphere, t_vector lightray,
 		|| (roots.nb == 2 && roots.distincts[0] < 0 && roots.distincts[1] < 0))
 		return (false);
 	t = get_min_positive_root(&roots);
-	return (t < t_max - OFFSET);
+	return (t < t_max - OFFSET_LIGHT);
 }
