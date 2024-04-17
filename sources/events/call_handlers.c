@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:18:01 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/14 16:55:44 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:48:19 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ int	call_keypress_handler(int keycode, t_data *data)
 		return (0);
 	if (keycode == XK_c || keycode == XK_o || keycode == XK_l)
 	{
-		if (keycode == XK_o || target_keycode == XK_o)
+		if ((keycode == XK_o || target_keycode == XK_o)
+			&& data->object_array.len)
 			handle_objects(keycode, &data->settings.camera,
 				&data->frame, &data->object_array);
 		target_keycode = keycode;
@@ -86,10 +87,10 @@ int	call_keypress_handler(int keycode, t_data *data)
 	}
 	if (target_keycode == XK_c)
 		handle_camera(keycode, &data->settings.camera, &data->frame);
-	else if (target_keycode == XK_o)
+	else if (target_keycode == XK_o && data->object_array.len)
 		handle_objects(keycode, &data->settings.camera,
 			&data->frame, &data->object_array);
-	else if (target_keycode == XK_l)
+	else if (target_keycode == XK_l && data->settings.light_array.len)
 		handle_light(keycode, data, &data->settings.light_array);
 	reload_scene(data);
 	return (0);
