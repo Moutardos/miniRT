@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:29:32 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/15 02:29:22 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/17 14:07:06 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ int	init_bump_map_wood(t_bump_map *bump_map)
 	{
 		map_wood = malloc(sizeof(t_vector) * BM_WOOD_SIZE);
 		if (!map_wood || fill_bump_map(bump_map, map_wood, "texture/wood"))
-			return (free(map_wood), 1);
+		{
+			free(map_wood);
+			map_wood = NULL;
+			return (1);
+		}
 	}
 	bump_map->map = &map_wood;
 	return (0);
@@ -70,7 +74,11 @@ int	init_bump_map_sand(t_bump_map *bump_map)
 	{
 		map_sand = malloc(sizeof(t_vector) * BM_SAND_SIZE);
 		if (!map_sand || fill_bump_map(bump_map, map_sand, "texture/sand"))
-			return (free(map_sand), 1);
+		{
+			free(map_sand);
+			map_sand = NULL;
+			return (1);
+		}
 	}
 	bump_map->map = &map_sand;
 	return (0);

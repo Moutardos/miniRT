@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/15 17:17:53 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/17 14:04:11 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	read_line_arrays(t_object_array *objects, t_light_array *lights,
 		ft_putstr_fd("Error\nWrong values\n", 2);
 		ft_putstr_fd(line, 2);
 		ft_putstr_fd("\n", 2);
-		return (destroy_object_array(objects, i_obj),
+		return (destroy_object_array(objects, i_obj - 1),
 			destroy_light_array(lights), 1);
 	}
 	return (0);
