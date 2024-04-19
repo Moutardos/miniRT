@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/17 14:04:11 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:39:47 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static int	read_line_settings(t_settings *settings, char *line,
 	return (1);
 }
 
-static int	read_line_arrays(t_object_array *objects, t_light_array *lights,
-			char *line)
+static int	read_line_arrays(t_data *data,
+				t_object_array *objects, t_light_array *lights, char *line)
 {
 	static int	i_obj = 0;
 	static int	i_light = 0;
@@ -64,13 +64,13 @@ static int	read_line_arrays(t_object_array *objects, t_light_array *lights,
 	else if (str_to_obj(line, &objects->array[i_obj].type))
 		return (0);
 	else
-		error = init_object(&objects->array[i_obj++], line);
+		error = init_object(data, &objects->array[i_obj++], line);
 	if (error)
 	{
 		ft_putstr_fd("Error\nWrong values\n", 2);
 		ft_putstr_fd(line, 2);
 		ft_putstr_fd("\n", 2);
-		return (destroy_object_array(objects, i_obj - 1),
+		return (destroy_object_array(data, objects, i_obj - 1),
 			destroy_light_array(lights), 1);
 	}
 	return (0);
@@ -104,7 +104,8 @@ static int	fill_settings(t_settings *settings, char *file, int *count_object,
 	return (2);
 }
 
-int	fill_arrays(t_object_array *objects, t_light_array *lights, char *file)
+int	fill_arrays(t_data *data, t_object_array *objects,
+		t_light_array *lights, char *file)
 {
 	char			*line;
 	int				fd;
@@ -119,11 +120,11 @@ int	fill_arrays(t_object_array *objects, t_light_array *lights, char *file)
 			if (init_light_utils(objects, lights))
 			{
 				return (destroy_light_array(lights),
-					destroy_object_array(objects, objects->len), 1);
+					destroy_object_array(data, objects, objects->len), 1);
 			}
 			return (0);
 		}
-		if (read_line_arrays(objects, lights, line))
+		if (read_line_arrays(data, objects, lights, line))
 			return (close(fd), free(line), 1);
 		free(line);
 	}
@@ -154,7 +155,7 @@ int	fill_data(t_data *data, char *file)
 			ft_putstr_fd("Error while allocating memory\n", 2);
 			return (1);
 		}
-		if (fill_arrays(objects, lights, file))
+		if (fill_arrays(data, objects, lights, file))
 			return (1);
 	}
 	return (0);

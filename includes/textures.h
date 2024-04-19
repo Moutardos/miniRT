@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:56:05 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/15 18:24:16 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:55:35 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,14 @@
 # define CHECKER_SP_W 6
 # define CHECKER_SP_H 6
 
-# define BM_WOOD_W 1024
-# define BM_WOOD_H 1024
-# define BM_WOOD_SIZE 1048576
-# define BM_SAND_W 736
-# define BM_SAND_H 736
-# define BM_SAND_SIZE 541696
-
 # define BLACK 0x000000
 
 # include <stdint.h>
 # include <stdbool.h>
 
+# include "mlx_info.h"
+
 typedef struct s_data			t_data;
-typedef struct s_img			t_img;
 typedef struct s_point			t_point;
 typedef struct s_object			t_object;
 typedef struct s_vector			t_vector;
@@ -45,6 +39,7 @@ typedef struct s_sphere			t_sphere;
 typedef struct s_cylinder		t_cylinder;
 typedef struct s_cone			t_cone;
 typedef struct s_plane			t_plane;
+typedef struct s_bump_map		t_bump_map;
 
 enum							e_object_type;
 
@@ -69,11 +64,6 @@ enum e_texture_type
 	CH
 };
 
-enum e_bump_map_type
-{
-	WOOD,
-	SAND
-};
 typedef struct s_texture_coordinates
 {
 	double	x;
@@ -82,11 +72,12 @@ typedef struct s_texture_coordinates
 
 typedef struct s_bump_map
 {
-	enum e_bump_map_type	type;
-	int						height;
-	int						width;
-	t_vector				**map;
+	char					*path_name;
+	t_img					img;
+	t_vector				*map;
+	t_bump_map				*next;
 }	t_bump_map;
+
 typedef struct s_checker
 {
 	int		width;
@@ -101,8 +92,9 @@ typedef struct s_texture
 	union
 	{
 		t_checker	checker;
-		t_bump_map	bump_map;
+		t_bump_map	*bump_map;
 	};
+	t_bump_map			**bump_maps;
 }	t_texture;
 
 void					find_pix_color(unsigned int i, unsigned int j,
@@ -128,12 +120,15 @@ t_texture_coordinates	get_sp_coord(t_sphere *sphere,
 							t_point_info *point_info);
 
 t_texture_coordinates	point_to_texture_coordinates(t_point_info *point_info);
-int						init_texture(t_texture *texture,
+int						init_texture(t_data *data, t_texture *texture,
 							enum e_object_type type,
 							char **line);
 
-int						init_bump_map(t_bump_map *map, char **line);
-void					destroy_bump_maps(t_object_array *objects, int len);
+int						get_bump_map(t_data *data, t_texture *texture,
+							char **ptr_line);
+void					destroy_bump_maps(t_data *data,
+							t_object_array *objects,
+							int len);
 
 bool					init_checker(t_checker *checker,
 							enum e_object_type type,

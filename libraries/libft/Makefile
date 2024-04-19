@@ -6,7 +6,7 @@
 #    By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 20:55:42 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/15 18:14:07 by lcozdenm         ###   ########.fr        #
+#    Updated: 2024/04/17 18:15:47 by lcozdenm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS		:=	\
 				ft_strcpy.c \
 				ft_strdup.c \
 				ft_strjoin.c \
+				ft_strlcpy.c \
 				ft_strlen.c \
 				ft_substrrange.c \
 				get_next_line.c \

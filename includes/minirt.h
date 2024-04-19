@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:14:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/15 17:18:56 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:30:30 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int		fill_data(t_data *data, char *file);
 
 void	destroy_data(t_data *data);
 void	destroy_light_utils(t_object_array *objects, int len);
-void	destroy_object_array(t_object_array *object_array, int len);
+void	destroy_object_array(t_data *data,
+			t_object_array *object_array,
+			int len);
 void	destroy_light_array(t_light_array *light_array);
 
 #endif

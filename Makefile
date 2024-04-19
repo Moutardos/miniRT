@@ -6,7 +6,7 @@
 #    By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/21 15:05:21 by lcozdenm         ###   ########.fr        #
+#    Updated: 2024/04/21 15:11:05 by lcozdenm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,12 @@ SRCS_INIT			:=	\
 						init_settings.c \
 						update_settings.c
 
+SRCS_NORMAL_MAP		:=	\
+						extract_image.c \
+						extract_path.c
+
 SRCS_PARSING		:=	\
+						${addprefix normal_map/, ${SRCS_NORMAL_MAP}} \
 						extract_params.c \
 						extract_values.c \
 						file_check.c \
@@ -102,7 +107,7 @@ SRCS_RENDER			:=	\
 
 SRCS_BUMP_MAP		:=	\
 						destroy_bump_maps.c \
-						init_bump_map.c \
+						get_bump_map.c \
 						perturb_normal.c
 
 SRCS_MAPPING_OBJECT	:=	\
@@ -179,7 +184,7 @@ ${NAME}: $(LIBS_TARGET) ${OBJS}
 
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c
 	${DIR_DUP}
-	${CC} ${CFLAGS} ${CPPFLAGS} -c -o $@ $< -ggdb
+	${CC} ${CFLAGS} ${CPPFLAGS} -c -o $@ $<
 
 $(LIBS_TARGET):
 	$(MAKE) -C $(@D)

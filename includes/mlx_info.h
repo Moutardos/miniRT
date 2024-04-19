@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:59:13 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/15 18:24:02 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:33:48 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef struct s_img
 {
 	void	*img_ptr;
 	char	*addr;
+	int		height;
+	int		width;
 	int		bpp;
 	int		size_line;
 	int		endian;
