@@ -6,26 +6,38 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 15:43:30 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/15 16:40:21 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:43:44 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "mlx.h"
+
 #include "minirt.h"
 
-void	destroy_bump_maps(t_object_array *objects, int len)
+void	destroy_bump_maps(t_data *data, t_object_array *objects, int len)
 {
-	int	i;
+	int			i;
+	t_bump_map	*node;
+	t_bump_map	*prev_node;
 
 	i = 0;
 	while (i < len)
 	{
-		if (objects->array[i].texture.type == BUMP)
+		if (objects->array[i].texture.bump_maps
+			&& *(objects->array[i].texture.bump_maps) != NULL)
 		{
-			if (*(objects->array[i].texture.bump_map.map) != NULL)
+			node = *(objects->array[i].texture.bump_maps);
+			while (node)
 			{
-				free(*(objects->array[i].texture.bump_map.map));
-				*(objects->array[i].texture.bump_map.map) = NULL;
+				free(node->path_name);
+				mlx_destroy_image(data->mlx_info.mlx_ptr, node->img.img_ptr);
+				free(node->map);
+				prev_node = node;
+				node = node->next;
+				free(prev_node);
 			}
+			*(objects->array[i].texture.bump_maps) = NULL;
+			return ;
 		}
 		i++;
 	}

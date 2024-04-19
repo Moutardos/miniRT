@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:48:30 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/21 15:01:42 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/21 15:11:01 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int					ft_min(int a, int b);
 int					ft_max(int a, int b);
 int					ft_isdigit(char c);
 bool				ft_iswhitespace(char c);
+void				ft_strlcpy(char *dest, const char *src, size_t size);
 unsigned int		ft_strlen(const char *s);
 int					ft_putstr_fd(char *s, int fd);
 bool				is_same_first_word(const char *s1, const char *s2);

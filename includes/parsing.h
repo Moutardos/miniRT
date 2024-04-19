@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:57:07 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/12 14:50:32 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:38:48 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int		extract_vector(t_vector *vector, char **ptr_line);
 int		extract_unit_vector(t_vector *vector, char **ptr_line);
 int		extract_color(t_color *color, char **ptr_line);
 int		extract_fov(uint8_t *fov, char **ptr_line);
+
+int		extract_path(char **path, char **ptr_line);
+int		extract_image(t_mlx_info *mlx_info, t_img *image, char *path);
 
 void	ignore_space(char **ptr_line);
 

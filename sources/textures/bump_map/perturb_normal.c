@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:10:26 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/15 15:01:07 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:06:05 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ t_vector	get_normal_bump_map(t_texture_coordinates coord,
 	int	i;
 	int	j;
 
-	i = ft_dclamp(roundf(coord.x * (bump_map->width - 1)), 0,
-			bump_map->width - 1);
-	j = ft_dclamp(roundf(coord.y * (bump_map->height - 1)), 0,
-			bump_map->height - 1);
-	return ((*bump_map->map)[i * (bump_map->width) + j]);
+	i = ft_dclamp(roundf(coord.x * (bump_map->img.width - 1)), 0,
+			bump_map->img.width - 1);
+	j = ft_dclamp(roundf(coord.y * (bump_map->img.height - 1)), 0,
+			bump_map->img.height - 1);
+	return (bump_map->map[j * (bump_map->img.width) + i]);
 }
 
 void	get_tbn_matrix(t_matrix_3x3 tbn, t_point_info *point_info)
@@ -83,6 +83,6 @@ t_vector	perturb_normal(t_point_info *point_info)
 	coord = point_to_texture_coordinates(point_info);
 	get_tbn_matrix(tbn, point_info);
 	bump_normal = get_normal_bump_map(
-			coord, &point_info->object->texture.bump_map);
+			coord, point_info->object->texture.bump_map);
 	return (normalize_vector(multiply_vector_by_3x3matrix(bump_normal, tbn)));
 }

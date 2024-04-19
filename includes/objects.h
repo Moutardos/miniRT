@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:52:50 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/14 17:43:28 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:05:01 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ typedef struct s_object_array
 	int			len;
 }	t_object_array;
 
-int		init_object(t_object *object, char *line);
+int		init_object(t_data *data, t_object *object, char *line);
 
 int		init_light_utils(t_object_array *objects, t_light_array *lights);
 int		init_light_utils_co(t_cone *cone, int len);

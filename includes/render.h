@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:10:29 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/16 13:54:39 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:50:03 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "objects.h"
 
-# define OFFSET 0.02
+# define OFFSET 0.0002
 # define OFFSET_LIGHT 0.0002
 # define SPECULARITY 550
 
