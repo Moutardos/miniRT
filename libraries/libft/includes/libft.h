@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:48:30 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/14 20:30:48 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/20 14:14:28 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdbool.h>
 # include <stddef.h>
 
-# define EPSILON 0.001
+# define EPSILON 0.00001
 
 bool				are_doubles_equals(double x, double y);
 double				ft_dabs(double a);
