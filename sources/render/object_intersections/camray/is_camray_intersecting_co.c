@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 18:21:18 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/20 13:58:09 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/20 14:19:06 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_vector	get_cone_normal(t_cone *cone, t_vector cp)
 	return (normalize_vector(normal));
 }
 
-double	get_min_cone_root(t_quadratic_roots *roots,
+double	get_min_cone_root_camera(t_quadratic_roots *roots,
 			double dot_prod_uv, t_cone *cone)
 {
 	double		p[2];
@@ -75,7 +75,7 @@ bool	is_camray_intersecting_co_tube(t_cone *cone, t_vector ray,
 	if (roots.nb == 0 || (roots.nb == 1 && roots.single[0] < 0)
 		|| (roots.nb == 2 && roots.distincts[0] < 0 && roots.distincts[1] < 0))
 		return (false);
-	t = get_min_cone_root(&roots, dot_prod_uv, cone);
+	t = get_min_cone_root_camera(&roots, dot_prod_uv, cone);
 	if (t <= 0)
 		return (false);
 	point_info->cp_magnitude = t;

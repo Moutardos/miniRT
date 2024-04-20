@@ -6,12 +6,42 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 04:23:23 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/14 21:03:56 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/20 14:22:18 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minirt.h"
+
+double	get_min_cone_root_light(t_quadratic_roots *roots,
+			double dot_prod_uv, t_cone *cone)
+{
+	double		p[2];
+	double		c;
+
+	c = cone->utils.dot_prod_disk1_center_light_dir;
+	if (roots->nb == 1 && roots->single[0] > 0)
+	{
+		p[0] = -(roots->single[0] * dot_prod_uv + c);
+		if (p[0] >= 0 && p[0] < cone->height)
+			return (roots->single[0]);
+		return (-1);
+	}
+	p[0] = -(roots->distincts[0] * dot_prod_uv + c);
+	p[1] = -(roots->distincts[1] * dot_prod_uv + c);
+	if (p[0] >= 0 && p[0] < cone->height && p[1] >= 0 && p[1] < cone->height)
+	{
+		if (roots->distincts[0] < roots->distincts[1])
+			return (roots->distincts[0]);
+		return (roots->distincts[1]);
+	}
+	if (p[0] >= 0 && p[0] < cone->height)
+		return (roots->distincts[0]);
+	if (p[1] >= 0 && p[1] < cone->height)
+		return (roots->distincts[1]);
+	else
+		return (-1);
+}
 
 bool	is_lightray_intersecting_co_tube(t_cone *cone,
 		t_vector lightray, double t_max)
@@ -20,7 +50,6 @@ bool	is_lightray_intersecting_co_tube(t_cone *cone,
 	double				dot_prod_uv;
 	double				squared_dot_prod_uv;
 	double				t;
-	double				p;
 
 	dot_prod_uv = perform_dot_product(lightray, cone->vector);
 	squared_dot_prod_uv = dot_prod_uv * dot_prod_uv;
@@ -33,10 +62,7 @@ bool	is_lightray_intersecting_co_tube(t_cone *cone,
 	if (roots.nb == 0 || (roots.nb == 1 && roots.single[0] < 0)
 		|| (roots.nb == 2 && roots.distincts[0] < 0 && roots.distincts[1] < 0))
 		return (false);
-	t = get_min_positive_root(&roots);
-	p = -(t * dot_prod_uv + cone->utils.dot_prod_disk1_center_light_dir);
-	if (p < 0 || p > cone->height)
-		return (false);
+	t = get_min_cone_root_light(&roots, dot_prod_uv, cone);
 	return (t < (t_max - OFFSET) && t > OFFSET);
 }
 
