@@ -6,10 +6,11 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 18:21:18 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/14 21:08:38 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/20 13:58:09 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minirt.h"
 
 t_vector	get_cone_normal(t_cone *cone, t_vector cp)
@@ -25,6 +26,36 @@ t_vector	get_cone_normal(t_cone *cone, t_vector cp)
 	return (normalize_vector(normal));
 }
 
+double	get_min_cone_root(t_quadratic_roots *roots,
+			double dot_prod_uv, t_cone *cone)
+{
+	double		p[2];
+	double		c;
+
+	c = cone->utils.dot_prod_disk1_center_camera_dir;
+	if (roots->nb == 1 && roots->single[0] > 0)
+	{
+		p[0] = -(roots->single[0] * dot_prod_uv + c);
+		if (p[0] >= 0 && p[0] < cone->height)
+			return (roots->single[0]);
+		return (-1);
+	}
+	p[0] = -(roots->distincts[0] * dot_prod_uv + c);
+	p[1] = -(roots->distincts[1] * dot_prod_uv + c);
+	if (p[0] >= 0 && p[0] < cone->height && p[1] >= 0 && p[1] < cone->height)
+	{
+		if (roots->distincts[0] < roots->distincts[1])
+			return (roots->distincts[0]);
+		return (roots->distincts[1]);
+	}
+	if (p[0] >= 0 && p[0] < cone->height)
+		return (roots->distincts[0]);
+	if (p[1] >= 0 && p[1] < cone->height)
+		return (roots->distincts[1]);
+	else
+		return (-1);
+}
+
 bool	is_camray_intersecting_co_tube(t_cone *cone, t_vector ray,
 			t_point_info *point_info)
 {
@@ -32,7 +63,6 @@ bool	is_camray_intersecting_co_tube(t_cone *cone, t_vector ray,
 	double				dot_prod_uv;
 	double				squared_dot_prod_uv;
 	double				t;
-	double				p;
 
 	dot_prod_uv = perform_dot_product(ray, cone->vector);
 	squared_dot_prod_uv = dot_prod_uv * dot_prod_uv;
@@ -45,9 +75,8 @@ bool	is_camray_intersecting_co_tube(t_cone *cone, t_vector ray,
 	if (roots.nb == 0 || (roots.nb == 1 && roots.single[0] < 0)
 		|| (roots.nb == 2 && roots.distincts[0] < 0 && roots.distincts[1] < 0))
 		return (false);
-	t = get_min_positive_root(&roots);
-	p = -(t * dot_prod_uv + cone->utils.dot_prod_disk1_center_camera_dir);
-	if (t <= OFFSET || p < 0 || p > cone->height)
+	t = get_min_cone_root(&roots, dot_prod_uv, cone);
+	if (t <= 0)
 		return (false);
 	point_info->cp_magnitude = t;
 	point_info->cp = multiply_vector(t, ray);
