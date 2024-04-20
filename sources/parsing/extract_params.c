@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:53:49 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/09 22:09:42 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/20 22:49:54 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,6 @@ int	extract_unit_vector(t_vector *vector, char **ptr_line)
 		return (1);
 	if (!is_unit_vector(*vector))
 		return (2);
-	if (vector->x != -1 && vector->x != 0 && vector->x != 1)
-		return (3);
-	if (vector->y != -1 && vector->y != 0 && vector->y != 1)
-		return (3);
-	if (vector->z != -1 && vector->z != 0 && vector->z != 1)
-		return (3);
 	return (0);
 }
 
