@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:29:32 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/19 18:52:09 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:50:08 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "libft.h"
 #include "minirt.h"
 
-/* Faire une liste chaine avec path, img, map (t_vector *) et next*/
 int	fill_bump_map_map(t_bump_map *bump_map)
 {
 	int		i;
