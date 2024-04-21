@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/21 21:11:21 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/22 01:48:43 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static int	read_line_settings(t_settings *settings, char *line,
 {
 	int		error;
 
+	ignore_space(&line);
 	error = 0;
 	if (is_same_first_word(line, "C"))
 		error = update_camera(&settings->camera, line);
@@ -54,6 +55,7 @@ static int	read_line_arrays(t_data *data,
 	int			error;
 	char		*original_line;
 
+	ignore_space(&line);
 	original_line = line;
 	error = 0;
 	if (is_same_first_word(line, "l"))
