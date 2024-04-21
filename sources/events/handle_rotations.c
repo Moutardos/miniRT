@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 22:29:44 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/21 16:30:14 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/21 18:13:24 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,80 +15,30 @@
 #include "libft.h"
 #include "minirt.h"
 
-void	handle_dir_j_rotation(int keycode,
-			t_frame *frame, t_vector *direction)
-{
-	if (perform_dot_product(frame->dir_j, *direction) == 1)
-	{
-		if (keycode == XK_Right)
-			*direction = frame->dir_i;
-		if (keycode == XK_Left)
-			*direction = multiply_vector(-1, frame->dir_i);
-	}
-	else
-	{
-		if (keycode == XK_Right)
-			*direction = multiply_vector(-1, frame->dir_i);
-		if (keycode == XK_Left)
-			*direction = frame->dir_i;
-	}
-}
-
-void	handle_dir_i_rotation(int keycode,
-			t_camera *camera, t_frame *frame, t_vector *direction)
-{
-	if (perform_dot_product(frame->dir_i, *direction) == 1)
-	{
-		if (keycode == XK_Down)
-			*direction = camera->vector;
-		if (keycode == XK_Up)
-			*direction = multiply_vector(-1, camera->vector);
-		if (keycode == XK_Left)
-			*direction = frame->dir_j;
-		if (keycode == XK_Right)
-			*direction = multiply_vector(-1, frame->dir_j);
-	}
-	else
-	{
-		if (keycode == XK_Down)
-			*direction = multiply_vector(-1, camera->vector);
-		if (keycode == XK_Up)
-			*direction = camera->vector;
-		if (keycode == XK_Left)
-			*direction = multiply_vector(-1, frame->dir_j);
-		if (keycode == XK_Right)
-			*direction = frame->dir_j;
-	}
-}
-
-void	handle_dir_c_rotation(int keycode,
-			t_camera *camera, t_frame *frame, t_vector *direction)
-{
-	if (perform_dot_product(camera->vector, *direction) == 1)
-	{
-		if (keycode == XK_Up)
-			*direction = frame->dir_i;
-		if (keycode == XK_Down)
-			*direction = multiply_vector(-1, frame->dir_i);
-	}
-	else
-	{
-		if (keycode == XK_Up)
-			*direction = multiply_vector(-1, frame->dir_i);
-		if (keycode == XK_Down)
-			*direction = frame->dir_i;
-	}
-}
-
 void	handle_rotations(int keycode,
 			t_camera *camera, t_frame *frame, t_vector *direction)
 {
-	if (ft_dabs(perform_dot_product(frame->dir_j, *direction)) == 1)
-		handle_dir_j_rotation(keycode, frame, direction);
-	else if (ft_dabs(perform_dot_product(frame->dir_i, *direction)) == 1)
-		handle_dir_i_rotation(keycode, camera, frame, direction);
-	else if (ft_dabs(perform_dot_product(camera->vector, *direction)) == 1)
-		handle_dir_c_rotation(keycode, camera, frame, direction);
+	t_vector	diag_c_i;
+	t_vector	diag_i_j;
+
+	diag_c_i = sum_vectors(camera->vector, frame->dir_i);
+	diag_i_j = sum_vectors(frame->dir_i, frame->dir_j);
+	if (keycode == XK_Left)
+		*direction = normalize_vector(
+				sum_vectors(*direction, multiply_vector(-COEF,
+						perform_cross_product(diag_c_i, *direction))));
+	if (keycode == XK_Right)
+		*direction = normalize_vector(
+				sum_vectors(*direction, multiply_vector(COEF,
+						perform_cross_product(diag_c_i, *direction))));
+	if (keycode == XK_Up)
+		*direction = normalize_vector(
+				sum_vectors(*direction, multiply_vector(COEF,
+						perform_cross_product(diag_i_j, *direction))));
+	if (keycode == XK_Down)
+		*direction = normalize_vector(
+				sum_vectors(*direction, multiply_vector(-COEF,
+						perform_cross_product(diag_i_j, *direction))));
 }
 
 void	handle_camera_rotations(int keycode, t_camera *camera,
