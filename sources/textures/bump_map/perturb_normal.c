@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:10:26 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/19 18:06:05 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/22 01:24:12 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,6 @@ void	fill_tbn(t_matrix_3x3 tbn, t_vector tangent,
 	tbn[2][2] = normal.z;
 }
 
-t_vector	multiply_vector_by_3x3matrix(t_vector vector, t_matrix_3x3 matrix)
-{
-	return ((t_vector){
-		.x = vector.x * matrix[0][0]
-			+ vector.y * matrix[1][0] + vector.z * matrix[2][0],
-		.y = vector.x * matrix[0][1]
-			+ vector.y * matrix[1][1] + vector.z * matrix[2][1],
-		.z = vector.x * matrix[0][2]
-			+ vector.y * matrix[1][2] + vector.z * matrix[2][2],
-	});
-}
 
 t_vector	get_normal_bump_map(t_texture_coordinates coord,
 			t_bump_map *bump_map)
@@ -59,14 +48,26 @@ void	get_tbn_matrix(t_matrix_3x3 tbn, t_point_info *point_info)
 	t_vector	bitangent;
 
 	if (point_info->object->type == CO)
-		tangent = perform_cross_product(point_info->object->cone.vector,
-				point_info->surface_normal);
+	{
+		if (are_doubles_equals(ft_dabs(perform_dot_product(point_info->normal,
+			point_info->object->cone.utils.induced_plane2.vector)),1))
+			tangent = perform_cross_product(point_info->object->cylinder.vector, (t_vector) {1,0,0});
+		else
+			tangent = perform_cross_product(point_info->object->cone.vector,
+					point_info->surface_normal);
+	}
 	else if (point_info->object->type == PL)
 		tangent = perform_cross_product(point_info->object->plane.vector,
 				(t_vector){1, 0, 0});
 	else if (point_info->object->type == CY)
-		tangent = perform_cross_product(point_info->object->cylinder.vector,
-				point_info->surface_normal);
+	{
+		if (are_doubles_equals(ft_dabs(perform_dot_product(point_info->normal,
+			point_info->object->cylinder.utils.induced_plane1.vector)),1))
+			tangent = perform_cross_product(point_info->object->cylinder.vector, (t_vector) {1,0,0});
+		else
+			tangent = perform_cross_product(point_info->object->cylinder.vector,
+					point_info->surface_normal);
+	}
 	else
 		tangent = perform_cross_product((t_vector){0, 0, 1},
 				point_info->surface_normal);
@@ -84,5 +85,5 @@ t_vector	perturb_normal(t_point_info *point_info)
 	get_tbn_matrix(tbn, point_info);
 	bump_normal = get_normal_bump_map(
 			coord, point_info->object->texture.bump_map);
-	return (normalize_vector(multiply_vector_by_3x3matrix(bump_normal, tbn)));
+	return (normalize_vector(multiply_vector_by_matrix(bump_normal, tbn)));
 }

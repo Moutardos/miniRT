@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:43:07 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/14 16:53:00 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/22 01:42:57 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ typedef struct s_quadratic_roots
 
 double				get_min_positive_root(t_quadratic_roots *roots);
 t_quadratic_roots	solve_quadratic_equation(double a, double b, double c);
+
+t_vector			multiply_vector_by_matrix(t_vector vector, t_matrix_3x3 matrix);
+t_vector    		rotate_vector_upside(t_vector obj_orientation,
+						t_point hitpoint,
+						t_point center);
+void   				get_matrix_rotation(t_matrix_3x3 rotation_matrix,
+						double angle,
+	   					t_vector axis);
 
 t_vector			create_vector(t_point start_point, t_point end_point);
 double				get_vector_magnitude(t_vector v);

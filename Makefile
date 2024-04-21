@@ -6,7 +6,7 @@
 #    By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/21 15:11:05 by lcozdenm         ###   ########.fr        #
+#    Updated: 2024/04/21 22:58:20 by lcozdenm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,6 +128,11 @@ SRCS_TEXTURES		:=	\
 						intensify_color.c \
 						init_texture.c
 
+SRCS_MATRIX_UTILS	:=	\
+						get_matrix_rotation.c \
+						multiply_vector_by_matrix.c \
+						rotate_vector_upside.c
+
 SRCS_EQUATION_UTILS	:=	\
 						get_min_positive_root.c \
 						solve_quadratic_equation.c
@@ -149,8 +154,8 @@ SRCS_VECTOR_UTILS	:=	\
 
 SRCS_UTILS			:=	\
 						${addprefix equation_utils/, ${SRCS_EQUATION_UTILS}} \
-						${addprefix vector_utils/, ${SRCS_VECTOR_UTILS}} \
-
+						${addprefix matrix_utils/, ${SRCS_MATRIX_UTILS}} \
+						${addprefix vector_utils/, ${SRCS_VECTOR_UTILS}} 
 
 SRCS				:=	\
 						${addprefix textures/, ${SRCS_TEXTURES}} \
@@ -184,7 +189,7 @@ ${NAME}: $(LIBS_TARGET) ${OBJS}
 
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c
 	${DIR_DUP}
-	${CC} ${CFLAGS} ${CPPFLAGS} -c -o $@ $<
+	${CC} ${CFLAGS} ${CPPFLAGS} -c -o $@ $< -g
 
 $(LIBS_TARGET):
 	$(MAKE) -C $(@D)

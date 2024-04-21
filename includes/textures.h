@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:56:05 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/21 21:15:31 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/22 01:52:45 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # define CHECKER_CY_H 4
 # define CHECKER_CO_W 6
 # define CHECKER_CO_H 6
-# define CHECKER_SP_W 6
-# define CHECKER_SP_H 6
+# define CHECKER_SP_W 8
+# define CHECKER_SP_H 8
 
 # define BLACK 0x000000
 

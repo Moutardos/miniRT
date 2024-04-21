@@ -6,14 +6,14 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 17:48:41 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/15 00:35:42 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/21 22:54:46 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 t_texture_coordinates	point_to_texture_coordinates(t_point_info *point_info)
-{
+{	
 	if (point_info->object->type == SP)
 		return (get_sp_coord(&point_info->object->sphere, point_info));
 	if (point_info->object->type == PL)

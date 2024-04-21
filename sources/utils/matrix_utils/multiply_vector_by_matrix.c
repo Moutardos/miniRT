@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_pl_coord.c                                     :+:      :+:    :+:   */
+/*   multiply_vector_by_matrix.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/14 17:50:27 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/22 00:57:28 by lcozdenm         ###   ########.fr       */
+/*   Created: 2024/04/21 20:56:01 by lcozdenm          #+#    #+#             */
+/*   Updated: 2024/04/21 20:56:33 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include "libft.h"
 #include "minirt.h"
 
-t_texture_coordinates	get_pl_coord(t_plane *plane, t_point_info *point_info)
+t_vector	multiply_vector_by_matrix(t_vector vector, t_matrix_3x3 matrix)
 {
-	t_vector	projected_position;
-	double		y;
-	double		x;
-
-	projected_position = rotate_vector_upside(plane->vector, point_info->point, plane->point);
-	x = fmod(projected_position.x, 1);
-	y = fmod(projected_position.z, 1);
-	if (x < 0)
-		x += 1;
-	if (y < 0)
-		y += 1;
-	return ((t_texture_coordinates){
-		.x = x,
-		.y = y
+	return ((t_vector){
+		.x = vector.x * matrix[0][0]
+			+ vector.y * matrix[1][0] + vector.z * matrix[2][0],
+		.y = vector.x * matrix[0][1]
+			+ vector.y * matrix[1][1] + vector.z * matrix[2][1],
+		.z = vector.x * matrix[0][2]
+			+ vector.y * matrix[1][2] + vector.z * matrix[2][2],
 	});
 }
