@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 00:04:14 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/09 21:20:09 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/20 23:09:03 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,22 @@
 
 void	init_dirs(t_vector *dir_j, t_vector *dir_i, t_vector *dir_cam)
 {
-	if (are_doubles_equals(dir_cam->y, 0))
-		*dir_i = (t_vector){0, -1, 0};
-	else
-		*dir_i = (t_vector){-1, 0, 0};
-	if (are_doubles_equals(dir_cam->z, 0))
+	t_vector	dir_up;
+
+	dir_up = (t_vector){0, 1, 0};
+	if (are_doubles_equals(ft_dabs(dir_cam->y), 1))
 	{
-		if (!are_doubles_equals(dir_cam->x, 0))
-			*dir_j = (t_vector){0, 0, dir_cam->x};
+		*dir_i = (t_vector){-1, 0, 0};
+		if (are_doubles_equals(dir_cam->y, 1))
+			*dir_j = (t_vector){0, 0, -1};
 		else
-			*dir_j = (t_vector){0, 0, -dir_cam->y};
+			*dir_j = (t_vector){0, 0, 1};
 	}
 	else
-		*dir_j = (t_vector){-dir_cam->z, 0, 0};
+	{
+		*dir_j = perform_cross_product(*dir_cam, dir_up);
+		*dir_i = perform_cross_product(*dir_cam, *dir_j);
+	}
 }
 
 t_point	get_frame_origin(t_frame *frame, t_camera *camera)
