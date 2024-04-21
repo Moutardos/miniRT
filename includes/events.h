@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   events.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:31:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/21 18:28:21 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/21 20:38:53 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EVENTS_H
 # define EVENTS_H
 
-# define STEP 1
+# define STEP 0.1
 # define COEF 0.1
-# define DIM 1
+# define DIM 0.1
 # define RGB_INCR 50
 
 typedef struct s_point			t_point;
