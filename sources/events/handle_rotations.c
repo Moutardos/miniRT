@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 22:29:44 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/21 18:13:24 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/21 18:29:41 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,23 @@ void	handle_rotations(int keycode,
 	if (keycode == XK_Left)
 		*direction = normalize_vector(
 				sum_vectors(*direction, multiply_vector(-COEF,
-						perform_cross_product(diag_c_i, *direction))));
+						normalize_vector(perform_cross_product(
+								diag_c_i, *direction)))));
 	if (keycode == XK_Right)
 		*direction = normalize_vector(
 				sum_vectors(*direction, multiply_vector(COEF,
-						perform_cross_product(diag_c_i, *direction))));
+						normalize_vector(perform_cross_product(
+								diag_c_i, *direction)))));
 	if (keycode == XK_Up)
 		*direction = normalize_vector(
 				sum_vectors(*direction, multiply_vector(COEF,
-						perform_cross_product(diag_i_j, *direction))));
+						normalize_vector(perform_cross_product(
+								diag_i_j, *direction)))));
 	if (keycode == XK_Down)
 		*direction = normalize_vector(
 				sum_vectors(*direction, multiply_vector(-COEF,
-						perform_cross_product(diag_i_j, *direction))));
+						normalize_vector(perform_cross_product(
+								diag_i_j, *direction)))));
 }
 
 void	handle_camera_rotations(int keycode, t_camera *camera,

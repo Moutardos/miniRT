@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:31:27 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/21 16:21:31 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/21 18:28:21 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define EVENTS_H
 
 # define STEP 1
-# define COEF 0.2
+# define COEF 0.1
 # define DIM 1
 # define RGB_INCR 50
 
