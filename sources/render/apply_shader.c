@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply_shader.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:17:02 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/12 16:45:17 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/21 21:12:00 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static double	phong_reflection(t_vector normal_facing,
 	t_vector	reflected_light;
 	double		dot_prod_rv;
 
-	reflected_light = 
-		sum_vectors(multiply_vector(2, multiply_vector(
+	reflected_light
+		= sum_vectors(multiply_vector(2, multiply_vector(
 					-perform_dot_product(normal_facing, light_direction),
 					normal_facing)),
 			light_direction);
@@ -29,7 +29,7 @@ static double	phong_reflection(t_vector normal_facing,
 	{
 		return (
 			ratio * pow(
-				dot_prod_rv 
+				dot_prod_rv
 				/ (get_vector_magnitude(reflected_light)
 					* p_info->cp_magnitude),
 				SPECULARITY)
@@ -67,8 +67,8 @@ void	treat_light(t_light *light, t_color_intensity color_intensity,
 	dot_prod_nl = -perform_dot_product(p_info->surface_normal, light_direction);
 	if (dot_prod_nl > 0)
 	{
-		light_intensity = 
-			light->ratio * dot_prod_nl 
+		light_intensity
+			= light->ratio * dot_prod_nl
 			/ get_vector_magnitude(light_direction)
 			+ phong_reflection(p_info->surface_normal, light_direction, p_info,
 				light->ratio);

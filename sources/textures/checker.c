@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:58:44 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/15 03:10:42 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/21 21:15:49 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_color	get_checker_pattern(t_texture_coordinates coord, t_texture *texture)
 	t_checker	ch;
 
 	ch = texture->checker;
-	if (((int) floor(coord.x * ch.width) 
+	if (((int) floor(coord.x * ch.width)
 			+ (int) floor(coord.y * ch.height)) % 2 == 0)
 		return (texture->color);
 	else

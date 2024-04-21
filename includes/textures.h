@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 02:56:05 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/19 18:55:35 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/21 21:15:31 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ t_color					get_point_color(t_point_info *point_info);
 
 void					init_color_intensity(t_color_intensity color_intensity);
 void					get_colored_intensity(
-							t_color_intensity color_intensity, 
+							t_color_intensity color_intensity,
 							t_color light_color, double intensity);
 void					intensify_color(t_color *color,
 							t_color_intensity color_intensity);

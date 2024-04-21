@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/19 18:39:47 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/21 21:11:21 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ int	fill_data(t_data *data, char *file)
 			objects->array = ft_calloc(objects->len, sizeof(t_object));
 		if (lights->len > 0)
 			lights->array = ft_calloc(lights->len, sizeof(t_light));
-		if ((lights->len > 0 && !lights->array) 
+		if ((lights->len > 0 && !lights->array)
 			|| (objects->len > 0 && !objects->array))
 		{
 			ft_putstr_fd("Error while allocating memory\n", 2);
