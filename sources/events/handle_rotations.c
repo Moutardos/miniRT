@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 22:29:44 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/14 15:25:02 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/21 16:30:14 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,28 +94,29 @@ void	handle_rotations(int keycode,
 void	handle_camera_rotations(int keycode, t_camera *camera,
 			t_frame *frame)
 {
-	t_vector	old_cam_dir;
-
-	old_cam_dir = camera->vector;
 	if (keycode == XK_Up)
 	{
-		camera->vector = multiply_vector(-1, frame->dir_i);
-		frame->dir_i = old_cam_dir;
+		camera->vector = normalize_vector(sum_vectors(camera->vector,
+					multiply_vector(-COEF, frame->dir_i)));
+		frame->dir_i = perform_cross_product(camera->vector, frame->dir_j);
 	}
 	else if (keycode == XK_Down)
 	{
-		camera->vector = frame->dir_i;
-		frame->dir_i = multiply_vector(-1, old_cam_dir);
+		camera->vector = normalize_vector(sum_vectors(camera->vector,
+					multiply_vector(COEF, frame->dir_i)));
+		frame->dir_i = perform_cross_product(camera->vector, frame->dir_j);
 	}
 	else if (keycode == XK_Right)
 	{
-		camera->vector = frame->dir_j;
-		frame->dir_j = multiply_vector(-1, old_cam_dir);
+		camera->vector = normalize_vector(sum_vectors(camera->vector,
+					multiply_vector(COEF, frame->dir_j)));
+		frame->dir_j = perform_cross_product(frame->dir_i, camera->vector);
 	}
 	else if (keycode == XK_Left)
 	{
-		camera->vector = multiply_vector(-1, frame->dir_j);
-		frame->dir_j = old_cam_dir;
+		camera->vector = normalize_vector(sum_vectors(camera->vector,
+					multiply_vector(-COEF, frame->dir_j)));
+		frame->dir_j = perform_cross_product(frame->dir_i, camera->vector);
 	}
 	frame->origin = get_frame_origin(frame, camera);
 }
