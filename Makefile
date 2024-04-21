@@ -6,7 +6,7 @@
 #    By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/21 22:58:20 by lcozdenm         ###   ########.fr        #
+#    Updated: 2024/04/22 01:56:13 by lcozdenm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -189,7 +189,7 @@ ${NAME}: $(LIBS_TARGET) ${OBJS}
 
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c
 	${DIR_DUP}
-	${CC} ${CFLAGS} ${CPPFLAGS} -c -o $@ $< -g
+	${CC} ${CFLAGS} ${CPPFLAGS} -c -o $@ $<
 
 $(LIBS_TARGET):
 	$(MAKE) -C $(@D)
