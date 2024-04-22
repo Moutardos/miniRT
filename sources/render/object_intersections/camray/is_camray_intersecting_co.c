@@ -6,7 +6,7 @@
 /*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 18:21:18 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/20 14:19:06 by ekhaled          ###   ########.fr       */
+/*   Updated: 2024/04/22 04:15:46 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ double	get_min_cone_root_camera(t_quadratic_roots *roots,
 	p[1] = -(roots->distincts[1] * dot_prod_uv + c);
 	if (p[0] >= 0 && p[0] < cone->height && p[1] >= 0 && p[1] < cone->height)
 	{
-		if (roots->distincts[0] < roots->distincts[1])
+		if (roots->distincts[1] < 0 || roots->distincts[0] < roots->distincts[1])
 			return (roots->distincts[0]);
 		return (roots->distincts[1]);
 	}

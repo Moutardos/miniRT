@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_lightray_intersecting_co.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 04:23:23 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/21 15:06:54 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/22 04:19:52 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ double	get_min_cone_root_light(t_quadratic_roots *roots,
 	p[1] = -(roots->distincts[1] * dot_prod_uv + c);
 	if (p[0] >= 0 && p[0] < cone->height && p[1] >= 0 && p[1] < cone->height)
 	{
-		if (roots->distincts[0] < roots->distincts[1])
+		if (roots->distincts[1] < 0 || roots->distincts[0] < roots->distincts[1])
 			return (roots->distincts[0]);
 		return (roots->distincts[1]);
 	}
