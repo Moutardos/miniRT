@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/22 02:16:15 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/22 05:28:29 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ static int	read_line_arrays(t_data *data,
 	static int	i_obj = 0;
 	static int	i_light = 0;
 	int			error;
-	char		*original_line;
 
 	ignore_space(&line);
-	original_line = line;
 	error = 0;
 	if (is_same_first_word(line, "l"))
 		error = update_light(&lights->array[i_light++], line);
