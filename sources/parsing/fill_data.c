@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:00:28 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/22 01:48:43 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/22 02:16:15 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ static int	read_line_settings(t_settings *settings, char *line,
 	else if (error == 1)
 		ft_putstr_fd("Error\nToo many of the same element\n", 2);
 	else if (error == 2)
-	{
-		ft_putstr_fd("Error\nWrong values\n", 2);
-		return (ft_putstr_fd(line, 2), ft_putstr_fd("\n", 2), 1);
-	}
+		return (ft_putstr_fd("Error\nWrong values\n", 2), ft_putstr_fd(line, 2),
+			ft_putstr_fd("\n", 2), 1);
 	return (1);
 }
 
@@ -59,10 +57,7 @@ static int	read_line_arrays(t_data *data,
 	original_line = line;
 	error = 0;
 	if (is_same_first_word(line, "l"))
-	{
-		error = update_light(&lights->array[i_light], line);
-		i_light++;
-	}
+		error = update_light(&lights->array[i_light++], line);
 	else if (str_to_obj(line, &objects->array[i_obj].type))
 		return (0);
 	else

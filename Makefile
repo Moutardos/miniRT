@@ -6,7 +6,7 @@
 #    By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 14:04:37 by ekhaled           #+#    #+#              #
-#    Updated: 2024/04/22 01:56:13 by lcozdenm         ###   ########.fr        #
+#    Updated: 2024/04/22 02:09:58 by lcozdenm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -129,7 +129,7 @@ SRCS_TEXTURES		:=	\
 						init_texture.c
 
 SRCS_MATRIX_UTILS	:=	\
-						get_matrix_rotation.c \
+						get_rotation_matrix.c \
 						multiply_vector_by_matrix.c \
 						rotate_vector_upside.c
 

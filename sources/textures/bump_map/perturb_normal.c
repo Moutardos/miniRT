@@ -6,7 +6,7 @@
 /*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:10:26 by lcozdenm          #+#    #+#             */
-/*   Updated: 2024/04/22 01:24:12 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/22 02:32:08 by lcozdenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	fill_tbn(t_matrix_3x3 tbn, t_vector tangent,
 	tbn[2][2] = normal.z;
 }
 
-
 t_vector	get_normal_bump_map(t_texture_coordinates coord,
 			t_bump_map *bump_map)
 {
@@ -42,32 +41,42 @@ t_vector	get_normal_bump_map(t_texture_coordinates coord,
 	return (bump_map->map[j * (bump_map->img.width) + i]);
 }
 
+t_vector	get_cone_tangent(t_point_info *point_info)
+{
+	if (are_doubles_equals(ft_dabs(perform_dot_product(point_info->normal,
+					point_info->object->cone.utils.induced_plane2.vector)), 1))
+	{
+		return (perform_cross_product(point_info->object->cylinder.vector,
+				(t_vector){1, 0, 0}));
+	}
+	else
+	{
+		return (perform_cross_product(point_info->object->cone.vector,
+				point_info->surface_normal));
+	}
+}
+
 void	get_tbn_matrix(t_matrix_3x3 tbn, t_point_info *point_info)
 {
 	t_vector	tangent;
 	t_vector	bitangent;
 
-	if (point_info->object->type == CO)
-	{
-		if (are_doubles_equals(ft_dabs(perform_dot_product(point_info->normal,
-			point_info->object->cone.utils.induced_plane2.vector)),1))
-			tangent = perform_cross_product(point_info->object->cylinder.vector, (t_vector) {1,0,0});
-		else
-			tangent = perform_cross_product(point_info->object->cone.vector,
-					point_info->surface_normal);
-	}
-	else if (point_info->object->type == PL)
+	if (point_info->object->type == PL)
 		tangent = perform_cross_product(point_info->object->plane.vector,
 				(t_vector){1, 0, 0});
 	else if (point_info->object->type == CY)
 	{
 		if (are_doubles_equals(ft_dabs(perform_dot_product(point_info->normal,
-			point_info->object->cylinder.utils.induced_plane1.vector)),1))
-			tangent = perform_cross_product(point_info->object->cylinder.vector, (t_vector) {1,0,0});
+						point_info->object->cylinder.utils
+						.induced_plane1.vector)), 1))
+			tangent = perform_cross_product(point_info->object->cylinder.vector,
+					(t_vector){1, 0, 0});
 		else
 			tangent = perform_cross_product(point_info->object->cylinder.vector,
 					point_info->surface_normal);
 	}
+	else if (point_info->object->type == CO)
+		tangent = get_cone_tangent(point_info);
 	else
 		tangent = perform_cross_product((t_vector){0, 0, 1},
 				point_info->surface_normal);
