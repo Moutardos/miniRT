@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcozdenm <lcozdenm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekhaled <ekhaled@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:48:30 by ekhaled           #+#    #+#             */
-/*   Updated: 2024/04/21 15:11:01 by lcozdenm         ###   ########.fr       */
+/*   Updated: 2024/04/21 22:17:10 by ekhaled          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdbool.h>
 # include <stddef.h>
 
-# define EPSILON 0.00001
+# define EPSILON 0.0001
 
 bool				are_doubles_equals(double x, double y);
 double				ft_dabs(double a);
